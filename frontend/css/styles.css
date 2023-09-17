@@ -1,0 +1,26 @@
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+main {
+	min-height: 100vh;
+	background-image: url("../family-dog.jpg");
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../family-dog.jpg");
+	background-color: rgba(0, 0, 0, 0.5);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-size: cover;
+}
+form {
+	background-color: red;
+}
+
+#landing-signup-button {
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+}
