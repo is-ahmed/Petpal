@@ -1,0 +1,30 @@
+header {
+	display: flex;
+	background-color: #333333;
+	font-family: sans-serif;
+	justify-content: flex-start;
+	padding-top: 10px;
+	padding-bottom: 10px;	
+}
+
+ul {
+	
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	background-color: #309975 !important;
+}
+
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+
+

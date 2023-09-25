@@ -1,8 +1,5 @@
 header {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
-	align-items: center;
+
 }
 
 
@@ -22,12 +19,13 @@ footer {
 
 #landing-page {
 	min-height: 100vh;
-	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../family-dog.jpg");
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/family-dog.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
+}
+
+#landing-div {
+
 }
 
 #landing-signup-button {

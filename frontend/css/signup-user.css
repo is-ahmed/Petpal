@@ -1,0 +1,17 @@
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: red;
+}
+.form-container {
+	width: 50vw;
+	display: flex;
+	flex-direction: column;
+}
+
+#content {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/family-dog.jpg");
+}
+
+
