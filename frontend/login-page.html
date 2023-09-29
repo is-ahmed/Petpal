@@ -15,15 +15,23 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
 	
 	</head>
-	<header>
-		<nav>
-			<ul>
-			</ul>
-		</nav>
-	</header>
-	<body bgcolor="green">
+
+	<body bgcolor="white">
+	<div class="">
+		<header class="d-flex justify-content-between align-items-center p-1">
+		  <nav class="navbar navbar-default navbar-expand-lg navbar-light">
+			  <a class="navbar-brand" href="./landing-page.html">
+				  Petpal
+			  </a>
+			  <ul class="navbar-nav">
+				  <li class="nav-item active"><a class="nav-link" href="./search-pets.html">Search for Pets</a></li>
+			  </ul>
+		  </nav>
+		  <a class="btn btn-primary" href="./login-page.html">Login</a>
+		</header>
+	</div>
 	 <div class="fade-in container min-vh-100 d-flex justify-content-center align-items-center">
-	 <form>
+	 <form class="shadow mb-5 bg-white rounded form-container m-3 mt-5 p-5">
 	   <h1>Login</h1>
 	   <div class="mb-3">
 			<label for="email" class="form-label">Email:</label>
@@ -38,12 +46,14 @@
 			  <input class="form-check-input" type="checkbox" name="remember"> Remember me
 			</label>
 		  </div>
-		<button type="submit" class="btn btn-primary">Submit</button>
+		<button type="submit" class="btn btn-primary">Login</button>
 	</form>
 	 </div>
-	<footer>
-	  <p>Copyright 2023 by CSC309 Group 1889</p>
-	</footer>
+	<div class="">
+		<footer class="d-flex align-items-center justify-content-center">
+		  <p>Copyright 2023 by CSC309 Group 1889</p>
+		</footer>
+	</div>
 	</body>
 
 </html>

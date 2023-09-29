@@ -1,7 +1,14 @@
 header {
-
+	border-radus: 0px 0px 15px 15px;
 }
 
+a.navbar-brand:hover {
+	color: #309975;
+}
+
+a.nav-link:hover {
+	color: #309975;
+}
 
 body {
 	margin: 0;
@@ -15,6 +22,7 @@ footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	color: #309975;
 }
 
 #landing-page {
@@ -22,6 +30,7 @@ footer {
 	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/family-dog.jpg");
 	background-size: cover;
 	background-repeat: no-repeat;
+	background-position: center center;
 }
 
 #landing-div {
@@ -49,4 +58,6 @@ footer {
 	}
 }
 
-
+@media only screen and (max-width: 480px) {
+	
+}

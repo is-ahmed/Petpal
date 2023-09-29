@@ -1,3 +1,28 @@
 body {
+	padding: 0;
+	margin: 0;
 	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+
 }
+a.navbar-brand:hover {
+	color: #309975;
+}
+
+a.nav-link:hover {
+	color: #309975;
+}
+header {
+}
+
+#filter {
+	width: 15%;
+}
+
+
+footer {
+	color: #309975;
+}
+
+
