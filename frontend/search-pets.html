@@ -16,7 +16,8 @@
 	<script src="https://kit.fontawesome.com/faf442d90d.js" crossorigin="anonymous"></script>
 	</head>
 	<body class="d-flex flex-column">
-		<header class="d-flex justify-content-between align-items-center p-1">
+		<header class="d-flex justify-content-between align-items-center p-1
+			shadow bg-white rounded">
 		  <div>
 			  <nav class="navbar navbar-default navbar-expand-lg navbar-light">
 				  <a class="navbar-brand" href="./landing-page.html">
@@ -57,17 +58,17 @@
 		  </div>
 		  
 		</header>
-		<main class="d-flex flex-grow-1" >
-			<div id="filter" class="d-flex flex-column justify-content-start align-items-center me-3">
+		<main class="d-flex flex-grow-1 mt-3" >
+			<div id="filter" class="d-flex flex-column justify-content-start align-items-center me-3 shadow bg-white rounded">
 			  <div class="w-100 dropdown">
 				  <p>Breed</p>
 				  <button class="w-100 btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 					 Select 
 				  </button>
 				  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-					<li><a class="dropdown-item" href="#">Nearest</a></li>
-					<li><a class="dropdown-item" href="#">Furthest</a></li>
-					<li><a class="dropdown-item" href="#">Randomize</a></li>
+					<li><a class="dropdown-item" href="#">Afghan Hound</a></li>
+					<li><a class="dropdown-item" href="#">Golden Retriever</a></li>
+					<li><a class="dropdown-item" href="#">Rottweiler</a></li>
 				  </ul>
 			 </div>
 			  <div class="w-100 dropdown">
@@ -114,9 +115,51 @@
 			</div>
 			<div class="d-flex flex-column flex-grow-1">
 				<div id="content" class="d-flex flex-column justify-content-center align-items-center">
-					<div class="w-50 d-flex justify-content-center align-items-center mt-3 mb-3">
-					  <input type="search" class="form-control rounded" placeholder="Search" aria-label="Search" aria-describedby="search-addon" />
-					  <button type="button" class="me-5 btn btn-outline-primary">search</button>
+					<div class="w-50 d-flex justify-content-between align-items-center mt-3 mb-3 bg-danger">
+					  <div class="dropdown">
+						  
+						  <button class="btn btn-primary dropdown-toggle" type="button" id="animaldropdown" data-bs-toggle="dropdown" aria-expanded="false">
+							  Dog
+							<i class="fa-solid fa-dog"></i>
+						  </button>
+							<ul class="dropdown-menu" aria-labelledby="animaldropdown">
+							<li>
+								<a class="dropdown-item" href="#">Dog
+
+									<i class="fa-solid fa-dog"></i>
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Cat 
+
+									<i class="fa-solid fa-cat"></i>
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Rabbit
+
+									<i class="fa-solid fa-paw"></i>
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Birds
+
+									<i class="fa-solid fa-kiwi-bird"></i>
+								</a>
+							</li>
+							<li>
+								<a class="dropdown-item" href="#">Other
+
+									<i class="fa-solid fa-paw"></i>
+								</a>
+							</li>
+						  </ul>
+					  </div>
+					  <div class="dropdown">
+						  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+							Sort by 
+						  </button>
+					  </div>
 					  <div class="dropdown">
 						  <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
 							Sort by 
@@ -144,50 +187,58 @@
 					</div>
 				</div>
 			<div class="mt-5 d-flex flex-grow-1 flex-column justify-content-start align-items-center overflow-auto">
-				<div class="container gap-3 text-center bg-danger">
+				<div class="container text-center ">
 				  <div class="row">
-					  <div class="col text-center bg-primary rounded">
+					  <a class="col text-center rounded shadow rounded petinfo"href="https://youtube.com">
+								<img src="./images/dog1.jpg" class="img-fluid rounded" alt="dog photo">
+								<ul>
+									<li class="fw-bold">Sample</li>
+									<li>Age: 2</li>
+									<li>Breed: Rottweiler</li>
+								</ul>
+					  </a>
+					  <a class="col text-center  rounded shadow bg-white rounded petinfo" href="https://youtube.com">
 							<img src="./images/dog1.jpg" class="img-fluid rounded" alt="dog photo">
-							<div class="d-flex justify-content-center align-items-center petinfo">
 								<ul>
 									<li>Name: Sample</li>
 									<li>Age: 2</li>
 									<li>Breed: Rotweiller</li>
 								</ul>
-							</div>
-					  </div>
-					  <div class="col text-center rounded">
+					  </a>
+					  <a class="col text-center rounded shadow bg-white rounded petinfo" href="https://youtube.com">
 							<img src="./images/dog1.jpg" class="rounded img-fluid" alt="dog photo">
-							<div class="d-flex justify-content-center align-items-center petinfo">
 								<ul>
 									<li>Name: Sample</li>
 									<li>Age: 2</li>
 									<li>Breed: Rotweiller</li>
 								</ul>
-							</div>
-					  </div>
+					  </a>
 				  </div>
 				  <div class="row">
-					  <div class="col text-center rounded">
+					  <a class="col text-center  rounded shadow bg-white rounded petinfo" href="https://youtube.com">
+							<img src="./images/dog1.jpg" class="img-fluid rounded" alt="dog photo">
+								<ul>
+									<li>Name: Sample</li>
+									<li>Age: 2</li>
+									<li>Breed: Rotweiller</li>
+								</ul>
+					  </a>
+					  <a class="col text-center rounded shadow bg-white rounded petinfo" href="https://youtube.com">
 							<img src="./images/dog1.jpg" class="img-fluid" alt="dog photo">
-							<div class="d-flex justify-content-center align-items-center petinfo">
 								<ul>
 									<li>Name: Rocket</li>
 									<li>Age: 2</li>
 									<li>Breed: Rotweiller</li>
 								</ul>
-							</div>
-					  </div>
-					  <div class="col text-center rounded">
+					  </a>
+					  <a class="col text-center rounded shadow bg-white rounded petinfo" href="https://youtube.com">
 							<img src="./images/dog1.jpg" class="img-fluid" alt="dog photo">
-							<div class="d-flex justify-content-center align-items-center petinfo">
 								<ul>
 									<li>Name: Rocket</li>
 									<li>Age: 2</li>
 									<li>Breed: Rotweiller</li>
 								</ul>
-							</div>
-					  </div>
+					  </a>
 				  </div>
 				</div>	
 			</div>
