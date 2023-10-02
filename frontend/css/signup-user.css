@@ -5,12 +5,31 @@ body {
 	background-color: red;
 }
 
-header {
-	background-color: #309975;
+a.navbar-brand:hover {
+	color: #309975;
 }
 
-footer {
-	background-color: #309975;
+a.nav-link:hover {
+	color: #309975;
+}
+
+
+.btn.btn-primary,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+}
+
+header {
+
+}
+
+footer {	
+	color: #309975;
 }
 .form-container {
 	width: 50vw;
