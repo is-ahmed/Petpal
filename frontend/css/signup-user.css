@@ -26,10 +26,12 @@ a.nav-link:hover {
 
 header {
 
+	background-color: #F0FFFF ;
 }
 
 footer {	
 	color: #309975;
+	background-color: #F0FFFF ;
 }
 .form-container {
 	width: 50vw;

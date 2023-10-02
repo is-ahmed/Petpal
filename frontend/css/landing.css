@@ -1,5 +1,5 @@
 header {
-	border-radus: 0px 0px 15px 15px;
+	background-color: #F0FFFF ;
 }
 
 a.navbar-brand:hover {
@@ -22,6 +22,7 @@ footer {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+	background-color: #F0FFFF ;
 	color: #309975;
 }
 

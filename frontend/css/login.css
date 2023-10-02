@@ -1,7 +1,7 @@
 header {
 	display: flex;
-	font-family: sans-serif;
 	justify-content: flex-start;
+	background-color: #F0FFFF ;
 }
 
 ul {
@@ -16,6 +16,11 @@ body {
 	flex-direction: column;
 }
 
+main {
+
+	background-color: #F0FFFF ;
+}
+
 footer {
 	color: #309975;
 	display: flex;
@@ -23,6 +28,7 @@ footer {
 	justify-content: center;
 	border-color: #309975;
 	border-width: 5px;
+	background-color: #F0FFFF ;
 }
 
 a.navbar-brand:hover {
