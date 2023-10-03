@@ -14,10 +14,12 @@ a.nav-link:hover {
 	color: #309975;
 }
 header {
+	background-color: #F0FFFF ;
 }
 
 #filter {
 	width: 15%;
+	background-color: #F0FFFF ;
 }
 
 #right-header {
@@ -32,6 +34,7 @@ header {
 }
 
 footer {
+	background-color: #F0FFFF ;
 	color: #309975;
 }
 
