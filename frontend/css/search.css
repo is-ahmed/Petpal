@@ -67,6 +67,72 @@ footer {
 	background-color: white;
 	border-top-right-radius: 25px;
 	border-top-left-radius: 25px;
-	position: relative;
-	bottom: 90px;
+	color: #309975;
+}
+
+#filter .dropdown {
+	margin-bottom: 20px;
+}
+
+main {
+	background-color: #F0FFFF ;
+}
+
+
+a.petinfo {
+	display: block;
+	text-decoration: none;
+	margin: 25px;
+}
+
+.petinfo ul {
+	list-style-type: none;
+}
+
+#mobile-filters {
+	display: none;
+}
+
+@media screen and (max-width: 480px) {
+	#filter {
+		display: none !important;
+	}
+
+	header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		width: 100%;
+	}
+
+	#left-header {
+		display: flex;
+		width: 100%
+	}
+
+	#left-header nav > ul {
+	}
+
+	#searchparams {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: flex-end;
+	}
+
+	#searchparams > div {
+		margin-bottom: 30px;
+	}
+
+	#right-header {
+		display: flex;
+		justify-content: space-between;
+		width: 75%;
+	}
+
+	#mobile-filters {
+		display: revert;
+	}
+
 }
