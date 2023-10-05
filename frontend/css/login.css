@@ -60,6 +60,11 @@ a.nav-link:hover {
 	animation: fadeIn 0.5s ease-in both;
 }
 
+form {
+	width: 440px;
+}
+
+
 @keyframes fadeIn {
 	from {
 		opacity: 0;
