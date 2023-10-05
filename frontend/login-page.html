@@ -16,7 +16,7 @@
 	
 	</head>
 
-	<body bgcolor="white">
+	<body>
 		<header class="d-flex justify-content-between align-items-center p-1 shadow rounded">
 		  <nav class="navbar navbar-default navbar-expand-lg navbar-light">
 			  <a class="navbar-brand" href="./landing-page.html">
@@ -26,11 +26,14 @@
 				  <li class="nav-item active"><a class="nav-link" href="./search-pets.html">Search for Pets</a></li>
 			  </ul>
 		  </nav>
-		  <a class="btn btn-primary" href="./login-page.html">Login</a>
+		  <div>
+			  <a class="btn btn-primary" href="./signup-user.html">Sign Up (Adopter)</a>
+			  <a class="btn btn-primary" href="./signup-shelter.html">Sign Up (Shelter)</a>
+		  </div>
 		</header>
 	 <main>
 	 <div class="fade-in container min-vh-100 d-flex justify-content-center align-items-center">
-	 <form class="shadow mb-5 bg-white rounded form-container m-3 mt-5 p-5">
+	 <form action="./login-error.html" class="shadow mb-5 rounded bg-white form-container m-3 mt-5 p-5">
 	   <h1>Login</h1>
 	   <div class="mb-3">
 			<label for="email" class="form-label">Email:</label>
@@ -48,7 +51,7 @@
 		<button type="submit" class="btn btn-primary">Login</button>
 	</form>
 	 </div>
-	 </main>
+	</main>
 		<footer class="d-flex align-items-center justify-content-center">
 		  <p>Copyright 2023 by CSC309 Group 1889</p>
 		</footer>
