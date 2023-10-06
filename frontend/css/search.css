@@ -17,6 +17,11 @@ header {
 	background-color: #F0FFFF ;
 }
 
+img.img-fluid {
+	width: 285px;
+	height: 213px;
+}
+
 #filter {
 	width: 15%;
 	background-color: #F0FFFF ;
@@ -133,6 +138,11 @@ a.petinfo {
 
 	#mobile-filters {
 		display: revert;
+	}
+
+	img.img-fluid {
+		width: auto;
+		height: auto;
 	}
 
 }

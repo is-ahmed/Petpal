@@ -126,11 +126,11 @@
 					  <div class="dropdown">
 						  Choose a pet:
 						  <select class="btn btn-primary" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-							  <option disabled value>Select</option>
-							  <option value="./search-pets.html" selected>Dog</option>
-							  <option value="./search-pets.html">Cat</option>
-							  <option value="./search-pets-rabbits.html">Rabbit</option>
-							  <option value="./search-pets.html">Other</option>
+							  <option disabled>Select</option>
+							  <option selected value="search-pets.html">Dog</option>
+							  <option value="search-pets.html">Cat</option>
+							  <option value="search-pets-rabbits.html">Rabbits</option>
+							  <option >Other</option>
 						  </select>
 					  </div>
 					  <div class="d-flex">
@@ -148,17 +148,17 @@
 					  </div>
 					  <div class="dropdown">
 						  Sort By:
-						  <select class="btn btn-primary" onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);">
-							  <option disabled selected value>Select</option>
+						  <select class="btn btn-primary">
+							  <option disabled value>Select</option>
 							  <option>Sort By</option>
 							  <option>Furthest</option>
-							  <option value="search-pets-sorted.html">Nearest</option>
+							  <option selected>Nearest</option>
 							  <option>Randomize</option>
 						  </select>
 					  </div>
 					  <button id="mobile-filters" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
 						  Filters
-						  <i class="fa-solid fa-filter"></i>
+						<i class="fa-solid fa-filter"></i>
 					  </button>
 					  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 						  <div class="modal-dialog">
@@ -232,21 +232,21 @@
 								<img src="./images/dog1.jpg" class="img-fluid rounded" alt="dog photo">
 								<ul class="">
 									<li class="fw-bold mb-3">Sample</li>
-									<li>2 miles away</li>
+									<li>1 miles away</li>
 								</ul>
 					  </a>
 					  <a class="col rounded shadow bg-white rounded petinfo" href="https://youtube.com">
 							<img src="./images/dog1.jpg" class="img-fluid rounded" alt="dog photo">
 								<ul>
 									<li class="fw-bold mb-3">Sample</li>
-									<li>7 miles away</li>
+									<li>2 miles away</li>
 								</ul>
 					  </a>
 					  <a class="col rounded shadow bg-white rounded petinfo" href="https://youtube.com">
 							<img src="./images/dog1.jpg" class="rounded img-fluid" alt="dog photo">
 								<ul>
 									<li class="fw-bold mb-3">Sample</li>
-									<li>1 mile away</li>
+									<li>3 mile away</li>
 								</ul>
 					  </a>
 				  </div>
@@ -255,14 +255,14 @@
 							<img src="./images/dog1.jpg" class="img-fluid rounded" alt="dog photo">
 								<ul>
 									<li class="fw-bold mb-3"> Sample</li>
-									<li>10 miles away</li>
+									<li>7 miles away</li>
 								</ul>
 					  </a>
 					  <a class="col rounded shadow bg-white rounded petinfo" href="https://youtube.com">
 							<img src="./images/dog1.jpg" class="img-fluid" alt="dog photo">
 								<ul>
 									<li class="fw-bold mb-3">Sample</li>
-									<li>3 miles away</li>
+									<li>10 miles away</li>
 								</ul>
 					  </a>
 					  <a class="col rounded shadow bg-white rounded petinfo" href="https://youtube.com">
