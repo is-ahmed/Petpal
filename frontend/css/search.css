@@ -27,9 +27,6 @@ img.img-fluid {
 	background-color: #F0FFFF ;
 }
 
-#right-header {
-	width: 16vw;	
-}
 
 .rounded-circle {
 	border:1px solid;
@@ -98,25 +95,32 @@ a.petinfo {
 	display: none;
 }
 
-@media screen and (max-width: 480px) {
+.page-container {
+	padding-top: 90px;
+}
+
+.small-screen {
+	display: none;
+}
+
+div.row ul {
+	align-self: start;
+}
+
+div.row a {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+@media screen and (max-width: 500px) {
 	#filter {
 		display: none !important;
 	}
 
 	header {
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-	}
 
-	#left-header {
-		display: flex;
-		width: 100%
-	}
-
-	#left-header nav > ul {
 	}
 
 	#searchparams {
@@ -127,14 +131,9 @@ a.petinfo {
 	}
 
 	#searchparams > div {
-		margin-bottom: 30px;
-	}
+		display: none;
+	}	
 
-	#right-header {
-		display: flex;
-		justify-content: space-between;
-		width: 75%;
-	}
 
 	#mobile-filters {
 		display: revert;
@@ -144,5 +143,17 @@ a.petinfo {
 		width: auto;
 		height: auto;
 	}
+	.page-container {
+        padding: 50px;
+		padding-top: 110px;
+    }
+	.big-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: inline-block !important;
+    }
+
 
 }
