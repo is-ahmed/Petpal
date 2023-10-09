@@ -16,7 +16,7 @@
 </head>
 <body>
 <header>
-    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #F0FFFF">
+    <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #77b8ba">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">PetPal</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
@@ -26,23 +26,22 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="#">Home</a>
                         <!--                        add active as class to change to active-->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">My Applications</a>
+                        <a class="nav-link active" href="./shelterdetails.html">My Pets</a>
                     </li>
                 </ul>
                 <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuNotif"
-                        data-bs-toggle="dropdown" style="margin-right: 10px">
+                        data-bs-toggle="dropdown" style="margin-right: 3px">
                     <i class="fa-solid fa-bell"></i>
                 </button>
-                <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuNotifsmall"
-                        data-bs-toggle="dropdown">
+                <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuNotifsmall" data-bs-toggle="dropdown">
                     Notifications
                 </button>
 
-                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuNotif">
+                <ul class="dropdown-menu dropdown-menu-lg-end">
                     <li>
                         <a class="dropdown-item" href="#">
                             New dogs have been added!
@@ -73,8 +72,7 @@
                     </button>
                     <label class="nav-item nav-username" for="dropdownMenuUser">Username</label>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
-                        <li><a class="dropdown-item" href="#">Account Info</a></li>
-                        <li><a class="dropdown-item" href="#">Saved Pets</a></li>
+                        <li><a class="dropdown-item" href="shelter-management.html">Shelter Info</a></li>
                         <li><a class="dropdown-item" href="./landing-page.html">Sign Out</a></li>
                     </ul>
                 </div>
@@ -327,5 +325,8 @@
 
 
 </main>
+<footer class="d-flex align-items-center justify-content-center">
+    <p class="mt-3">Copyright by CSC309 Group 1889</p>
+</footer>
 </body>
 </html>

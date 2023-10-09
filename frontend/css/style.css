@@ -9,12 +9,15 @@ body {
     padding-top: 120px;
     padding-left: 15rem;
     padding-right: 15rem;
+    position: relative;
+    min-height: calc(100vh - 3.5rem);
 }
 
 .btn-primary {
     background-color: #309975;
     border: none;
 }
+
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
     background-color: #108965;
