@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--
+  CSC309 Assignment 1
+  
+  University of Toronto
+  Fall 2023
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Petpal</title>
+  <link rel="stylesheet" href="./css/petcreation.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+  <script src="https://kit.fontawesome.com/faf442d90d.js" crossorigin="anonymous"></script>
+</head>
+
+<!-- <header class="d-flex justify-content-between align-items-center p-1 shadow rounded">
+    <div>
+        <nav class="navbar navbar-default navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="./search-pets.html">
+                Petpal
+            </a>
+            <ul class="navbar-nav">
+                <li class="nav-item active"><a class="nav-link" href="./search-pets.html">Home</a></li>
+                <li class="nav-item active"><a class="nav-link" href="./search-pets.html">My Applications</a></li>
+            </ul>
+        </nav>
+    </div>
+    <div id="right-header" class="d-flex justify-content-between align-items-center">
+        <div class="dropdown">
+         <button class="btn btn-primary rounded-circle" type="button" id="dropdownMenuNotif" data-bs-toggle="dropdown">
+             <i class="fa-solid fa-bell"></i>
+         </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuNotif">
+                      <li>
+                          <a class="dropdown-item" href="#">
+                              New dogs have been added!
+                              <i class="fa-solid fa-dog"></i>
+                          1 hr ago
+                          </a>
+                      </li>
+                      <li>
+                          <a class="dropdown-item" href="#">
+                              New dogs have been added!
+                              <i class="fa-solid fa-dog"></i>
+                          1 hr ago
+                          </a>
+                      </li>
+                      <li>
+                          <a class="dropdown-item" href="#">
+                              New dogs have been added!
+                              <i class="fa-solid fa-dog"></i>
+                              1 hr ago
+                          </a>
+                      </li>
+          </ul>
+        </div>
+         <div class="dropdown">
+          <button class="btn btn-primary rounded-circle" type="button" id="dropdownMenuUser" data-bs-toggle="dropdown">
+              <i class="fa-solid fa-user"></i>
+          </button>
+          <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
+                      <li><a class="dropdown-item" href="#">Account Info</a></li>
+                      <li><a class="dropdown-item" href="#">Saved Pets</a></li>
+                      <li><a class="dropdown-item" href="./landing-page.html">Sign Out</a></li>
+          </ul>
+         </div>
+         <p id="username">Username</p>
+    </div>
+  
+</header> -->
+<body class="pageColour">
+    <div class="container mt-5 mb-5">
+        <h2 class="text-center"><i class="fa-solid fa-paw"></i> Editing Existing Pet <i class="fa-solid fa-paw"></i> </h2>
+        <form action="/pathToSomething" method="POST">
+            <h4 class="mt-4 mb-3"><i class="fa-solid fa-circle-info"></i> General Information</h4>
+            <div class="row g-5 mb-3 px-4">
+                <div class="col-md-6">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="petName" name="petName" placeholder="Pet name" value="Teddy" aria-label="Pet name">
+                        <label for="petName">Pet Name</label>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-floating">
+                        <select class="form-select" id="petGender" placeholder="Pet Gender" name="petGender" placeholder="Pet Gender">
+                            <option>Select Gender</option>
+                            <option selected>Male</option>
+                            <option>Female</option>
+                            <option>Other</option>
+                        </select>
+                        <label for="petType">Pet Gender</label>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="form-floating">
+                        <input type="number" class="form-control" id="petAge" name="petAge" placeholder="Pet Age" min="0" value="13.5" required>
+                        <label for="petAge">Pet Age</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5 mb-3 px-4">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" id="petType" placeholder="Pet Type" name="petType" placeholder="Pet Type">
+                            <option>Choose your pet type</option>
+                            <option selected>Dog</option>
+                            <option>Cat</option>
+                            <option>Rabbit</option>
+                            <option>Other</option>
+                        </select>
+                        <label for="petType">Pet Type</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="otherType" name="otherType" placeholder="">
+                        <label for="otherType">Fill if Pet Type is Other</label>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-5 mb-4 px-4">
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="petBreed" name="petBreed" placeholder="Pet breed" value="Shih Tzu">
+                        <label for="petBreed">Pet Breed</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <input type="text" class="form-control" id="petColour" name="petColour" placeholder="Pet Colour" value="White/Beige">
+                        <label for="otherType">Pet Colour</label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating">
+                        <select class="form-select" id="petSize" placeholder="Pet Size" name="petSize" placeholder="Pet Size">
+                            <option>Select Size</option>
+                            <option selected>Small</option>
+                            <option>Medium</option>
+                            <option>Large</option>
+                        </select>
+                        <label for="petType">Pet Size</label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pet Description -->
+            <h4 class="headerColour mt-4"><i class="fa-regular fa-clipboard"></i> Pet Description</h4>
+            <div class="form-group px-4">
+                <div class="form-floating">
+                    <textarea class="form-control textAreaSize" id="petDesc" rows="4" name="petDesc" placeholder="">House-trained, good with other dogs, prefers home without cats.</textarea>
+                    <label for="petDesc">Tell us about your pet!</label>
+                </div>
+            </div>
+
+            <!-- Behavior -->
+            <h4 class="headerColour mt-4"><i class="fa-solid fa-brain"> </i> Behavior</h4>
+            <div class="form-group px-4">
+                <div class="form-floating">
+                    <textarea class="form-control textAreaSize" id="behaviorDetails" rows="4" name="behaviorDetails" placeholder="">Hi I'm Buddy!
+I'm an old guy, but don't let my age fool you. At 13.5 (I refuse to acknowledge 14 yet, haha) I still love my walks, even though they may be short.
+I like to live a mellow life, you know: Walk, Chill, Eat, Nap, Walk, Chill, Eat, rinse and repeat.
+You do not need to be home 24/7 for me, I'm laid back due to my fantastic age and will just hang out while you run out for errands or work.</textarea>
+                    <label for="behaviorDetails">Any habits or behaviours we should know about?</label>
+                </div>
+            </div>
+
+            <!-- Medical History -->
+            <h4 class="headerColour mt-4"> <i class="fa-solid fa-notes-medical"></i> Medical History</h4>
+            <div class="form-group px-4">
+                <div class="form-floating">
+                    <textarea class="form-control textAreaSize" id="medicalHistory" rows="4" placeholder="" name="medicalHistory">Vaccines up to date. Sprayed/Neutered. Needs kidney medicine</textarea>
+                    <label for="medicalHistory">Vaccination History, Spray/Neutered, Chip Status, etc.</label>
+                </div>
+            </div>
+
+            <!-- Special Needs & Requirements -->
+            <h4 class="headerColour mt-4"><i class="fa-regular fa-star"></i> Special Needs & Requirements</h4>
+            <div class="form-group px-4">
+                <div class="form-floating">
+                    <textarea class="form-control textAreaSize" id="specialNeeds" rows="4" name="specialNeeds" placeholder="">My quirks, I am not a fan of a lot of things happening (commotions/chaos) I can get over stimulated quickly which can amp up my anxiety. Speaking of anxiety, I get these really yummy anxiety treats in the morning. Buddy does require Kidney Medication - In the morning feeding only we put in a third of a Fortekor tablet as directed on the label</textarea>
+                    <label for="specialNeeds">Please fill out if applicable</label>
+                </div>
+            </div>
+            <h4 class="headerColour mt-4"><i class="fa-regular fa-image"></i> Rearrange Existing Pictures or upload new ones</h4>
+            <div class="form-group px-4">
+                <div class="d-flex justify-content-start mt-0 gap-4">
+                    <div class="card petcard">
+                        <img src="./images/buddy.jpg" class="card-img-top" alt="Pet Image">
+                    </div>
+                    <div class="card petcard">
+                        <img src="./images/buddy2.jpg" class="card-img-bottom" alt="Pet Image">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group mt-4 px-4">
+                <input class="form-control" type="file" id="formFileMultiple" multiple>
+            </div>
+            <div class="col-12 mt-4 px-4">
+                <button type="submit" class="btn btn-outline-light buttonBorderColour" >Save</button>
+            </div>
+            
+        </form>
+    </div>
+</body>
+<!-- <footer class="d-flex align-items-center justify-content-center">
+    <p>Copyright 2023 by CSC309 Group 1889</p>
+</footer>      -->
+</html>
