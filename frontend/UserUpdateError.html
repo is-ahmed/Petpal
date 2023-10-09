@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Update Error</title>
+        <link rel="stylesheet" href="./css/UserUpdate.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+        <script src="https://kit.fontawesome.com/faf442d90d.js" crossorigin="anonymous"></script>
+      
+        
+        
+
+    </head>
+    <body>
+        <header class="d-flex justify-content-between align-items-center p-1 shadow rounded">
+            <div>
+                <nav class="navbar navbar-default navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="./search-pets.html">
+                        Petpal
+                    </a>
+                    <ul class="navbar-nav">
+                        <li class="nav-item active"><a class="nav-link" href="./search-pets.html">Home</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="./search-pets.html">My Applications</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="right-header" class="d-flex justify-content-between align-items-center">
+                <div class="dropdown">
+                 <button class="btn btn-primary rounded-circle" type="button" id="dropdownMenuNotif" data-bs-toggle="dropdown">
+                     <i class="fa-solid fa-bell"></i>
+                 </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuNotif">
+                              <li>
+                                  <a class="dropdown-item" href="#">
+                                      New dogs have been added!
+                                      <i class="fa-solid fa-dog"></i>
+                                  1 hr ago
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="dropdown-item" href="#">
+                                      New dogs have been added!
+                                      <i class="fa-solid fa-dog"></i>
+                                  1 hr ago
+                                  </a>
+                              </li>
+                              <li>
+                                  <a class="dropdown-item" href="#">
+                                      New dogs have been added!
+                                      <i class="fa-solid fa-dog"></i>
+                                      1 hr ago
+                                  </a>
+                              </li>
+                  </ul>
+                </div>
+                 <div class="dropdown">
+                  <button class="btn btn-primary rounded-circle" type="button" id="dropdownMenuUser" data-bs-toggle="dropdown">
+                      <i class="fa-solid fa-user"></i>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
+                              <li><a class="dropdown-item" href="#">Account Info</a></li>
+                              <li><a class="dropdown-item" href="#">Saved Pets</a></li>
+                              <li><a class="dropdown-item" href="./landing-page.html">Sign Out</a></li>
+                  </ul>
+                 </div>
+                 <p id="username">Username</p>
+            </div>
+          
+        </header>
+        <main>
+            <div class="container mt-5">
+                <!-- Error Alert -->
+                <div class="alert alert-danger" role="alert">
+                    <h4 class="alert-heading">Account Update Failed!</h4>
+                    <p>There was an error updating your account. Please ensure that all input values are valid.</p>
+                    <hr>
+                    <p class="mb-0">If you continue to experience issues, please contact support.</p>
+                </div>
+        
+                <!-- Go Back Button -->
+                <div class="d-flex justify-content-center">
+                    <a href="UserUpdate.html" class="btn btn-primary">Go Back to Update Page</a>
+                </div>
+            </div>
+        </main>
+        <footer class="d-flex align-items-center justify-content-center">
+            <p>Copyright 2023 by CSC309 Group 1889</p>
+          
+        </footer> 
+    </body>
+</html>
