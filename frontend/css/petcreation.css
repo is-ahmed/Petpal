@@ -1,0 +1,104 @@
+.pageColour {
+    background-color: #F0FFFF;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #309975;
+    /* width: 50% !important; */
+}
+
+.form-floating{
+    color: black;
+}
+
+.headerColour {
+    color: #309975;
+}
+
+.form-floating textarea{
+    height: 200px;
+}
+
+.textAreaSize{
+    height: 100px !important;
+}
+
+.textarea form-control{
+    height: 200px;
+}
+
+.buttonBorderColour {
+    border-color: #309975 !important;
+    color: #309975 !important;
+}
+
+.buttonBorderColour:hover{
+    color: white !important;
+    background-color: #309975 !important;
+}
+
+.themeText {
+    color: #309975;
+}
+
+a.navbar-brand:hover {
+	color: #309975;
+}
+
+a.nav-link:hover {
+	color: #309975;
+}
+
+header {
+    background-color: #F0FFFF ;
+}
+  
+ #right-header {
+	  width: 16vw;	
+  }
+ #username {
+	margin-bottom: 0;
+	margin-right: 1rem;
+}
+
+.rounded-circle {
+	border:1px solid;
+	border-radius:50%;
+	width:50px;
+	height:50px;
+}
+   
+.btn.btn-primary,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+}
+
+.btn.btn-primary:focus,
+.btn.btn-primary:hover {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+  filter: brightness(120%);
+}
+
+footer {
+	background-color: #F0FFFF ;
+	color: #309975;
+}
+
+.petcard {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+    border: none !important;
+    max-width: 14rem;
+}
