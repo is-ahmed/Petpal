@@ -75,6 +75,7 @@ hr {
 
 .shelter-pets-title {
     margin-top: 30px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: center;
     color: #309975;
@@ -96,10 +97,6 @@ hr {
     display: flex;
     justify-content: center;
 }
-
-
-
-
 
 @media screen and (max-width: 500px ) {
     .shelter-title {
