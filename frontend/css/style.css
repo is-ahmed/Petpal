@@ -1,0 +1,39 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #454d66;
+}
+
+.page-container {
+    padding-top: 120px;
+    padding-left: 15rem;
+    padding-right: 15rem;
+}
+
+.btn-primary {
+    background-color: #309975;
+    border: none;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #108965;
+}
+
+.small-screen {
+    display:none !important;
+}
+
+@media screen and (max-width: 500px ) {
+    .page-container {
+        padding: 50px;
+        padding-top: 110px;
+    }
+
+    .big-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: inline-block !important;
+    }
+}
