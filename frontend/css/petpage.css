@@ -47,7 +47,9 @@ footer {
 	color: #309975;
 }
 
-
+main {
+  background-color: #F0FFFF;
+}
 
  #exampleCarousel {
     max-height: 500px;
