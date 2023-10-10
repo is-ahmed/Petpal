@@ -1,5 +1,8 @@
 .pageColour {
     background-color: #F0FFFF;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem;
 }
 
 
@@ -55,9 +58,38 @@ h1.text-center {
     height: 100px !important;
 }
 
-@media (max-width: 991.98px) {
+@media screen and (max-width: 991.98px) {
     .container {
         max-width: 100% !important;
     }
+}
 
+
+.btn-primary {
+    background-color: #309975 !important;
+    border: none !important;
+}
+
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #108965 !important;
+}
+
+.small-screen {
+    display:none !important;
+}
+
+@media screen and (max-width: 500px ) {
+    .page-container {
+        padding: 50px;
+        padding-top: 110px;
+    }
+
+    .big-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: inline-block !important;
+    }
 }
