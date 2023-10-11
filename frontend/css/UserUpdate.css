@@ -6,9 +6,9 @@ a.nav-link:hover {
 	color: #309975;
 }
 
-header {
-	    background-color: #F0FFFF ;
-  }
+main {
+	margin-top: 100px;
+}
   
 
  #right-header {
@@ -44,8 +44,3 @@ header {
 }
 
 
-footer {
-	background-color: #F0FFFF ;
-	color: #309975;
-	margin-top: 150px;
-}
