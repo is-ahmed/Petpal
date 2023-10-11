@@ -16,7 +16,7 @@
   <script src="https://kit.fontawesome.com/faf442d90d.js" crossorigin="anonymous"></script>
 </head>
 
-<header class="mb-4" style="display: flex;">
+<header>
     <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #77b8ba">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">PetPal</a>
@@ -27,11 +27,11 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Home</a>
+                        <a class="nav-link" aria-current="page" href="shelterdetails.html">Home</a>
                         <!--                        add active as class to change to active-->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="./shelterdetails.html">My Pets</a>
+                        <a class="nav-link active" href="./shelter-management.html">My Pets</a>
                     </li>
                 </ul>
                 <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuNotif"
@@ -45,22 +45,22 @@
 
                 <ul class="dropdown-menu dropdown-menu-lg-end">
                     <li>
-                        <a class="dropdown-item" href="#">
-                            New dogs have been added!
+                        <a class="dropdown-item" href="petapplicationShelterView.html">
+                            New message received!
                             <i class="fa-solid fa-dog"></i>
                             1 hr ago
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
-                            New dogs have been added!
+                        <a class="dropdown-item" href="petapplicationShelterView.html">
+                            New message received!
                             <i class="fa-solid fa-dog"></i>
                             1 hr ago
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
-                            New dogs have been added!
+                        <a class="dropdown-item" href="petapplicationShelterView.html">
+                            New message received!
                             <i class="fa-solid fa-dog"></i>
                             1 hr ago
                         </a>
@@ -68,11 +68,15 @@
                 </ul>
 
                 <div class="nav-item dropdown">
-                    <button class="btn btn-primary rounded-circle" type="button" id="dropdownMenuUser"
+                    <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuUser"
                             data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="fa-solid fa-user big-screen"></i>
                     </button>
-                    <label class="nav-item nav-username" for="dropdownMenuUser">Username</label>
+                    <label class="big-screen nav-item nav-username" for="dropdownMenuUser">Username</label>
+                    <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuUserSmall"
+                            data-bs-toggle="dropdown">
+                        Profile
+                    </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
                         <li><a class="dropdown-item" href="shelter-management.html">Shelter Info</a></li>
                         <li><a class="dropdown-item" href="./landing-page.html">Sign Out</a></li>
@@ -171,11 +175,11 @@
             <h4 class="headerColour mt-4 px-4"><i class="fa-solid fa-brain"> </i> Behavior</h4>
             <div class="form-group px-4">
                 <div class="form-floating">
-                    <textarea class="form-control textAreaSize" id="behaviorDetails" rows="4" name="behaviorDetails" placeholder="">Hi I'm Buddy!
+                    <textarea class="form-control textAreaSize smallTextArea" id="behaviorDetails" rows="4" name="behaviorDetails" placeholder="">Hi I'm Teddy!
 I'm an old guy, but don't let my age fool you. At 13.5 (I refuse to acknowledge 14 yet, haha) I still love my walks, even though they may be short.
 I like to live a mellow life, you know: Walk, Chill, Eat, Nap, Walk, Chill, Eat, rinse and repeat.
 You do not need to be home 24/7 for me, I'm laid back due to my fantastic age and will just hang out while you run out for errands or work.</textarea>
-                    <label for="behaviorDetails">Any habits or behaviours we should know about?</label>
+                    <label class="labelWrap" for="behaviorDetails">Any habits or behaviours we should know about?</label>
                 </div>
             </div>
 
@@ -183,8 +187,8 @@ You do not need to be home 24/7 for me, I'm laid back due to my fantastic age an
             <h4 class="headerColour mt-4 px-4"> <i class="fa-solid fa-notes-medical"></i> Medical History</h4>
             <div class="form-group px-4">
                 <div class="form-floating">
-                    <textarea class="form-control textAreaSize" id="medicalHistory" rows="4" placeholder="" name="medicalHistory">Vaccines up to date. Sprayed/Neutered. Needs kidney medicine</textarea>
-                    <label for="medicalHistory">Vaccination History, Spray/Neutered, Chip Status, etc.</label>
+                    <textarea class="form-control textAreaSize smallTextArea" id="medicalHistory" rows="4" placeholder="" name="medicalHistory">Vaccines up to date. Sprayed/Neutered. Needs kidney medicine</textarea>
+                    <label class="labelWrap" for="medicalHistory">Vaccination History, Spray/Neutered, Chip Status, etc.</label>
                 </div>
             </div>
 
@@ -192,7 +196,7 @@ You do not need to be home 24/7 for me, I'm laid back due to my fantastic age an
             <h4 class="headerColour mt-4 px-4"><i class="fa-regular fa-star"></i> Special Needs & Requirements</h4>
             <div class="form-group px-4">
                 <div class="form-floating">
-                    <textarea class="form-control textAreaSize" id="specialNeeds" rows="4" name="specialNeeds" placeholder="">My quirks, I am not a fan of a lot of things happening (commotions/chaos) I can get over stimulated quickly which can amp up my anxiety. Speaking of anxiety, I get these really yummy anxiety treats in the morning. Buddy does require Kidney Medication - In the morning feeding only we put in a third of a Fortekor tablet as directed on the label</textarea>
+                    <textarea class="form-control textAreaSize" id="specialNeeds" rows="4" name="specialNeeds" placeholder="">My quirks, I am not a fan of a lot of things happening (commotions/chaos) I can get over stimulated quickly which can amp up my anxiety. Speaking of anxiety, I get these really yummy anxiety treats in the morning. Teddy does require Kidney Medication - In the morning feeding only we put in a third of a Fortekor tablet as directed on the label</textarea>
                     <label for="specialNeeds">Please fill out if applicable</label>
                 </div>
             </div>
@@ -213,7 +217,7 @@ You do not need to be home 24/7 for me, I'm laid back due to my fantastic age an
                 <input class="form-control" type="file" id="formFileMultiple" multiple>
             </div>
             <div class="col-12 mt-4 px-4">
-                <button type="submit" class="btn btn-outline-light buttonBorderColour" >Save</button>
+                <button type="submit" class="btn btn-primary buttonBorderColour" >Save</button>
             </div>
             
         </form>
