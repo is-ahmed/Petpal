@@ -66,11 +66,15 @@
                 </ul>
 
                 <div class="nav-item dropdown">
-                    <button class="btn btn-primary rounded-circle" type="button" id="dropdownMenuUser"
+                    <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuUser"
                             data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="fa-solid fa-user big-screen"></i>
                     </button>
-                    <label class="nav-item nav-username" for="dropdownMenuUser">Username</label>
+                    <label class="big-screen nav-item nav-username" for="dropdownMenuUser">Username</label>
+                    <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuUserSmall"
+                            data-bs-toggle="dropdown">
+                        Profile
+                    </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
                         <li><a class="dropdown-item" href="shelter-management.html">Shelter Info</a></li>
                         <li><a class="dropdown-item" href="./landing-page.html">Sign Out</a></li>
@@ -87,10 +91,10 @@
     <hr>
     <div class="pet-list-title">
         <h3>Your pet listings:</h3>
-        <button type="button" class="btn btn-primary button-add-pet"
-                data-bs-toggle="modal" data-bs-target="#add-pet-modal">
+        <a type="button" class="btn btn-primary button-add-pet"
+                data-bs-toggle="modal" href="./petcreation.html" style="display: flex; align-items: center">
             <i class="fa-solid fa-plus"></i> Add New Pet
-        </button>
+        </a>
         <div class="modal fade" id="add-pet-modal" aria-labelledby="add-pet-label" aria-hidden="true">
             <div class="modal-dialog modal-dialog-scrollable">
                 <div class="modal-content">
@@ -144,10 +148,10 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="first_dropdown">
                 <li>
-                    <button type="button" class="dropdown-item btn btn-link"
-                            data-bs-toggle="modal" data-bs-target="#edit-pet-modal">
+                    <a type="button" class="dropdown-item btn btn-link"
+                            data-bs-toggle="modal" href="./petedit.html">
                         Edit
-                    </button>
+                    </a>
                 </li>
                 <li>
                     <button type="button" class="dropdown-item btn btn-link" data-bs-toggle="modal"
@@ -168,7 +172,10 @@
         </button>
         <ul class="dropdown-menu" aria-labelledby="second_dropdown">
             <li>
-                <button type="button" class="dropdown-item btn btn-link">Edit</button>
+                <a type="button" class="dropdown-item btn btn-link"
+                   data-bs-toggle="modal" href="./petedit.html">
+                    Edit
+                </a>
             </li>
             <li>
                 <button type="button" class="dropdown-item btn btn-link" data-bs-toggle="modal"
@@ -192,7 +199,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                     <form action="https://postman-echo.com/post" method="post">
-                        <button type="button" class="btn btn-primary">Confirm</button>
+                        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Confirm</button>
                     </form>
                 </div>
             </div>

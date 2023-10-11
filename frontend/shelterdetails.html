@@ -30,14 +30,15 @@
                         <!--                        add active as class to change to active-->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="./shelterdetails.html">My Pets</a>
+                        <a class="nav-link" href="./shelterdetails.html">My Pets</a>
                     </li>
                 </ul>
                 <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuNotif"
                         data-bs-toggle="dropdown" style="margin-right: 3px">
                     <i class="fa-solid fa-bell"></i>
                 </button>
-                <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuNotifsmall" data-bs-toggle="dropdown">
+                <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuNotifsmall"
+                        data-bs-toggle="dropdown">
                     Notifications
                 </button>
 
@@ -66,11 +67,15 @@
                 </ul>
 
                 <div class="nav-item dropdown">
-                    <button class="btn btn-primary rounded-circle" type="button" id="dropdownMenuUser"
+                    <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuUser"
                             data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="fa-solid fa-user big-screen"></i>
                     </button>
-                    <label class="nav-item nav-username" for="dropdownMenuUser">Username</label>
+                    <label class="big-screen nav-item nav-username" for="dropdownMenuUser">Username</label>
+                    <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuUserSmall"
+                            data-bs-toggle="dropdown">
+                        Profile
+                    </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
                         <li><a class="dropdown-item" href="shelter-management.html">Shelter Info</a></li>
                         <li><a class="dropdown-item" href="./landing-page.html">Sign Out</a></li>
