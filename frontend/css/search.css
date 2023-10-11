@@ -7,11 +7,9 @@ body {
 
 }
 a.navbar-brand:hover {
-	color: white;
 }
 
 a.nav-link:hover {
-	color: white;
 }
 header {
 	background-color: #F0FFFF ;

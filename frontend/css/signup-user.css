@@ -6,11 +6,9 @@ body {
 }
 
 a.navbar-brand:hover {
-	color: white;
 }
 
 a.nav-link:hover {
-	color: white;
 }
 
 
@@ -24,6 +22,13 @@ a.nav-link:hover {
   border-color: #309975;
 }
 
+.btn.btn-primary.active,
+.btn.btn-primary:hover {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+	filter: brightness(120%);
+}
 header {
 
 	background-color: #F0FFFF ;

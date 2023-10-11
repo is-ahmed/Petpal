@@ -15,6 +15,7 @@
 	<script src="https://kit.fontawesome.com/faf442d90d.js" crossorigin="anonymous"></script>
 	  <link rel="stylesheet" href="./css/search.css">
 	  <link rel="stylesheet" href="./css/card.css">
+	  <link rel="stylesheet" href="./css/styles.css">
 	</head>
 	<body class="d-flex flex-column">
 	 <header>
@@ -72,7 +73,11 @@
                             data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="fa-solid fa-user big-screen"></i>
                     </button>
-                    <label class="nav-item nav-username" for="dropdownMenuUser">Username</label>
+                    <label class="big-screen nav-item nav-username" for="dropdownMenuUser">Username</label>
+					 <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuUserSmall"
+                            data-bs-toggle="dropdown">
+                        Profile
+                    </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
                         <li><a class="dropdown-item" href="#">Account Info</a></li>
                         <li><a class="dropdown-item" href="#">Saved Pets</a></li>
