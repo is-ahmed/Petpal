@@ -7,20 +7,14 @@ body {
 
 }
 a.navbar-brand:hover {
-	color: #309975;
 }
 
 a.nav-link:hover {
-	color: #309975;
 }
 header {
 	background-color: #F0FFFF ;
 }
 
-img.img-fluid {
-	width: 285px;
-	height: 213px;
-}
 
 #filter {
 	width: 15%;
@@ -28,12 +22,6 @@ img.img-fluid {
 }
 
 
-.rounded-circle {
-	border:1px solid;
-	border-radius:50%;
-	width:50px;
-	height:50px;
-}
 
 footer {
 	background-color: #F0FFFF ;
@@ -52,15 +40,20 @@ footer {
   color: #ffffff;
   background-color: #309975;
   border-color: #309975;
+  border: 0;
 }
 
 .btn.btn-primary:active,
-.btn.btn-primary:focus,
-.btn.btn-primary:hover {
+.btn.btn-primary:focus {
   color: #ffffff;
   background-color: #309975;
   border-color: #309975;
+  border: 0;
   filter: brightness(120%);
+}
+
+.btn.btn-primary:hover {
+	background-color: #108965;
 }
 
 
@@ -84,7 +77,6 @@ main {
 a.petinfo {
 	display: block;
 	text-decoration: none;
-	margin: 25px;
 }
 
 .petinfo ul {
@@ -139,10 +131,6 @@ div.row a {
 		display: revert;
 	}
 
-	img.img-fluid {
-		width: auto;
-		height: auto;
-	}
 	.page-container {
         padding: 50px;
 		padding-top: 110px;

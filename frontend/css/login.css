@@ -32,11 +32,9 @@ footer {
 }
 
 a.navbar-brand:hover {
-	color: #309975;
 }
 
 a.nav-link:hover {
-	color: #309975;
 }
 
 
@@ -49,8 +47,7 @@ a.nav-link:hover {
   border-color: #309975;
 }
 
-.btn.btn-primary.active,
-.btn.btn-primary:hover {
+.btn.btn-primary.active {
   color: #ffffff;
   background-color: #309975;
   border-color: #309975;
