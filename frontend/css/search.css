@@ -44,13 +44,16 @@ footer {
 }
 
 .btn.btn-primary:active,
-.btn.btn-primary:focus,
-.btn.btn-primary:hover {
+.btn.btn-primary:focus {
   color: #ffffff;
   background-color: #309975;
   border-color: #309975;
   border: 0;
   filter: brightness(120%);
+}
+
+.btn.btn-primary:hover {
+	background-color: #108965;
 }
 
 

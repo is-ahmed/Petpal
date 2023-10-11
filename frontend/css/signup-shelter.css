@@ -9,12 +9,15 @@
   border-color: #309975;
 }
 
-.btn.btn-primary.active,
-.btn.btn-primary:hover {
+.btn.btn-primary.active {
   color: #ffffff;
   background-color: #309975;
   border-color: #309975;
 	filter: brightness(120%);
+}
+
+.btn.btn-primary:hover {
+	background-color: #108965;
 }
 
 body {
