@@ -68,6 +68,38 @@ hr {
     height: 10rem;
 }
 
+.applicants-card-holder {
+    display: flex;
+    flex-direction: column;
+}
+
+.applicants-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    color: inherit;
+    gap: 15px;
+}
+
+.applicants-card:hover {
+    background-color: rgba(240,240,240);
+    color: black;
+}
+
+.applicant-name {
+    font-size: 1rem;
+    margin: 0;
+    white-space: nowrap;
+}
+
+.applicant-message {
+    margin: 0;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
 @media screen and (max-width: 500px) {
     .pet-list-title {
         flex-direction: column;

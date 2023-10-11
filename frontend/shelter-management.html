@@ -155,6 +155,11 @@
                 </li>
                 <li>
                     <button type="button" class="dropdown-item btn btn-link" data-bs-toggle="modal"
+                            data-bs-target="#applicants-page">View Applicants
+                    </button>
+                </li>
+                <li>
+                    <button type="button" class="dropdown-item btn btn-link" data-bs-toggle="modal"
                             data-bs-target="#double-check-remove">Remove
                     </button>
                 </li>
@@ -206,42 +211,35 @@
         </div>
     </div>
 
-    <div class="modal fade" id="edit-pet-modal" aria-labelledby="edit-pet-label" aria-hidden="true">
+    <div class="modal fade" id="applicants-page" aria-labelledby="edit-pet-label" aria-hidden="true">
         <div class="modal-dialog modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="edit-pet-label">Edit pet information</h1>
+                    <h1 class="modal-title fs-5" id="edit-pet-label">Applicants for Ben</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="https://postman-echo.com/post" enctype="multipart/form-data" method="post">
-                        <div class="mb-3">
-                            <label for="pet-name1" class="col-form-label">Pet Name:</label>
-                            <input type="text" class="form-control" id="pet-name1" value="Ben" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pet-breed1" class="col-form-label">Breed:</label>
-                            <input type="text" class="form-control" id="pet-breed1" value="Husky" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="pet-age1" class="col-form-label">Age:</label>
-                            <input type="number" class="form-control" id="pet-age1" value="10" required>
-                        </div>
-                        <div class="col-auto">
-                            <label for="pet-attachment1" class="col-form-label">Change Image:</label>
-                            <input type="file" class="form-control" id="pet-attachment1">
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="message-text1" class="col-form-label">Describe your pet:</label>
-                            <textarea class="form-control" id="message-text1">Ginger had babies and they all lived at a dreadful home where they were neglected in every way. Our partners rescued them all in early Aug 2023. Ginger was kept hungry, dirty, infested with ticks and fleas, with no water, chained to a wooden box of a kennel. Despite all of this, she has lots of love to give. She is a happy outgoing girl, who loves the company of other dogs and people. She would be fine with children, although normal rules apply to introducing children to pets and regulating the children’s behaviors. From everything we have seen of her so far, we think she would fit into most homes. She is currently living with one of our large male dogs and they are very happy together. She walks great on a lead and is well behaved when travelling in the car.
-Ginger Spice is not yet spayed, as soon as she gains a little weight she will be. By the time of transport she will be spayed. </textarea>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                            <button class="btn btn-primary" type="submit">Save Changes</button>
-                        </div>
-                    </form>
+                    <div class="applicants-card-holder">
+                        <a class="btn btn-link applicants-card" href="petapplicationShelterView.html">
+                            <h3 class="applicant-name">John Doe</h3>
+                            <p class="applicant-message">Thank you for your prompt response. I am eager to welcome a new member to our family!</p>
+                        </a>
+                        <a class="btn btn-link applicants-card" href="petapplicationShelterView.html">
+                            <h3 class="applicant-name">John Doe</h3>
+                            <p class="applicant-message">Thank you for your prompt response. I am eager to welcome a new member to our family!</p>
+                        </a>
+                        <a class="btn btn-link applicants-card" href="petapplicationShelterView.html">
+                            <h3 class="applicant-name">John Doe</h3>
+                            <p class="applicant-message">Thank you for your prompt response. I am eager to welcome a new member to our family!</p>
+                        </a>
+                        <a class="btn btn-link applicants-card" href="petapplicationShelterView.html">
+                            <h3 class="applicant-name">John Doe</h3>
+                            <p class="applicant-message">Thank you for your prompt response. I am eager to welcome a new member to our family!</p>
+                        </a>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Done</button>
                 </div>
             </div>
         </div>
