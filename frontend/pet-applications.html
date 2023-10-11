@@ -25,40 +25,39 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="shelterdetails.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="./search-pets.html">Home</a>
                         <!--                        add active as class to change to active-->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="./shelter-management.html">My Pets</a>
+                        <a class="nav-link active" href="./pet-applications.html">My Applications</a>
                     </li>
                 </ul>
                 <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuNotif"
                         data-bs-toggle="dropdown" style="margin-right: 10px">
                     <i class="fa-solid fa-bell"></i>
                 </button>
-                <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuNotifsmall"
-                        data-bs-toggle="dropdown">
+                <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuNotifsmall" data-bs-toggle="dropdown">
                     Notifications
                 </button>
 
-                <ul class="dropdown-menu dropdown-menu-lg-end">
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuNotif">
                     <li>
-                        <a class="dropdown-item" href="petapplicationShelterView.html">
-                            New message received!
+                        <a class="dropdown-item" href="#">
+                            New dogs have been added!
                             <i class="fa-solid fa-dog"></i>
                             1 hr ago
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="petapplicationShelterView.html">
-                            New message received!
+                        <a class="dropdown-item" href="#">
+                            New dogs have been added!
                             <i class="fa-solid fa-dog"></i>
                             1 hr ago
                         </a>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="petapplicationShelterView.html">
-                            New message received!
+                        <a class="dropdown-item" href="#">
+                            New dogs have been added!
                             <i class="fa-solid fa-dog"></i>
                             1 hr ago
                         </a>
@@ -66,7 +65,7 @@
                 </ul>
 
                 <div class="nav-item dropdown">
-                    <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuUser"
+                    <button class="btn btn-primary rounded-circle big-screen" type="button" id="dropdownMenuUser"
                             data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="fa-solid fa-user big-screen"></i>
                     </button>
@@ -76,7 +75,8 @@
                         Profile
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
-                        <li><a class="dropdown-item" href="shelter-management.html">Shelter Info</a></li>
+                        <li><a class="dropdown-item" href="./userupdate.html">Account Info</a></li>
+                        <li><a class="dropdown-item" href="#">Saved Pets</a></li>
                         <li><a class="dropdown-item" href="./landing-page.html">Sign Out</a></li>
                     </ul>
                 </div>
@@ -86,61 +86,18 @@
 </header>
 <main class="page-container">
     <h1 class="management-title">
-        Manage your pets
+        View Applications:
     </h1>
     <hr>
     <div class="pet-list-title">
-        <h3>Your pet listings:</h3>
-        <a type="button" class="btn btn-primary button-add-pet"
-                data-bs-toggle="modal" href="./petcreation.html" style="display: flex; align-items: center">
-            <i class="fa-solid fa-plus"></i> Add New Pet
-        </a>
-        <div class="modal fade" id="add-pet-modal" aria-labelledby="add-pet-label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="add-pet-label">Add New pet</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <form action="https://postman-echo.com/post" enctype="multipart/form-data" method="post">
-                            <div class="mb-3">
-                                <label for="pet-name" class="col-form-label">Pet Name:</label>
-                                <input type="text" class="form-control" id="pet-name" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="pet-breed" class="col-form-label">Breed:</label>
-                                <input type="text" class="form-control" id="pet-breed" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="pet-age" class="col-form-label">Age:</label>
-                                <input type="number" class="form-control" id="pet-age" required>
-                            </div>
-                            <div class="col-auto">
-                                <label for="pet-attachment" class="col-form-label">Image:</label>
-                                <input type="file" class="form-control" id="pet-attachment" required>
-                            </div>
-
-                            <div class="mb-3">
-                                <label for="message-text" class="col-form-label">Describe your pet:</label>
-                                <textarea class="form-control" id="message-text"></textarea>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                <button class="btn btn-primary" type="submit">Submit</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+        <h3>Your pet applications:</h3>
     </div>
 
     <div class="pet-list-holder">
         <div class="pet-list-card">
             <img src="./images/dog.jpg" alt="dog">
             <p class="pet-name">Ben</p>
-            <p class="date-added"> (Date added: 11/12/2023)</p>
+            <p class="date-added"> (Date applied: 11/12/2023)</p>
             <!--            https://getbootstrap.com/docs/5.0/components/dropdowns/-->
             <button type="button" id="first_dropdown" class="pet-dropdown btn dropdown-toggle" data-bs-toggle="dropdown"
                     aria-expanded="false">
@@ -148,19 +105,13 @@
             </button>
             <ul class="dropdown-menu" aria-labelledby="first_dropdown">
                 <li>
-                    <a type="button" class="dropdown-item btn btn-link"
-                            data-bs-toggle="modal" href="./petedit.html">
-                        Edit
+                    <a type="button" class="dropdown-item btn btn-link" href="petapplications.html"
+                            data-bs-target="#applicants-page">View Application
                     </a>
                 </li>
                 <li>
                     <button type="button" class="dropdown-item btn btn-link" data-bs-toggle="modal"
-                            data-bs-target="#applicants-page">View Applicants
-                    </button>
-                </li>
-                <li>
-                    <button type="button" class="dropdown-item btn btn-link" data-bs-toggle="modal"
-                            data-bs-target="#double-check-remove">Remove
+                            data-bs-target="#double-check-remove">Withdraw
                     </button>
                 </li>
             </ul>
@@ -169,7 +120,7 @@
     <div class="pet-list-card">
         <img src="./images/dog.jpg" alt="dog">
         <p class="pet-name">Amy</p>
-        <p class="date-added"> (Date added: 11/13/2023)</p>
+        <p class="date-added"> (Date applied: 11/13/2023)</p>
         <!--            https://getbootstrap.com/docs/5.0/components/dropdowns/-->
         <button type="button" id="second_dropdown" class="pet-dropdown btn dropdown-toggle" data-bs-toggle="dropdown"
                 aria-expanded="false">
@@ -178,13 +129,13 @@
         <ul class="dropdown-menu" aria-labelledby="second_dropdown">
             <li>
                 <a type="button" class="dropdown-item btn btn-link"
-                   data-bs-toggle="modal" href="./petedit.html">
-                    Edit
+                   data-bs-toggle="modal" href="./petapplications.html">
+                    View Application
                 </a>
             </li>
             <li>
                 <button type="button" class="dropdown-item btn btn-link" data-bs-toggle="modal"
-                        data-bs-target="#double-check-remove">Remove
+                        data-bs-target="#double-check-remove">Withdraw
                 </button>
             </li>
         </ul>
@@ -195,7 +146,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to remove this pet?</h1>
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Are you sure you want to withdraw this application?</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
