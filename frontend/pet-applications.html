@@ -25,23 +25,22 @@
             <div class="collapse navbar-collapse" id="navbarText">
                 <ul class="navbar-nav me-auto mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="shelterdetails.html">Home</a>
+                        <a class="nav-link" aria-current="page" href="./search-pets.html">Home</a>
                         <!--                        add active as class to change to active-->
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="./shelter-management.html">My Pets</a>
+                        <a class="nav-link active" href="./pet-applications.html">My Applications</a>
                     </li>
                 </ul>
                 <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuNotif"
                         data-bs-toggle="dropdown" style="margin-right: 10px">
                     <i class="fa-solid fa-bell"></i>
                 </button>
-                <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuNotifsmall"
-                        data-bs-toggle="dropdown">
+                <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuNotifsmall" data-bs-toggle="dropdown">
                     Notifications
                 </button>
 
-                <ul class="dropdown-menu dropdown-menu-lg-end">
+                <ul class="dropdown-menu dropdown-menu-lg-end" aria-labelledby="dropdownMenuNotif">
                     <li>
                         <a class="dropdown-item" href="#">
                             New dogs have been added!
@@ -66,7 +65,7 @@
                 </ul>
 
                 <div class="nav-item dropdown">
-                    <button class="big-screen btn btn-primary rounded-circle" type="button" id="dropdownMenuUser"
+                    <button class="btn btn-primary rounded-circle big-screen" type="button" id="dropdownMenuUser"
                             data-bs-toggle="dropdown" role="button" aria-expanded="false">
                         <i class="fa-solid fa-user big-screen"></i>
                     </button>
@@ -76,7 +75,8 @@
                         Profile
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
-                        <li><a class="dropdown-item" href="shelter-management.html">Shelter Info</a></li>
+                        <li><a class="dropdown-item" href="./userupdate.html">Account Info</a></li>
+                        <li><a class="dropdown-item" href="#">Saved Pets</a></li>
                         <li><a class="dropdown-item" href="./landing-page.html">Sign Out</a></li>
                     </ul>
                 </div>
