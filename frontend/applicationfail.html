@@ -10,10 +10,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Petpal</title>
-  <link rel="stylesheet" href="./css/petadoption.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
   <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
   <script src="https://kit.fontawesome.com/faf442d90d.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./css/petadoption.css">
 </head>
 <header>
   <nav class="navbar fixed-top navbar-expand-lg navbar-light" style="background-color: #77b8ba">
@@ -26,7 +26,7 @@
    <div class="collapse navbar-collapse" id="navbarText">
        <ul class="navbar-nav me-auto mb-lg-0">
            <li class="nav-item">
-               <a class="nav-link active" aria-current="page" href="#">Home</a>
+               <a class="nav-link" aria-current="page" href="#">Home</a>
                <!--                        add active as class to change to active-->
            </li>
            <li class="nav-item">
@@ -70,7 +70,11 @@
                    data-bs-toggle="dropdown" role="button" aria-expanded="false">
                <i class="fa-solid fa-user big-screen"></i>
            </button>
-           <label class="nav-item nav-username" for="dropdownMenuUser">Username</label>
+           <label class="big-screen nav-item nav-username" for="dropdownMenuUser">Username</label>
+  			 <button class="navbar-nav small-screen btn nav-link" type="button" id="dropdownMenuUserSmall"
+                      data-bs-toggle="dropdown">
+                  Profile
+              </button>
            <ul class="dropdown-menu" aria-labelledby="dropdownMenuUser">
                <li><a class="dropdown-item" href="#">Account Info</a></li>
                <li><a class="dropdown-item" href="#">Saved Pets</a></li>

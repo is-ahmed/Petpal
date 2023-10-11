@@ -48,13 +48,6 @@
     color: #309975;
 }
 
-a.navbar-brand:hover {
-	color: #309975;
-}
-
-a.nav-link:hover {
-	color: #309975;
-}
 
 header {
     background-color: #F0FFFF ;
@@ -68,12 +61,6 @@ header {
 	margin-right: 1rem;
 }
 
-.rounded-circle {
-	border:1px solid;
-	border-radius:50%;
-	width:50px;
-	height:50px;
-}
    
 .btn.btn-primary,
 .btn.btn-primary:focus,
@@ -84,8 +71,7 @@ header {
   border-color: #309975;
 }
 
-.btn.btn-primary:focus,
-.btn.btn-primary:hover {
+.btn.btn-primary:focus {
   color: #ffffff;
   background-color: #309975;
   border-color: #309975;
