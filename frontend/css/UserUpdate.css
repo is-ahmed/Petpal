@@ -10,6 +10,7 @@ header {
 	    background-color: #F0FFFF ;
   }
   
+
  #right-header {
 	  width: 16vw;	
   }
@@ -41,6 +42,7 @@ header {
   border-color: #309975;
   filter: brightness(120%);
 }
+
 
 footer {
 	background-color: #F0FFFF ;
