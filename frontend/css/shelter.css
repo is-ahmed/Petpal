@@ -98,6 +98,11 @@ hr {
     justify-content: center;
 }
 
+.back-button-footer {
+    text-decoration: none;
+    color: var(--bs-btn-hover-bg);
+}
+
 @media screen and (max-width: 500px ) {
     .shelter-title {
         text-align: center;

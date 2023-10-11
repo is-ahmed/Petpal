@@ -18,6 +18,9 @@ body {
     border: none;
 }
 
+footer {
+    color: #309975;
+}
 
 .btn-primary:hover, .btn-primary:active, .btn-primary:focus {
     background-color: #108965;
