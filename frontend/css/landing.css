@@ -1,0 +1,78 @@
+header {
+	background-color: #77b8ba;
+}
+
+a.navbar-brand:hover {
+}
+
+a.nav-link:hover {
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+footer {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #F0FFFF ;
+	color: #309975;
+}
+
+#landing-page {
+	min-height: 100vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/family-dog.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+
+.btn.btn-primary,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+}
+
+.btn.btn-primary.active, {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+	filter: brightness(120%);
+}
+#landing-div {
+
+}
+
+#landing-signup-button {
+	display: flex;	
+	justify-content: center;
+	align-items: center;
+}
+
+.fade-in {
+	animation: fadeIn 0.5s ease-in both;
+}
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -3%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	
+}

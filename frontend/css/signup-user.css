@@ -1,0 +1,59 @@
+
+body {
+	display: flex;
+	flex-direction: column;
+	background-color: red;
+}
+
+a.navbar-brand:hover {
+}
+
+a.nav-link:hover {
+}
+
+
+.btn.btn-primary,
+.btn.btn-primary:hover,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+}
+
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+	filter: brightness(120%);
+}
+
+.btn.btn-primary:hover {
+	background-color: #108965;
+}
+header {
+
+	background-color: #F0FFFF ;
+}
+
+footer {	
+	color: #309975;
+	background-color: #F0FFFF;
+}
+.form-container {
+	width: 50vw;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../images/family-dog.jpg");
+	min-height: 100vh;
+	background-size: cover;
+	background-repeat: no-repeat;
+ 	background-position: center center;
+}
+
+@media only screen and (max-width: 480px) {
+}

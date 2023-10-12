@@ -1,0 +1,153 @@
+.pageColour {
+    background-color: #F0FFFF;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem;
+}
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    color: #309975;
+    /* width: 50% !important; */
+}
+
+.form-floating{
+    color: black;
+}
+
+.headerColour {
+    color: #309975;
+}
+
+.form-floating textarea{
+    height: 200px;
+}
+
+.textAreaSize{
+    height: 100px !important;
+}
+
+.textarea form-control{
+    height: 200px;
+}
+
+.buttonBorderColour {
+    border-color: #309975 !important;
+    color: white !important;
+}
+
+.buttonBorderColour:hover{
+    color: white !important;
+    background-color: #108965 !important;
+}
+
+.themeText {
+    color: #309975;
+}
+
+
+header {
+    background-color: #F0FFFF ;
+}
+  
+ #right-header {
+	  width: 16vw;	
+  }
+ #username {
+	margin-bottom: 0;
+	margin-right: 1rem;
+}
+
+   
+.btn.btn-primary,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+}
+
+.btn.btn-primary:focus {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+  filter: brightness(120%);
+}
+
+footer {
+	background-color: #F0FFFF!important;
+	color: #309975 !important;
+}
+
+.petcard {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    /* box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); */
+    border: none !important;
+    max-width: 14rem;
+    position: relative;
+}
+
+.close-icon {
+    position: absolute;
+    top: 0px;
+    right: 2px;     
+    background: none; 
+    border: none;     
+    font-size: 20px; 
+    color: white;
+    cursor: pointer;  
+}
+
+
+.labelWrap {
+    display: block !important;
+    width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important; 
+    text-overflow: clip;
+}
+
+.smallTextArea{
+
+}
+
+.btn-primary {
+    background-color: #309975 !important;
+    border: none !important;
+}
+
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #108965 !important;
+}
+
+.small-screen {
+    display:none !important;
+}
+
+@media screen and (max-width: 500px ) {
+    .page-container {
+        padding: 50px;
+        padding-top: 110px;
+    }
+
+    .big-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: inline-block !important;
+    }
+
+    .smallTextArea {
+        padding-top: 3rem !important;
+        background-color: white !important;
+    }
+}

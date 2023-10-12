@@ -1,0 +1,74 @@
+header {
+	display: flex;
+	justify-content: flex-start;
+	background-color: #F0FFFF ;
+}
+
+ul {
+	
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+main {
+
+	background-color: #F0FFFF ;
+}
+
+footer {
+	color: #309975;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-color: #309975;
+	border-width: 5px;
+	background-color: #F0FFFF ;
+}
+
+a.navbar-brand:hover {
+}
+
+a.nav-link:hover {
+}
+
+
+.btn.btn-primary,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+}
+
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+	filter: brightness(120%);
+}
+.fade-in {
+	animation: fadeIn 0.5s ease-in both;
+}
+
+form {
+	width: 440px;
+}
+
+
+@keyframes fadeIn {
+	from {
+		opacity: 0;
+		transform: translate3d(0, -3%, 0);
+	}
+	to {
+		opacity: 1;
+		transform: translate3d(0, 0, 0);
+	}
+}
