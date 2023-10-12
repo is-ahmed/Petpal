@@ -16,6 +16,11 @@ body {
 .btn-primary {
     background-color: #309975;
     border: none;
+    --bs-btn-active-bg: #098660;
+}
+
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: #098660;
 }
 
 footer {
