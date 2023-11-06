@@ -1,0 +1,20 @@
+[
+	{
+			"name": "Shelby",
+			"age": 4,
+			"breed": "Corgi",
+			"species": "Dog",
+			"gender": "Female",
+			"image": null,
+			"available": true
+	},
+	{
+			"name": "Shelby",
+			"age": 4,
+			"breed": "Corgi",
+			"species": "Dog",
+			"gender": "Female",
+			"image": null,
+			"available": true
+	}
+]
