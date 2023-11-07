@@ -8,5 +8,5 @@ class Pet(models.Model):
     species=models.CharField(max_length=120)
     gender=models.CharField(max_length=120)
     image=models.ImageField(upload_to="uploads", null=True)
-    available=models.BooleanField(max_length=120)
+    status=models.CharField(max_length=120, null=True)
     #shelter=models.ForeignKey(Shelter, on_delete=models.SET_NULL, null=True)  # Need Jeff to finish his stuff for this
