@@ -9,4 +9,9 @@ class Pet(models.Model):
     gender=models.CharField(max_length=120)
     image=models.ImageField(upload_to="uploads", null=True)
     status=models.CharField(max_length=120, null=True)
+    size=models.IntegerField(default=0)
+    days_on_petpal=models.IntegerField(default=0)
+    color=models.CharField(max_length=120)
     #shelter=models.ForeignKey(Shelter, on_delete=models.SET_NULL, null=True)  # Need Jeff to finish his stuff for this
+    #seeker=models.ForeignKey(Seeker, on_delete=models.SET_NULL, null=True)
+    #applications
