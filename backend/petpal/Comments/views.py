@@ -4,9 +4,15 @@ from rest_framework.generics import CreateAPIView, ListCreateAPIView
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.contenttypes.models import ContentType
+from rest_framework.pagination import PageNumberPagination
 from models import Comment
 
 # Create your views here.
+class CommentPagination(PageNumberPagination):
+    page_size = 10  
+    page_query_param = 'page'
+    page_size_query_param = 'page_size'
+    max_page_size = 50
 
 class UserCommentCreate(CreateAPIView):
     permission_classes = [IsAuthenticated]
@@ -34,29 +40,32 @@ class UserCommentCreate(CreateAPIView):
 class ShelterCommentsListView(ListCreateAPIView):
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = CommentPagination 
 
     def get_queryset(self):
         shelter_id = self.kwargs.get('shelter_id')
 
-        # Check if the shelter exists; if not, this will raise an HTTP 404 error
+       
         get_object_or_404(Shelter, pk=shelter_id)
 
         shelter_content_type = ContentType.objects.get(model='shelter')
         return Comment.objects.filter(content_type=shelter_content_type, object_id=shelter_id).order_by('-date_created')
     
 
-class ApplicationCommentsListView(ListAPIView):
+class ApplicationCommentsListView(ListCreateAPIView):
     serializer_class = CommentSerializer
     permission_classes = [IsAuthenticated]
+    pagination_class = CommentPagination 
 
     def get_queryset(self):
         application_id = self.kwargs.get('application_id')
         application = get_object_or_404(AdoptionApplication, pk=application_id)
 
-        # Check permissions
+       
         user = self.request.user
         if user != application.shelter and user != application.pet_seeker:
             raise PermissionDenied("You do not have permission to view these comments.")
 
         application_content_type = ContentType.objects.get(model='adoptionapplication')
         return Comment.objects.filter(content_type=application_content_type, object_id=application_id).order_by('-date_created')
+    
