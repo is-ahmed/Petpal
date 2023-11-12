@@ -1,4 +1,5 @@
 from django.db import models
+from auth_api.models import Shelter
 
 # Create your models here.
 class Pet(models.Model):
@@ -12,6 +13,4 @@ class Pet(models.Model):
     size=models.IntegerField(default=0)
     days_on_petpal=models.IntegerField(default=0)
     color=models.CharField(max_length=120, null=True)
-    #shelter=models.ForeignKey(Shelter, on_delete=models.SET_NULL, null=True)  # Need Jeff to finish his stuff for this
-    #seeker=models.ForeignKey(Seeker, on_delete=models.SET_NULL, null=True)
-    #applications
+    shelter=models.ForeignKey(Shelter, on_delete=models.SET_NULL, null=True) 

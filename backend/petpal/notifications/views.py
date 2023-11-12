@@ -34,7 +34,7 @@ class NotificationsListView(ListAPIView):
     filterset_class=NotifFilter
 
     def get_queryset(self):
-        queryset = Notification.objects.filter(user=self.request.user)
+        queryset = Notification.objects.filter(for_user=self.request.user)
         return queryset
 
 

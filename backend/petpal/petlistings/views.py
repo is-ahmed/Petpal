@@ -11,6 +11,7 @@ from rest_framework.pagination import PageNumberPagination
 from django.contrib.auth.models import User
 from notifications.models import Notification
 from datetime import datetime
+from auth_api.models import Seeker
 
 from django_filters import FilterSet, CharFilter
 
@@ -72,12 +73,13 @@ class PetsListCreate(ListCreateAPIView):
 
     def perform_create(self, serializer):
         # TODO: Save the pet to the shelter?
-        # serializer.instance.shelter = self.request.user
-        users = User.objects.all()
-        for user in users:
-            notification = Notification.objects.create(type="NEW_PET_LISTING", read=False, creation_time=datetime.now(), for_user=user, link=f"http://localhost:8000/petlistings/pets/{serializer.instance.id}")
-            notification.save()
+        seekers = Seeker.objects.all()
         serializer.save()
+        serializer.instance.shelter = self.request.user.shelter
+        serializer.save()
+        for seeker in seekers:
+            notification = Notification.objects.create(type="NEW_PET_LISTING", read=False, creation_time=datetime.now(), for_user=seeker.user, link=f"http://localhost:8000/petlistings/pets/{serializer.instance.id}")
+            notification.save()
     
     
 
@@ -89,13 +91,13 @@ class PetRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
 
     # Need to only allow shelters to update or delete their pets
     def perform_update(self, serializer):
-        if self.request.user == serializer.instance.user:
+        if self.request.user == serializer.instance.shelter.user:
             serializer.save()
         else:
             raise PermissionDenied("You do not have permission to update this pet")
 
     def perform_destroy(self, instance):
-        if self.request.user == instance.shelter:
+        if self.request.user == instance.shelter.user:
             instance.delete()
         else:
             raise PermissionDenied("You do not have permission to delete this pet")

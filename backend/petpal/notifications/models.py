@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from petpal_backend import settings
 
 TYPE_CHOICES = (
     ("CONVERSATION", "conversation"),
@@ -15,5 +16,5 @@ class Notification(models.Model):
     type=models.TextField(choices=TYPE_CHOICES)
     read=models.BooleanField(default=False)
     creation_time=models.DateTimeField(auto_now_add=True)
-    for_user=models.ForeignKey(User, on_delete=models.CASCADE);
+    for_user=models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE);
     link=models.CharField(max_length=200)
