@@ -24,4 +24,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('petlistings/', include('petlistings.urls', namespace="petlistings")),
     path('notifications/', include('notifications.urls', namespace="notifications")),
+    path('', include('auth_api.urls')),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
