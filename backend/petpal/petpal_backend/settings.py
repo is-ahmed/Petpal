@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'petlistings',
     'django_filters',
+    'notifications',
 ]
 
 MIDDLEWARE = [

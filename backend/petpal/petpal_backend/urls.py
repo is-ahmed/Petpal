@@ -23,4 +23,5 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('petlistings/', include('petlistings.urls', namespace="petlistings")),
+    path('notifications/', include('notifications.urls', namespace="notifications")),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
