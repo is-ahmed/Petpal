@@ -17,5 +17,6 @@ virtualenv -p /usr/bin/python3 venv
 source venv/bin/activate
 pip3 install -r requirements.txt
 
-
+./petpal/manage.py makemigrations
+./petpal/manage.py migrate
 
