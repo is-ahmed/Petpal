@@ -1,6 +1,6 @@
 from django.shortcuts import render, get_object_or_404
 from rest_framework.generics import CreateAPIView, RetrieveUpdateAPIView, RetrieveAPIView, \
-    RetrieveUpdateDestroyAPIView
+    RetrieveUpdateDestroyAPIView, ListAPIView
 from .seralizers import SeekerSerializer, ShelterSerializer
 from .models import Seeker, Shelter, User
 from rest_framework.permissions import AllowAny, IsAuthenticated
@@ -43,7 +43,6 @@ class Seekers(CreateAPIView, RetrieveUpdateDestroyAPIView):
         serializer.validated_data['user']['password'] = password1
         user = User.objects.create_user(**serializer.validated_data['user'], account_type='seeker')
         serializer.save(user=user)
-
 
 class Shelters(CreateAPIView, RetrieveUpdateDestroyAPIView):
     serializer_class = ShelterSerializer
@@ -98,6 +97,12 @@ class Shelters(CreateAPIView, RetrieveUpdateDestroyAPIView):
         print(serializer.validated_data)
         serializer.save(user=self.request.user)
 
+class SheltersList(ListAPIView):
+    permission_classes = [AllowAny]
+    serializer_class = ShelterSerializer
+
+    def get_queryset(self):
+        return Shelter.objects.all()
 
 class SheltersRetrieve(RetrieveAPIView):
     serializer_class = ShelterSerializer
@@ -105,3 +110,4 @@ class SheltersRetrieve(RetrieveAPIView):
 
     def get_object(self):
         return get_object_or_404(Shelter, user_id=self.kwargs['pk'])
+
