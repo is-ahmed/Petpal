@@ -3,7 +3,7 @@ from auth_api.models import Shelter
 
 # Create your models here.
 class Pet(models.Model):
-    name=models.CharField(max_length=120) # TODO: Double check this
+    name=models.CharField(max_length=120)
     age=models.IntegerField()
     breed=models.CharField(max_length=120)
     species=models.CharField(max_length=120)
