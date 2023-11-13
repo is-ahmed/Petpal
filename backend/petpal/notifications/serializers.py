@@ -4,7 +4,8 @@ class NotifSerializer(ModelSerializer):
     ...
     class Meta:
         model = Notification 
-        fields = '__all__' # TODO: Double check if this does what I think it does
+        fields = '__all__'
+
     def update(self, instance, validated_data):
         if validated_data.get('read', True) == True:
             instance.read = True

@@ -11,14 +11,14 @@ from rest_framework.pagination import PageNumberPagination
 from django.contrib.auth.models import User
 from notifications.models import Notification
 from datetime import datetime
-from auth_api.models import Seeker
+from auth_api.models import Seeker, Shelter
 
 from django_filters import FilterSet, CharFilter
 
 class PetFilter(FilterSet):
     class Meta:
         model = Pet
-        fields = ['status', 'age', 'species'] # TODO: Add shelter
+        fields = ['status', 'age', 'species', 'shelter']
     status = CharFilter(method='status_filter')
 
     def status_filter(self, queryset, name, value):
@@ -29,7 +29,7 @@ class PetFilter(FilterSet):
 
 
 class PetSearchPagination(PageNumberPagination):
-    page_size=2
+    page_size=10
     page_size_query_param = 'page_size'
     max_page_size=12
     page_query_param = 'p'
@@ -38,8 +38,12 @@ class PetSearchPagination(PageNumberPagination):
 
 class IsShelter(permissions.BasePermission):
     def has_permission(self, request, view): 
-        # TODO: Implement this when Seeker and Shelter models are finalized
-        return super().has_permission(request, view) 
+        # Could improve this code probably
+        shelters = Shelter.objects.all()
+        for shelter in shelters:
+            if shelter.user == request.user:
+                return True 
+        return False
 
     
 
@@ -56,7 +60,7 @@ class PetsListCreate(ListCreateAPIView):
     pagination_class = PetSearchPagination 
 
     def get_permissions(self):
-        self.permission_classes = [permissions.IsAuthenticated] # TODO: Change to IsShelter later
+        self.permission_classes = [IsShelter]
         if self.request.method == 'GET':
             self.permission_classes = [permissions.IsAuthenticated]
         return super(PetsListCreate, self).get_permissions()
@@ -72,7 +76,6 @@ class PetsListCreate(ListCreateAPIView):
         return queryset
 
     def perform_create(self, serializer):
-        # TODO: Save the pet to the shelter?
         seekers = Seeker.objects.all()
         serializer.save()
         serializer.instance.shelter = self.request.user.shelter
@@ -87,8 +90,12 @@ class PetsListCreate(ListCreateAPIView):
 class PetRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     serializer_class=PetSerializer
     queryset = Pet.objects.all()
-    permission_classes=[permissions.IsAuthenticated]
-
+    
+    def get_permissions(self):
+        self.permission_classes = [IsShelter]
+        if self.request.method == 'GET':
+            self.permission_classes = [permissions.IsAuthenticated]
+        return super(PetRetrieveUpdateDestroy, self).get_permissions()
     # Need to only allow shelters to update or delete their pets
     def perform_update(self, serializer):
         if self.request.user == serializer.instance.shelter.user:

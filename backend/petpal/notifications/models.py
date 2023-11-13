@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 from petpal_backend import settings
+from auth_api.models import Shelter, Seeker
 
 TYPE_CHOICES = (
     ("CONVERSATION", "conversation"),
