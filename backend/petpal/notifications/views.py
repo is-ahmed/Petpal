@@ -53,7 +53,7 @@ class NotificationsRetrieveUpdateDestroyView(RetrieveUpdateDestroyAPIView):
         return Response(response)
 
     def perform_destroy(self, instance):
-        if self.request.user == instance.user:
+        if self.request.user == instance.for_user:
             instance.delete()
         else:
             raise PermissionDenied("You do not have permission to delete this notification")
