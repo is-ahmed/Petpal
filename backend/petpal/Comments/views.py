@@ -6,6 +6,8 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.contenttypes.models import ContentType
 from rest_framework.pagination import PageNumberPagination
 from models import Comment
+from auth_api.models import Shelter
+from applications.models import Application
 
 # Create your views here.
 class CommentPagination(PageNumberPagination):
@@ -29,7 +31,7 @@ class UserCommentCreate(CreateAPIView):
             serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
 
         elif content_type == 'adoptionapplication':
-            application = get_object_or_404(AdoptionApplication, pk=object_id)
+            application = get_object_or_404(Application, pk=object_id)
 
             if user == application.shelter.user or user == application.pet_seeker.user:
                 content_type_instance = ContentType.objects.get(model=content_type.lower())
@@ -59,7 +61,7 @@ class ApplicationCommentsListView(ListCreateAPIView):
 
     def get_queryset(self):
         application_id = self.kwargs.get('application_id')
-        application = get_object_or_404(AdoptionApplication, pk=application_id)
+        application = get_object_or_404(Application, pk=application_id)
 
        
         user = self.request.user
