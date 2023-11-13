@@ -1,6 +1,6 @@
 from django.urls import path
 
-from views import UserCommentCreate, ShelterCommentsListView, ApplicationCommentsListView
+from .views import UserCommentCreate, ShelterCommentsListView, ApplicationCommentsListView
 
 urlpatterns = [ 
     path('commentcreation/<str:content_type>/<int:object_id>/', UserCommentCreate.as_view(), name='create_comment'),

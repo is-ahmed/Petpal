@@ -1,11 +1,11 @@
 from django.shortcuts import get_object_or_404
-from serializer import CommentSerializer
+from .serializer import CommentSerializer
 from rest_framework.generics import CreateAPIView, ListCreateAPIView
 from rest_framework.exceptions import PermissionDenied
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.contenttypes.models import ContentType
 from rest_framework.pagination import PageNumberPagination
-from models import Comment
+from .models import Comment
 from auth_api.models import Shelter, AbstractUser
 from applications.models import Application
 
@@ -30,7 +30,7 @@ class UserCommentCreate(CreateAPIView):
             content_type_instance = ContentType.objects.get(model=content_type.lower())
             serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
 
-        elif content_type == 'adoptionapplication':
+        elif content_type == 'application':
             application = get_object_or_404(Application, pk=object_id)
 
             if user.account_type == "shelter" or user.account_type == "seeker":
@@ -68,6 +68,6 @@ class ApplicationCommentsListView(ListCreateAPIView):
         if user != application.user:
             raise PermissionDenied("You do not have permission to view these comments.")
 
-        application_content_type = ContentType.objects.get(model='adoptionapplication')
+        application_content_type = ContentType.objects.get(model='application')
         return Comment.objects.filter(content_type=application_content_type, object_id=application_id).order_by('-date_created')
     

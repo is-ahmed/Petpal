@@ -26,4 +26,5 @@ urlpatterns = [
     path('applications/', include('applications.urls', namespace="applications")),
     path('notifications/', include('notifications.urls', namespace="notifications")),
     path('', include('auth_api.urls')),
+    path('comment/', include('Comments.urls')),
 ] + static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
