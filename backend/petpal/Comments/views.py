@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.contrib.contenttypes.models import ContentType
 from rest_framework.pagination import PageNumberPagination
 from models import Comment
-from auth_api.models import Shelter
+from auth_api.models import Shelter, AbstractUser
 from applications.models import Application
 
 # Create your views here.
@@ -33,7 +33,7 @@ class UserCommentCreate(CreateAPIView):
         elif content_type == 'adoptionapplication':
             application = get_object_or_404(Application, pk=object_id)
 
-            if user == application.shelter.user or user == application.pet_seeker.user:
+            if user.account_type == "shelter" or user.account_type == "seeker":
                 content_type_instance = ContentType.objects.get(model=content_type.lower())
                 serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
             else:
@@ -65,7 +65,7 @@ class ApplicationCommentsListView(ListCreateAPIView):
 
        
         user = self.request.user
-        if user != application.shelter and user != application.pet_seeker:
+        if user != application.user:
             raise PermissionDenied("You do not have permission to view these comments.")
 
         application_content_type = ContentType.objects.get(model='adoptionapplication')
