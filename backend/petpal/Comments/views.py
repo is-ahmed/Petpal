@@ -32,7 +32,7 @@ class UserCommentCreate(CreateAPIView):
             serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
 
         elif content_type == 'application':
-            application = get_object_or_404(Application, pk=object_id)
+            application = get_object_or_404(Application, pk=object_id, user=user)
 
             if user.account_type == "shelter" or user.account_type == "seeker":
                 content_type_instance = ContentType.objects.get(model=content_type.lower())
