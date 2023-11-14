@@ -6,6 +6,7 @@ from auth_api.models import Shelter, Seeker
 TYPE_CHOICES = (
     ("CONVERSATION", "conversation"),
     ("APPLICATION_STATUS", "application status update"),
+    ("NEW_APPLICATION", "new application"),
     ("COMMENT", "new comments"),
     ("REVIEWS", "new reviews"),
     ("NEW_PET_LISTING", "new pet added")
