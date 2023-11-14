@@ -7,6 +7,7 @@ from rest_framework.permissions import AllowAny, IsAuthenticated
 
 from rest_framework.exceptions import ValidationError, PermissionDenied
 
+from applications.models import Application
 # Create your views here.
 
 class Seekers(CreateAPIView, RetrieveUpdateDestroyAPIView):
@@ -111,3 +112,17 @@ class SheltersRetrieve(RetrieveAPIView):
     def get_object(self):
         return get_object_or_404(Shelter, user_id=self.kwargs['pk'])
 
+class SeekersRetrieve(RetrieveAPIView):
+    serializer_class = SeekerSerializer
+
+    def get_object(self):
+        if self.request.user.account_type != 'shelter':
+            raise PermissionDenied('Only shelters can view specific seekers')
+
+        seeker_user = get_object_or_404(Seeker, user_id = self.kwargs['pk'])
+        print(seeker_user)
+
+        if Application.objects.filter(user = seeker_user.user).filter(shelter=self.request.user):
+            return seeker_user
+
+        raise PermissionDenied('You need an application with this seeker')
