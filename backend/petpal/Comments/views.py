@@ -32,13 +32,21 @@ class UserCommentCreate(CreateAPIView):
             serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
 
         elif content_type == 'application':
-            application = get_object_or_404(Application, pk=object_id, user=user)
+            if  user.account_type == "seeker":
+                application = get_object_or_404(Application, pk=object_id, user=user)
 
-            if user.account_type == "shelter" or user.account_type == "seeker":
                 content_type_instance = ContentType.objects.get(model=content_type.lower())
                 serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
                 application.last_update_time = timezone.now()
                 application.save()
+            elif user.account_type == "shelter":
+                application = get_object_or_404(Application, pk=object_id, shelter=user)
+
+                content_type_instance = ContentType.objects.get(model=content_type.lower())
+                serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
+                application.last_update_time = timezone.now()
+                application.save()
+
             else:
                 raise PermissionDenied("You do not have permission to comment on this application.")
 
