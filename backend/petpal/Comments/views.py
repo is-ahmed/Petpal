@@ -8,6 +8,7 @@ from rest_framework.pagination import PageNumberPagination
 from .models import Comment
 from auth_api.models import Shelter, AbstractUser
 from applications.models import Application
+from django.utils import timezone
 
 # Create your views here.
 class CommentPagination(PageNumberPagination):
@@ -36,6 +37,8 @@ class UserCommentCreate(CreateAPIView):
             if user.account_type == "shelter" or user.account_type == "seeker":
                 content_type_instance = ContentType.objects.get(model=content_type.lower())
                 serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
+                application.last_update_time = timezone.now()
+                application.save()
             else:
                 raise PermissionDenied("You do not have permission to comment on this application.")
 
@@ -51,8 +54,15 @@ class ShelterCommentsListView(ListCreateAPIView):
         get_object_or_404(Shelter, pk=shelter_id)
 
         shelter_content_type = ContentType.objects.get(model='shelter')
-        return Comment.objects.filter(content_type=shelter_content_type, object_id=shelter_id).order_by('-date_created')
+        return Comment.objects.filter(content_type=shelter_content_type, object_id=shelter_id)
+
+class ShelterCommentsSortedListView(ShelterCommentsListView):
+ 
     
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.order_by('-date_created')
+
 
 class ApplicationCommentsListView(ListCreateAPIView):
     serializer_class = CommentSerializer
@@ -69,5 +79,10 @@ class ApplicationCommentsListView(ListCreateAPIView):
             raise PermissionDenied("You do not have permission to view these comments.")
 
         application_content_type = ContentType.objects.get(model='application')
-        return Comment.objects.filter(content_type=application_content_type, object_id=application_id).order_by('-date_created')
-    
+        return Comment.objects.filter(content_type=application_content_type, object_id=application_id)
+
+class ApplicationCommentsSortedListView(ApplicationCommentsListView):
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        return queryset.order_by('-date_created')
