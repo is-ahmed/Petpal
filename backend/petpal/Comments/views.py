@@ -85,6 +85,9 @@ class ApplicationCommentsListView(ListCreateAPIView):
         user = self.request.user
         if user != application.user:
             raise PermissionDenied("You do not have permission to view these comments.")
+        elif user != application.shelter:
+            raise PermissionDenied("You do not have permission to view these comments.")
+
 
         application_content_type = ContentType.objects.get(model='application')
         return Comment.objects.filter(content_type=application_content_type, object_id=application_id)
