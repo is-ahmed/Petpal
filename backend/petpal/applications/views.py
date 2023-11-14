@@ -78,6 +78,9 @@ class ApplicationCreateAPIView(CreateAPIView):
 
         serializer.save(user=self.request.user, pet_listing=pet_listing, shelter=pet_listing.shelter.user)
 
+        notification = Notification.objects.create(type="NEW_APPLICATION", read=False, creation_time=datetime.now(), for_user=serializer.instance.shelter, link=f"http://localhost:8000/applications/{serializer.instance.id}")
+        notification.save()
+
 class ApplicationUpdateAPIView(UpdateAPIView):
     queryset = Application.objects.all()
     serializer_class = ApplicationUpdateSerializer
