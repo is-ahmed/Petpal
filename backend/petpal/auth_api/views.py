@@ -45,6 +45,48 @@ class Seekers(CreateAPIView, RetrieveUpdateDestroyAPIView):
         user = User.objects.create_user(**serializer.validated_data['user'], account_type='seeker')
         serializer.save(user=user)
 
+    def perform_update(self, serializer):
+        if self.request.user.account_type != 'seeker':
+            raise PermissionDenied
+
+        if len(User.objects.filter(username=serializer.validated_data['user']['username']).exclude(\
+                username=self.request.user.username)) != 0:
+            raise ValidationError({'username': 'Username already exists.'})
+
+
+        password1 = serializer.validated_data.pop('password1', '')
+        password2 = serializer.validated_data.pop('password2', '')
+
+        if password1:
+            if password1 != password2:
+                raise ValidationError({'password': 'Passwords are not the same.'})
+
+            if len(password1) < 8:
+                raise ValidationError({'password': 'Password should be at least 8 digits long.'})
+
+            self.request.user.set_password(password1)
+
+        user_info = serializer.validated_data['user']
+        username = user_info.get('username', '')
+        if not username:
+            raise ValidationError({'username': 'Username must not be empty'})
+        else:
+            self.request.user.username = username
+
+        email = user_info.get('email', '')
+        if not email:
+            raise ValidationError({'email': 'Email must not be empty'})
+        else:
+            self.request.user.email = email
+
+        avatar = serializer.validated_data.pop('avatar', '')
+
+        if avatar:
+            self.request.user.seeker.avatar = avatar
+
+        self.request.user.save()
+        self.request.user.seeker.save()
+
 class Shelters(CreateAPIView, RetrieveUpdateDestroyAPIView):
     serializer_class = ShelterSerializer
 
@@ -83,20 +125,51 @@ class Shelters(CreateAPIView, RetrieveUpdateDestroyAPIView):
         serializer.save(user=user)
 
     def perform_update(self, serializer):
-        user_info = serializer.validated_data.pop('user', {})
+        if self.request.user.account_type != 'shelter':
+            raise PermissionDenied
 
-        if 'password' in user_info:
-            self.request.user.set_password(user_info['password'])
+        if len(User.objects.filter(username=serializer.validated_data['user']['username']).exclude(\
+                username=self.request.user.username)) != 0:
+            raise ValidationError({'username': 'Username already exists.'})
 
-        if 'username' in user_info:
-            self.request.user.username = user_info['username']
+        password1 = serializer.validated_data.pop('password1', '')
+        password2 = serializer.validated_data.pop('password2', '')
 
-        if 'email' in user_info:
-            self.request.user.email = user_info['email']
+        if password1:
+            if password1 != password2:
+                raise ValidationError({'password': 'Passwords are not the same.'})
 
+            if len(password1) < 8:
+                raise ValidationError({'password': 'Password should be at least 8 digits long.'})
+
+            self.request.user.set_password(password1)
+
+        user_info = serializer.validated_data['user']
+        username = user_info.get('username', '')
+        if not username:
+            raise ValidationError({'username': 'Username must not be empty'})
+        else:
+            self.request.user.username = username
+
+        email = user_info.get('email', '')
+        if not email:
+            raise ValidationError({'email': 'Email must not be empty'})
+        else:
+            self.request.user.email = email
+
+        avatar = serializer.validated_data.pop('avatar', '')
+
+        if avatar:
+            self.request.user.shelter.avatar = avatar
+
+        if (name := serializer.validated_data.pop('name', '')):
+            self.request.user.shelter.name = name
+
+        if (address := serializer.validated_data.pop('address', '')):
+            self.request.user.shelter.address = address
+
+        self.request.user.shelter.save()
         self.request.user.save()
-        print(serializer.validated_data)
-        serializer.save(user=self.request.user)
 
 class SheltersList(ListAPIView):
     permission_classes = [AllowAny]
