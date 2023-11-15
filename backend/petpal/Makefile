@@ -7,10 +7,10 @@ TARFILE  := $(OUTPUT).tar
 all: reset
 
 reset: clean
-	./manage.py makemigrations
-	./manage.py migrate
+	python3 ./manage.py makemigrations
+	python3 ./manage.py migrate
 ifeq ($(JSONFILE),$(wildcard $(JSONFILE)))
-	./manage.py loaddata $(JSONFILE)
+	python3 ./manage.py loaddata $(JSONFILE)
 endif
 
 .PHONY: clean zip
