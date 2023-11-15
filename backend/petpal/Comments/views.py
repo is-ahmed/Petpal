@@ -83,9 +83,7 @@ class ApplicationCommentsListView(ListCreateAPIView):
 
        
         user = self.request.user
-        if user != application.user:
-            raise PermissionDenied("You do not have permission to view these comments.")
-        elif user != application.shelter:
+        if user != application.user and user != application.shelter:
             raise PermissionDenied("You do not have permission to view these comments.")
 
 
