@@ -172,7 +172,6 @@ class Shelters(CreateAPIView, RetrieveUpdateDestroyAPIView):
         self.request.user.save()
 
 class SheltersList(ListAPIView):
-    permission_classes = [AllowAny]
     serializer_class = ShelterSerializer
 
     def get_queryset(self):
@@ -180,7 +179,6 @@ class SheltersList(ListAPIView):
 
 class SheltersRetrieve(RetrieveAPIView):
     serializer_class = ShelterSerializer
-    permission_classes = [AllowAny]
 
     def get_object(self):
         return get_object_or_404(Shelter, user_id=self.kwargs['pk'])
