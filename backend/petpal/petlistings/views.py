@@ -62,7 +62,7 @@ class PetsListCreate(ListCreateAPIView):
     def get_permissions(self):
         self.permission_classes = [IsShelter]
         if self.request.method == 'GET':
-            self.permission_classes = [permissions.AllowAny]
+            self.permission_classes = [permissions.IsAuthenticated]
         return super(PetsListCreate, self).get_permissions()
 
     def get_queryset(self):
@@ -94,7 +94,7 @@ class PetRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     def get_permissions(self):
         self.permission_classes = [IsShelter]
         if self.request.method == 'GET':
-            self.permission_classes = [permissions.AllowAny]
+            self.permission_classes = [permissions.IsAuthenticated]
         return super(PetRetrieveUpdateDestroy, self).get_permissions()
     # Need to only allow shelters to update or delete their pets
     def perform_update(self, serializer):
