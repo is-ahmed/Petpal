@@ -1,18 +1,79 @@
-import React, { useState } from 'react'
+import React, { createContext, useContext, useEffect, useState } from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
+import { SearchContext } from '../contexts/SearchContext'
 import './css/search.css'
 
+const BreedOptions = ({ species }) => {
+	if (species === 'Dog') {
+		return (
+			<>
+			  <option>Afghan Hound</option>
+			  <option>Alaskan Malamute</option>
+			  <option>Beagle</option>
+			  <option>German Shepherd</option>
+			  <option>Golden Retriever</option>
+			  <option>Rotweiller</option>
+			</>
+		);
+	} else if ( species === 'Cat') {
+		return (
+			<>
+			  <option>American Shorthair</option>
+			  <option>British Shorthair</option>
+			  <option>Siamese</option>
+			</>
+		)
+	} else if (species === 'Rabbit') {
+		return (
+			<>
+			  <option>American Fuzzy Lop</option>
+			  <option>Holland Lop</option>
+			  <option>Polish Rabbit</option>
+			</>
+		)
+	} else if (species === 'Fish') {
+		return (
+			<>
+			  <option>Betta Fish</option>
+			  <option>Clownfish</option>
+			  <option>Goldfish</option>
+			</>
+		)
+	}
+}
 
-const SearchFilters = () => {
+
+const SearchFilters = ({modal}) => {
+	const { query, searchParams, setSearchParams } = useContext(SearchContext);
+	const [ shelterResults, setShelterList ] = useState([])
+
+	const ShelterOptions = () => {
+		return shelterResults.map(shelter => <option value={shelter['id']}>{shelter['name']}</option>)	
+	}
+
+	useEffect(() => {
+		fetch(`http://localhost:8000/shelters`, {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('access_token')}`
+			}
+		})
+		.then(response => response.json())
+		.then(json => {
+			// Want to show all shelter options in dropdown
+			console.log(json['results'])
+			setShelterList(json['results']); // Should be an array
+		})
+	}, [])
 	
 	return (
-		<div id="filter" class="d-flex flex-column justify-content-start align-items-center me-3 shadow rounded p-2">
+		<div id={modal ? "modal-filter": "filter"} className="d-flex flex-column justify-content-start align-items-center me-3 shadow rounded p-2">
 		  <div className="d-flex flex-column w-100 dropdown mt-3">
 			<label htmlFor="species">Species</label>
-			<select name="species" className="btn btn-primary">
-			  <option disabled="" selected="" value="">
+			<select name="species" className="btn btn-primary" onChange={e=>{setSearchParams({...query, species: e.target.value})}} defaultValue={query['species']}>
+			  <option disabled=""  value="">
 				Select
 			  </option>
 			  <option>Dog</option>
@@ -23,8 +84,8 @@ const SearchFilters = () => {
 		  </div>
 		  <div className="d-flex flex-column w-100 dropdown">
 			<label htmlFor="sortby">Sort By</label>
-			<select name="sortby" className="btn btn-primary">
-			  <option disabled="" selected="" value="">
+			<select name="sortby" className="btn btn-primary" onChange={e=>{setSearchParams({...query, ordering: e.target.value})}} defaultValue={query['ordering']}>
+			  <option disabled=""  value="">
 				Select
 			  </option>
 			  <option>Age</option>
@@ -33,56 +94,42 @@ const SearchFilters = () => {
 		  </div>
 		  <div className="d-flex flex-column w-100 dropdown">
 			<label htmlFor="breed">Breed</label>
-			<select name="breed" className="btn btn-primary">
-			  <option disabled="" selected="" value="">
+			<select name="breed" className="btn btn-primary" onChange={e=>{setSearchParams({...query, breed: e.target.value})}} defaultValue={query['breed']}>
+			  <option disabled=""  value="">
 				Select
 			  </option>
-			  <option>Afghan hound</option>
-			  <option>Goldren Retriever</option>
-			  <option>Rotweiller</option>
-			</select>
-		  </div>
-		  <div className="d-flex flex-column w-100 dropdown">
-			<label htmlFor="age">Age</label>
-			<select name="age" className="btn btn-primary">
-			  <option disabled="" selected="" value="">
-				Select
-			  </option>
-			  <option>Young</option>
-			  <option>Adult</option>
-			  <option>Senior</option>
-			</select>
-		  </div>
-		  <div className="d-flex flex-column w-100 dropdown">
-			<label htmlFor="gender">Gender</label>
-			<select name="gender" className="btn btn-primary">
-			  <option disabled="" selected="" value="">
-				Select
-			  </option>
-			  <option>Female</option>
-			  <option>Male</option>
-			</select>
-		  </div>
-		  <div className="d-flex flex-column w-100 dropdown">
-			<label htmlFor="careandbehave">Care &amp; Behaviour</label>
-			<select name="careandbehave" className="btn btn-primary">
-			  <option disabled="" selected="" value="">
-				Select
-			  </option>
-			  <option>House Trained</option>
-			  <option>Special Needs</option>
+			  <BreedOptions species={searchParams.get('species')}/>
 			</select>
 		  </div>
 		  <div className="d-flex flex-column w-100 dropdown">
 			<label htmlFor="dayson">Days on PetPal</label>
-			<select name="dayson" className="btn btn-primary">
-			  <option disabled="" selected="" value="">
+			<select name="dayson" className="btn btn-primary" onChange={e=>{setSearchParams({...query, daysOnPetpal: e.target.value})}} defaultValue={query['daysOnPetpal']}>
+			  <option disabled=""  value="">
 				Select
 			  </option>
 			  <option>1</option>
 			  <option>7</option>
 			  <option>14</option>
 			  <option>21+</option>
+			</select>
+		  </div>
+		  <div className="d-flex flex-column w-100 dropdown">
+			<label htmlFor="gender">Gender</label>
+			<select name="gender" className="btn btn-primary" onChange={e=>{setSearchParams({...query, gender: e.target.value})}}defaultValue={query['gender']}>
+			  <option disabled="" value="" >
+				Select
+			  </option>
+			  <option>Male</option>
+			  <option>Female</option>
+			</select>
+		  </div>
+		  <div className="d-flex flex-column w-100 dropdown">
+			<label htmlFor="shelter">Shelter</label>
+			<select name="shelter" className="btn btn-primary" onChange={e=>{setSearchParams({...query, shelter: e.target.value})}}>
+			  <option disabled="" value="">
+				Select
+			  </option>
+			  <ShelterOptions/> 
 			</select>
 		  </div>
 		</div>

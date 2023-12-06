@@ -5,6 +5,7 @@ import "./css/landing.css"
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
+import { useNavigate } from 'react-router-dom'
 
 
 // Retrieved from here: https://react-bootstrap.netlify.app/docs/forms/layout/#formgroup
@@ -12,6 +13,7 @@ import Row from 'react-bootstrap/Row';
 
 const SignUpBodyShelter = (props) => {
 	const [shelterName, setShelterName] = useState("")
+	const [username, setUsername] = useState("")
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("")
 	const [password2, setPassword2] = useState("")
@@ -20,6 +22,8 @@ const SignUpBodyShelter = (props) => {
 	const [province, setProvince] = useState("")
 	const [postalCode, setPostalCode] = useState("")
 	const [avatar, setAvatar] = useState()
+	const [errors, setErrors] = useState({})
+	let navigate = useNavigate();
 	const mainStyles = {
 		display: 'flex',
 		'flex-grow': 1,
@@ -30,7 +34,7 @@ const SignUpBodyShelter = (props) => {
 	}
 	const submit = (event) => {
 		let data = new FormData()
-		data.append('username', email)
+		data.append('username', username)
 		data.append('password1', password)
 		data.append('password2', password2)
 		data.append('email', email)
@@ -45,19 +49,39 @@ const SignUpBodyShelter = (props) => {
 
 		request
 			.then(response => response.json())
-			.then(data => {
-				for (let key in data) {
-					if (data[key].constructor === Array) {
-						// Means this is an error
+			.then(json => {
+				let error_count = 0;
+				let localErrors = errors;
+				for (let [key, value] of data.entries()) {
+					if (key === 'password1') key = 'password'
+					if (key in json) {
+						if (key === 'avatar') {
+							if (json['avatar'].constructor === Array) {
+								error_count++;
+								localErrors[key] = json['avatar'][0];
+							} else {
+								localErrors[key] = ''
+							}
+						}
 						
+						else if (json[key] !== data.get(key)) {
+							// Means this is an error
+							error_count++;	
+							localErrors[key] = json[key].constructor === Array ? json[key][0] : json[key];
+						} else {
+							localErrors[key] = ''
+						}
+
 					}
 				}
+				if (error_count == 0) navigate('/login-shelter')
+				else setErrors({...localErrors})
 			})
 			.catch();
 		
 	}
 	return (
-	<main style={mainStyles}>
+	<main id="signupbody" style={mainStyles}>
 		    <div id="content" className="d-flex justify-content-end align-items-center">
       <div
         id="form"
@@ -65,41 +89,54 @@ const SignUpBodyShelter = (props) => {
       >
         <h1>Sign Up</h1>
         <form onSubmit={submit} action="#" className="row g-3">
-          <div className="col-md-12">
-            <label htmlFor="inputSheltername" className="form-label">
-              Shelter Name
+          <div className="col-md-6">
+            <label htmlFor="shelterName" className="form-label">
+              Shelter Name*
             </label>
-            <input type="text" className="form-control" id="inputSheltername" onChange={e => setShelterName(e.target.value)}/>
+            <input type="text" className="form-control" id="shelterName" onChange={e => setShelterName(e.target.value)} required/>
           </div>
           <div className="col-md-6">
-            <label htmlFor="inputEmail4" className="form-label">
-              Email
+            <label htmlFor="username" className="form-label">
+              Username*
             </label>
-            <input type="email" className="form-control" id="inputEmail4" onChange={e => setEmail(e.target.value)}/>
-            <label htmlFor="inputEmail4" className="form-label">
-             Profile Picture 
-            </label>
-            <input type="file" className="form-control" id="inputEmail4" onChange={e=>setAvatar(e.target.files[0])}/>
+            <input type="text" className="form-control" id="username" onChange={e => setUsername(e.target.value)} required/>
+			{ errors['username'] ? <p style={{color: 'red'}}>{errors['username']}</p> : <p></p>}
           </div>
           <div className="col-md-6">
-            <label htmlFor="inputPassword4" className="form-label">
+            <label htmlFor="email" className="form-label">
+              Email*
+            </label>
+            <input type="email" className="form-control" id="email" onChange={e => setEmail(e.target.value)} required/>
+			{ errors['email'] ? <p style={{color: 'red'}}>{errors['email']}</p> : <p></p>}
+            <label htmlFor="avatar" className="form-label">
+             Profile Picture* 
+            </label>
+            <input type="file" className="form-control" id="avatar" onChange={e=>setAvatar(e.target.files[0])} required/>
+			{ errors['avatar'] ? <p style={{color: 'red'}}>{errors['avatar']}</p> : <p></p>}
+          </div>
+          <div className="col-md-6">
+            <label htmlFor="password1" className="form-label">
               Password
             </label>
             <input
               type="password"
               className="form-control"
-              id="inputPassword4"
+              id="password1"
 			  onChange={e=>setPassword(e.target.value)}
+			  required
             />
-            <label htmlFor="inputPassword5" className="form-label">
+			{ errors['password'] ? <p style={{color: 'red'}}>{errors['password']}</p> : <p></p>}
+            <label htmlFor="password2" className="form-label">
               Confirm Password
             </label>
             <input
               type="password"
               className="form-control"
-              id="inputPassword5"
+              id="password2"
 			  onChange={e=>setPassword2(e.target.value)}
+			  required
             />
+			{ errors['password2'] ? <p style={{color: 'red'}}>{errors['password2']}</p> : <p></p>}
           </div>
           <div className="col-12">
             <label htmlFor="inputAddress" className="form-label">
@@ -112,51 +149,7 @@ const SignUpBodyShelter = (props) => {
               placeholder="1234 Main St"
 			  onChange={e=>setAddress(e.target.value)}
             />
-          </div>
-          <div className="col-12">
-            <label htmlFor="inputAddress2" className="form-label">
-              Address 2
-            </label>
-            <input
-              type="text"
-              className="form-control"
-              id="inputAddress2"
-              placeholder="Apartment, studio, or floor"
-            />
-          </div>
-          <div className="col-md-6">
-            <label htmlFor="inputCity" className="form-label">
-              City
-            </label>
-            <input type="text" className="form-control" id="inputCity" />
-          </div>
-          <div className="col-md-4">
-            <label htmlFor="inputProvince" className="form-label">
-              Province
-            </label>
-            <select id="inputProvince" className="form-select">
-              <option selected="">Choose...</option>
-              <option>Alberta</option>
-              <option>British Columbia</option>
-              <option>Manitoba</option>
-              <option>New Brunswick</option>
-              <option>Newfoundland</option>
-              <option>Nova Scotia</option>
-              <option>Ontario</option>
-              <option>Prince Edward Island</option>
-              <option>Quebec</option>
-              <option>Saskatchewan</option>
-              <option>Northwest Territories</option>
-              <option>Nunavut</option>
-              <option>Yukon</option>
-            </select>
-          </div>
-          <div className="col-md-2">
-            <label htmlFor="inputZip" className="form-label">
-              Postal Code
-            </label>
-            <input type="text" className="form-control" id="inputZip" />
-          </div>
+          </div> 
           <div className="col-12">
             <button type="submit" className="btn btn-primary">
               Sign Up

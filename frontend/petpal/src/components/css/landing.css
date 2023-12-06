@@ -31,6 +31,13 @@ footer {
 	background-repeat: no-repeat;
 	background-position: center center;
 }
+#signupbody {
+	min-height: 100vh;
+	background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url("../../assets/family-dog.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
 
 .btn.btn-primary,
 .btn.btn-primary:focus,

@@ -1,18 +1,20 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
 import "./css/landing.css"
+import { UserContext } from '../contexts/UserContext'
 
-const LoginBody = () => {
-	const [email, setEmail] = useState("");
+const LoginBody = ({type}) => {
+	const [username, setUsername] = useState("");
 	const [password, setPassword] = useState("");
 	const [error, setError] = useState(0);
+	const {usernameContext, userType, id} = useContext(UserContext);
 	let navigate = useNavigate();
 
 	const submit = (event) => {
 		let credentials = {
-			'username': email,
+			'username': username,
 			'password': password
 		}
 		event.preventDefault();
@@ -30,7 +32,15 @@ const LoginBody = () => {
 					setError(1);
 				} else {
 					localStorage.setItem('access_token', data['access'])
-					navigate('/pets');
+					console.log(data['access'])
+					// TODO: Perform two more fetches to see user type
+					if (type === 'adopter') {
+						navigate('/pets')
+					} else if (type === 'shelter') {
+						// navigate to shelter main page 
+					} else {
+						// navigate
+					}
 				}
 			})
 			.catch(err => console.log(err))
@@ -41,8 +51,8 @@ const LoginBody = () => {
 	 <form action="#" onSubmit={submit} className="shadow mb-5 rounded bg-white form-container m-3 mt-5 p-5">
 	   <h1>Login</h1>
 	   <div className="mb-3">
-			<label htmlFor="email" className="form-label">Email:</label>
-			<input type="email" className="form-control" id="email" placeholder="Enter email" name="email" onChange={e => setEmail(e.target.value)}/>
+			<label htmlFor="username" className="form-label">Username:</label>
+			<input type="text" className="form-control" id="username" placeholder="Enter username" name="email" onChange={e => setUsername(e.target.value)}/>
 		  </div>
 		  <div className="mb-3">
 			<label htmlFor="pwd" className="form-label">Password:</label>
@@ -59,6 +69,11 @@ const LoginBody = () => {
 		  <div className="d-flex align-items-center justify-content-start">
 			  <a className="btn me-3 btn-primary" href="signup-user">Sign Up (Adopter)</a>
 			  <a className="btn btn-primary" href="signup-shelter">Sign Up (Shelter)</a>
+		  </div>
+		<p className="mt-2">Login as different user?</p>
+		  <div className="d-flex align-items-center justify-content-center">
+			  <a className="btn me-3 btn-primary" href="login-shelter">Login (Shelter)</a>
+			  <a className="btn btn-primary" href="login-admin">Login (Admin)</a>
 		  </div>
 	</form>
 	 </div>	

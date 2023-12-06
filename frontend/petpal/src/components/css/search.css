@@ -6,14 +6,16 @@ body {
 	flex-direction: column;
 
 }
+.dropdown-toggle::after {
+    display: none !important;
+}
+
 a.navbar-brand:hover {
 }
 
 a.nav-link:hover {
 }
-header {
-	background-color: #F0FFFF ;
-}
+
 
 
 #filter {
@@ -58,7 +60,6 @@ footer {
 
 
 .petinfo {
-	width: 100%;
 	background-color: white;
 	border-top-right-radius: 25px;
 	border-top-left-radius: 25px;
@@ -71,11 +72,11 @@ footer {
 
 main {
 	background-color: #F0FFFF ;
+	min-height: 100vh;
 }
 
 
 a.petinfo {
-	display: block;
 	text-decoration: none;
 }
 
@@ -113,6 +114,11 @@ div.row a {
 
 	header {
 
+	}
+
+	.row {
+		display: flex;
+		flex-direction: column;
 	}
 
 	#searchparams {
