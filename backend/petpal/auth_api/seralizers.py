@@ -1,7 +1,18 @@
 from rest_framework.serializers import ModelSerializer, DateTimeField, ListField, \
     PrimaryKeyRelatedField, HyperlinkedRelatedField, CharField, ImageField, EmailField
 
-from .models import Seeker, Shelter, User
+from .models import Seeker, Shelter, User, Admin
+
+class AdminSerializer(ModelSerializer):
+    username = CharField(source='user.username')
+    # password = CharField(write_only=True, source='user.password')
+    email = EmailField(source='user.email')
+    password1 = CharField(write_only=True)
+    password2 = CharField(write_only=True)
+
+    class Meta:
+        model = Admin 
+        fields = ['username', 'email', 'password1', 'password2']
 
 class SeekerSerializer(ModelSerializer):
     username = CharField(source='user.username')
