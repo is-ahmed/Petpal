@@ -1,24 +1,35 @@
 import logo from './logo.svg';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {
+	BrowserRouter as Router,
+	Routes,
+	Route
+} from 'react-router-dom'
+import LandingPage from './pages/Landing'
+import RegisterUser from './pages/RegisterUser';
+import RegisterShelter from './pages/RegisterShelter';
+import LoginPage from './pages/Login';
+import Pets from './pages/SearchPets';
+import Shelters from './pages/SearchShelters';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+	  <Router>
+		<Routes>
+			<Route path="/">
+				<Route index element={<LandingPage/>}/>
+				<Route path="signup-user" element={<RegisterUser/>}></Route>
+				<Route path="signup-shelter" element={<RegisterShelter/>}></Route>
+				<Route path="login-user" element={<LoginPage type={'adopter'}/>}></Route>
+				<Route path="login-shelter" element={<LoginPage type={'shelter'}/>}></Route>
+				<Route path="login-admin" element={<LoginPage type={'admin'}/>}></Route>
+				<Route path="pets" element={<Pets/>}></Route>
+			    <Route path="shelters" element={<Shelters/>}></Route>
+			</Route>
+		</Routes>
+	  </Router>
     </div>
   );
 }
