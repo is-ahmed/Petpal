@@ -1,5 +1,4 @@
 import logo from './logo.svg';
-import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import {
 	BrowserRouter as Router,
@@ -12,7 +11,7 @@ import RegisterShelter from './pages/RegisterShelter';
 import LoginPage from './pages/Login';
 import Pets from './pages/SearchPets';
 import Shelters from './pages/SearchShelters';
-
+import RegisterSuccess from './pages/RegisterSuccess';
 function App() {
   return (
     <div className="App">
@@ -27,6 +26,7 @@ function App() {
 				<Route path="login-admin" element={<LoginPage type={'admin'}/>}></Route>
 				<Route path="pets" element={<Pets/>}></Route>
 			    <Route path="shelters" element={<Shelters/>}></Route>
+				<Route path="signup-success" element={<RegisterSuccess/>}></Route>
 			</Route>
 		</Routes>
 	  </Router>
