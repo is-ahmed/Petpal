@@ -13,16 +13,22 @@ from notifications.models import Notification
 from datetime import datetime
 from auth_api.models import Seeker, Shelter
 
-from django_filters import FilterSet, CharFilter
+from django_filters import FilterSet, CharFilter, NumberFilter
 
 class PetFilter(FilterSet):
     class Meta:
         model = Pet
-        fields = ['status', 'age', 'species', 'shelter']
+        fields = ['status', 'species', 'shelter', 'gender', 'breed', 'days_on_petpal']
     status = CharFilter(method='status_filter')
+    shelter = NumberFilter(method='shelter_filter')
 
     def status_filter(self, queryset, name, value):
         if value == 'all':
+            return queryset
+        return queryset.filter(**{name: value})
+
+    def shelter_filter(self, queryset, name, value):
+        if value == -1:
             return queryset
         return queryset.filter(**{name: value})
 

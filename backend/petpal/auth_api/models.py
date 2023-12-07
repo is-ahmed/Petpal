@@ -7,6 +7,14 @@ class User(AbstractUser):
     account_type = models.TextField(choices=(('seeker', 'Seeker'), ('shelter', 'Shelter')))
     avatar = models.ImageField(upload_to='media/')
 
+class Admin(models.Model):
+    user = models.OneToOneField(User, primary_key=True, on_delete = models.CASCADE)
+
+    def delete(self, *args, **kwargs):
+        self.user.delete()
+        return super().delete(*args, **kwargs)
+
+
 class Seeker(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete=models.CASCADE)
 

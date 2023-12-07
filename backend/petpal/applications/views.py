@@ -76,7 +76,16 @@ class ApplicationCreateAPIView(CreateAPIView):
         except Application.DoesNotExist:
             pass
 
-        serializer.save(user=self.request.user, pet_listing=pet_listing, shelter=pet_listing.shelter.user)
+        #serializer.save(user=self.request.user, pet_listing=pet_listing, shelter=pet_listing.shelter.user)
+        serializer.save(
+            user=self.request.user,
+            pet_listing=pet_listing,
+            shelter=pet_listing.shelter.user,
+            adopterName=self.request.data.get('adopterName'),
+            phoneNumber=self.request.data.get('phoneNumber'),
+            postalCode=self.request.data.get('postalCode'),
+            extraInfo=self.request.data.get('extraInfo')
+        )
 
         notification = Notification.objects.create(type="NEW_APPLICATION", read=False, creation_time=datetime.now(), for_user=serializer.instance.shelter, link=f"http://localhost:8000/applications/{serializer.instance.id}")
         notification.save()
