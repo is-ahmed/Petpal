@@ -1,0 +1,35 @@
+
+
+main {
+	margin-top: 100px;
+}
+  
+
+ #right-header {
+	  width: 16vw;	
+  }
+ #username {
+	margin-bottom: 0;
+	margin-right: 1rem;
+}
+
+   
+.btn.btn-primary,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+}
+
+.btn.btn-primary:focus {
+  color: #ffffff;
+  background-color: #309975;
+  border-color: #309975;
+  filter: brightness(120%);
+}
+
+.notification {
+  color: red;
+}
