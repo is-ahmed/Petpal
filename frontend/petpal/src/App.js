@@ -1,10 +1,14 @@
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Pet from './pages/Pet';
 import {
 	BrowserRouter as Router,
 	Routes,
 	Route
 } from 'react-router-dom'
+import UserUpdatePage  from './pages/UserUpdate';
+import ShelterUpdatePage from './pages/ShelterUpdate';
+import UserUpdateSuccessPage from './pages/UserSuccess';
 import LandingPage from './pages/Landing'
 import RegisterUser from './pages/RegisterUser';
 import RegisterShelter from './pages/RegisterShelter';
@@ -12,6 +16,7 @@ import LoginPage from './pages/Login';
 import Pets from './pages/SearchPets';
 import Shelters from './pages/SearchShelters';
 import RegisterSuccess from './pages/RegisterSuccess';
+
 function App() {
   return (
     <div className="App">
@@ -27,6 +32,11 @@ function App() {
 				<Route path="pets" element={<Pets/>}></Route>
 			    <Route path="shelters" element={<Shelters/>}></Route>
 				<Route path="signup-success" element={<RegisterSuccess/>}></Route>
+        <Route path="pet/:petId/" element={<Pet />} />
+      <Route path="seeker/update" element={<UserUpdatePage />}/>
+      <Route path="shelter/update" element={<ShelterUpdatePage />}/>
+      <Route path="success" element={<UserUpdateSuccessPage/>}/>
+ 
 			</Route>
 		</Routes>
 	  </Router>
