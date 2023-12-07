@@ -1,0 +1,66 @@
+
+
+header {
+    background-color: #F0FFFF ;
+}
+
+#right-header {
+  width: 16vw;	
+}
+#username {
+margin-bottom: 0;
+margin-right: 1rem;
+}
+
+
+
+.btn.btn-primary,
+.btn.btn-primary:focus,
+.btn.btn-primary:active,
+.btn.btn-primary.active {
+color: #ffffff;
+background-color: #309975;
+border-color: #309975;
+}
+
+.btn.btn-primary:focus {
+color: #ffffff;
+background-color: #309975;
+border-color: #309975;
+filter: brightness(120%);
+}
+
+footer {
+background-color: #F0FFFF ;
+color: #309975;
+}
+
+main {
+background-color: #F0FFFF;
+}
+
+img {
+height: 500px;
+}
+
+#exampleCarousel {
+max-height: 500px;
+max-width: 500px;
+margin-left: auto;
+margin-right:auto;
+
+}
+.carousel-item {
+overflow: hidden;
+}
+.carousel-item img {
+height: 400px;
+object-fit: cover;
+}
+#Adoptme {
+margin-top: 30px;
+margin-bottom: 20px;
+margin-right: 10px;
+}
+
+
