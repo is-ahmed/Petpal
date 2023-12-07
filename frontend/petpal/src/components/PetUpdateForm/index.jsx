@@ -21,6 +21,7 @@ function PetStatusUpdateForm() {
   });
 
   //const [status, setStatus] = useState('');
+  const [files, setFiles] = useState([]);
 
   const { id } = useParams(); // Get the pet ID from the URL
   const navigate = useNavigate();
@@ -53,6 +54,10 @@ function PetStatusUpdateForm() {
         });
     }, [id]);
 
+    const handleFileChange = (e) => {
+        setFiles(e.target.files); // Update the file state
+    };
+
     function handleChange(e) {
     setFormData({
         ...formData,
@@ -80,6 +85,11 @@ function PetStatusUpdateForm() {
         if (formData.get('species') === 'Other'){
             formData.set('species',formData.get('otherType'));
         }
+
+        Array.from(files).forEach((file, index) => {
+            //formData.append(`image${index}`, file); //swap back to this one for multiple images
+            formData.append(`image`, file);
+        });
 
         for (let [key, value] of formData.entries()) {
             console.log(`${key}:`, value);
@@ -378,8 +388,9 @@ function PetStatusUpdateForm() {
                         className="form-control" 
                         type="file" 
                         id="formFileMultiple" 
-                        multiple 
-                        required
+                        multiple
+                        onChange={handleFileChange} 
+                        //required
                         // React does not handle file inputs through state, so no value or onChange here
                     />
                 </div>

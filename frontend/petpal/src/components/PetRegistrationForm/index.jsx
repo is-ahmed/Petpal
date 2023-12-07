@@ -16,15 +16,12 @@ function PetRegistrationForm () {
         petDesc: '',
         behaviorDetails: '',
         medicalHistory: '',
-        specialNeeds: ''
+        specialNeeds: '',
         // Include other form fields as needed
     });
 
-    // function mapDataToModelNames(formData) {
-    //     return {
-    //         name: formData.name,
-    //     };
-    // }
+    const [files, setFiles] = useState([]);
+
 
     const navigate = useNavigate(); 
 
@@ -35,6 +32,9 @@ function PetRegistrationForm () {
         });
     };
     
+    const handleFileChange = (e) => {
+        setFiles(e.target.files); // Update the file state
+    };
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -45,16 +45,10 @@ function PetRegistrationForm () {
         formData.append('status', 'available');
         formData.append('days_on_petpal', 0);
         // var currSize = formData.get('size');
-
-        // if (currSize === 'Small'){
-        //     formData.set('size', 1);
-        // }else if (currSize === 'Medium'){
-        //     formData.set('size', 2);
-        // }else if (currSize === 'Large'){
-        //     formData.set('size', 3);
-        // }else{
-        //     formData.set('size', 0);
-        // }
+        Array.from(files).forEach((file, index) => {
+            //formData.append(`image${index}`, file); //swap back to this one for multiple images
+            formData.append(`image`, file);
+        });
         
 
         for (let [key, value] of formData.entries()) {
@@ -322,7 +316,7 @@ function PetRegistrationForm () {
                         id="formFileMultiple" 
                         multiple 
                         required
-                        // React does not handle file inputs through state, so no value or onChange here
+                        onChange={handleFileChange}
                     />
                 </div>
 

@@ -3,12 +3,12 @@ import { useNavigate, useParams } from 'react-router-dom';
 import './petapplication.css';
 import { ajax_or_login } from "../../ajax";
 
-function PetRegistrationForm () {
+function PetApplicationForm () {
     const [formData, setFormData] = useState({
-        name: '',
-        email: '',
+        adopterName: '',
+        //email: '',
         postalCode: '',
-        phoneNum: '',
+        phoneNumber: '',
         extraInfo: '',
         status: 'available', // Add 'status' field with a default value
     });
@@ -30,7 +30,13 @@ function PetRegistrationForm () {
         gender: '',
         size:'',
         location: '',
+        image: '',
     });
+
+    const[userInfo, setUserInfo] = useState({
+      username: '',
+      email: '',
+    })
 
     useEffect(() => {
         // Make a GET request to fetch the pet's information using ajax_or_login
@@ -50,7 +56,21 @@ function PetRegistrationForm () {
             })
             .catch(error => {
                 console.error('Error:', error);
-            });
+        });
+
+        ajax_or_login(`/seeker`, settings)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              setUserInfo(data);
+          })
+          .catch(error => {
+              console.error('Error:', error);
+        });
     }, [id]); // Trigger the effect when the id changes
 
     function handleChange(e) {
@@ -78,7 +98,7 @@ function PetRegistrationForm () {
             //     // Include other headers as needed
             // },
             //body: JSON.stringify(formData)
-            //body: formData,
+            body: formData,
         };
     
         ajax_or_login(`/petlistings/pets/${id}/applications/`, settings, navigate)
@@ -105,14 +125,14 @@ function PetRegistrationForm () {
             <div className="d-flex justify-content-center mt-0">
               <div className="card">
                 <img
-                  src="./images/buddy.jpg"
+                  src={petInfo.image}
                   className="card-img-top"
                   alt="Pet"
                 />
                 <div className="card-body text-center">
                     <h5 className="card-title themeText">{petInfo.name}</h5>
                     <p className="card-text">Breed: {petInfo.breed}</p>
-                    <p className="card-text">{petInfo.age} years | {petInfo.gender} | {petInfo.size}</p>
+                    <p className="card-text">{petInfo.age} years | {petInfo.gender} | {petInfo.size} lbs</p>
                     {/* <p className="card-text">Location: {petInfo.location}</p> */}
                 </div>
               </div>
@@ -125,10 +145,11 @@ function PetRegistrationForm () {
                     type="text"
                     className="form-control"
                     id="name"
-                    name="name"
+                    name="adopterName"
                     placeholder="name"
                     onChange={handleChange}
-                    value={formData.name}
+                    value={formData.adopterName}
+                    required
                   />
                   <label htmlFor="name">Name</label>
                 </div>
@@ -142,7 +163,8 @@ function PetRegistrationForm () {
                     name="email"
                     placeholder="email"
                     onChange={handleChange}
-                    value={formData.email}
+                    value={userInfo.email}
+                    readOnly
                   />
                   <label htmlFor="email">Email</label>
                 </div>
@@ -158,7 +180,7 @@ function PetRegistrationForm () {
                     onChange={handleChange}
                     value={formData.postalCode}
                   />
-                  <label htmlFor="postalCode">Postal Code</label>
+                  <label htmlFor="postalCode">Postal Code (Optional)</label>
                 </div>
               </div>
               <div className="col-md-12 mb-3">
@@ -167,10 +189,10 @@ function PetRegistrationForm () {
                     type="text"
                     className="form-control"
                     id="phoneNum"
-                    name="phoneNum"
+                    name="phoneNumber"
                     placeholder="Phone number (Optional)"
                     onChange={handleChange}
-                    value={formData.phoneNum}
+                    value={formData.phoneNumber}
                   />
                   <label htmlFor="phoneNum">Phone number (Optional)</label>
                 </div>
@@ -205,4 +227,4 @@ function PetRegistrationForm () {
     );
 };
 
-export default PetRegistrationForm;
+export default PetApplicationForm;
