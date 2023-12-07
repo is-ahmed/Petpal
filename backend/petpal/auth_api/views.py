@@ -257,7 +257,6 @@ class SheltersList(ListAPIView):
         return Shelter.objects.all()
     def list(self, request, *args, **kwargs):
         shelters = self.get_queryset()
-        queryset_serializer = self.get_serializer(shelters)
         serialized_data = {'count': 0, 'next': None, 'prev': None, 'results': []}
         for shelter in shelters:
             serializer = self.get_serializer(shelter)

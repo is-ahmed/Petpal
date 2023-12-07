@@ -2,6 +2,7 @@ from django.shortcuts import render
 from rest_framework import permissions
 from rest_framework.generics import CreateAPIView, ListAPIView, ListCreateAPIView, RetrieveUpdateDestroyAPIView
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from .serializers import ReportSerializer
 from .models import Report
 from auth_api.models import User, Admin
@@ -26,6 +27,8 @@ class ReportRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
         if serializer.instance.status == 'accepted':
             user_instance = User.objects.get(pk=user.id)
             user_instance.delete()
+            serializer.instance.delete()
+            return Response({"detail": "User deleted successfully."}, status=200)
         return super().perform_update(serializer)
 
 class ReportListCreate(ListCreateAPIView):
