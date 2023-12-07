@@ -4,10 +4,8 @@ from .models import Application
 class ApplicationCreateSerializer(serializers.ModelSerializer):
     class Meta:
         model = Application
-        #fields = ['id','pet_listing', 'status']
-        #fields = '__all__'
-        fields = ['pet_listing', 'user', 'shelter'] 
-        read_only_fields = ['pet_listing', 'user', 'shelter']  
+        fields = ['pet_listing', 'user', 'shelter', 'adopterName', 'phoneNumber', 'postalCode', 'extraInfo'] 
+        read_only_fields = ['pet_listing', 'user', 'shelter', 'adopterName', 'phoneNumber', 'postalCode', 'extraInfo']  
 
     def create(self, validated_data):
         # Add logic to ensure pet listing is available
