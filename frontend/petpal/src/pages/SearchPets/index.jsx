@@ -48,8 +48,10 @@ const Pets = () => {
 
 	return (
 		<>
-		<Navigation type='seeker' username='username'/>
-		<main className="d-flex flex-grow-1">
+		<header>
+			<Navigation type='seeker' username='username'/>
+		</header>
+		<main className="d-flex" style={{paddingTop: '65px'}}>
 		<SearchContext.Provider value={{query, searchParams, setSearchParams}}>	
 			<SearchFilters modal={false}/>
 		{getResults ? <PetSearchResults results={petResults}/> : ""}	

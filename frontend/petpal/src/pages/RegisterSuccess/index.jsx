@@ -9,11 +9,10 @@ const RegisterSuccess = () => {
 		<main class="d-flex flex-column justify-content-center align-items-center ">
 		<h1 class="text-white">Thanks for joining Petpal!</h1>	
 		</main>
-
 		<Footer/>
 		</>
 	)
 
 }
 
-
+export default RegisterSuccess
