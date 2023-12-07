@@ -51,11 +51,9 @@ const SignUpBody = (props) => {
 				let error_count = 0;
 				let localErrors = errors;
 				for (let [key, value] of data.entries()) {
-					console.log(key)
 					if (key === 'password1') key = 'password'
 					if (key in json) {
 						if (key === 'avatar') {
-							console.log(localErrors)
 							if (json['avatar'].constructor === Array) {
 								error_count++;
 								localErrors[key] = json['avatar'][0];
@@ -76,7 +74,7 @@ const SignUpBody = (props) => {
 						localErrors[key] = ''
 					}
 				}
-				if (error_count == 0) navigate('/login-user')
+				if (error_count == 0) navigate('/signup-success')
 				else setErrors({...localErrors})
 			})
 			.catch();
@@ -96,7 +94,6 @@ const SignUpBody = (props) => {
 				Name* 
             </label>
             <input type="text" className="form-control" id="name" onChange={e => setName(e.target.value)} required/>
-			{ errors['username'] ? <p style={{color: 'red'}}>{errors['username']}</p> : <p></p>}
           </div>
           <div className="col-md-6">
             <label htmlFor="username" className="form-label">

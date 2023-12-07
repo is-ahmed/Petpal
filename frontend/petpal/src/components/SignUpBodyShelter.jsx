@@ -74,7 +74,7 @@ const SignUpBodyShelter = (props) => {
 
 					}
 				}
-				if (error_count == 0) navigate('/login-shelter')
+				if (error_count == 0) navigate('/signup-success')
 				else setErrors({...localErrors})
 			})
 			.catch();

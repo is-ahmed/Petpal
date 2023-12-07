@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
-import {faUser, faBell} from '@fortawesome/free-solid-svg-icons'
+import {Button, Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
+import {faUser, faBell, faCheck} from '@fortawesome/free-solid-svg-icons'
 import {useEffect, useState, useContext} from "react";
 import { UserContext } from '../contexts/UserContext';
 import CloseButton from 'react-bootstrap/CloseButton';
@@ -24,31 +24,31 @@ function getMessage(msg_type) {
 	return msg
 }
 
-const Notification = ({notification}) => {
+const Notification = ({notification, deleteNotif, readNotif}) => {
+
 	return (
 		<NavDropdown.Item style={notification['read'] ? {
 			display: 'flex',
+			justifyContent: 'space-between',
 			background: 'rgba(0, 0, 0, 0)'
 		} : {	
 			display: 'flex',
+			justifyContent: 'space-between',
 			background: 'rgba(0, 0, 0, 0.1)'
 		}}>
 			<a href={notification['link']}
 				style={{
-					textDecoration: 'none'
-				}}
-			>
+					fontSize: "14px",
+					textDecoration: 'none',
+					marginRight: "10px"
+				}}>
 				{getMessage(notification['type'])}
 			</a>
-			<CloseButton onClick={() => {
-				fetch(`http://localhost:8000/notifications/notifs/${notification['id']}`, {
-					method: 'DELETE',
-					headers: {
-						Authorization: `Bearer ${localStorage.getItem('access_token')}`
-					}	
-				})
-			}}/>
-		</NavDropdown.Item>
+			<span style={{ display: 'inline-flex', alignItems: 'center' }}>
+				<span className='me-1' onClick={() => readNotif(notification['id'])}><FontAwesomeIcon icon={faCheck} /></span>
+				<CloseButton onClick={() => deleteNotif(notification['id'])}/>
+			</span>
+				</NavDropdown.Item>
 	)	
 }
 

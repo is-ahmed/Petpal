@@ -40,17 +40,24 @@ const PetSearchResults = ({results}) => {
 				row = []
 			}
 		})
-		if (row.length != 0) rows.push(row)
+		if (row.length != 0) rows.push(
+					<div className='p-3 row mb-3'>
+						{row}
+					</div>
+		)
 		return rows;
 	}
 
 	return (
 		<>
-		 <div className="container">
-		 <button id="mobile-filters" type="button" class="mt-3 btn btn-primary" onClick={handleShow}>
+		 <div className="container container-fluid">
+		 <span className="d-flex justify-content-center">
+			<button id="mobile-filters" type="button" className="mt-3 btn btn-primary" onClick={handleShow}>
 				Filters
-				<i className="fa-solid fa-filter"></i>
-		 </button>
+				<FontAwesomeIcon className='ms-2'icon={faFilter} />
+			</button>
+		</span>
+		 
 		<Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Filters</Modal.Title>
@@ -64,10 +71,13 @@ const PetSearchResults = ({results}) => {
           </Button>
         </Modal.Footer>
       </Modal>	
-			<RenderPets/>
-		{results.length < query['page_size'] ? "" : <Button onClick={e=>{setSearchParams({...query, page: query['page'] + 1})}}>Next Page</Button>}
-		{query['page'] !== 1 ? <Button onClick={e=>{setSearchParams({...query, page: query['page'] - 1})}}>Prev Page</Button> : ""
-}		  </div>
+		<RenderPets/>
+		<div className='d-flex justify-content-center align-items-center'>
+			<span className='me-3'>Page: {query['page']}</span>
+			{query['page'] !== 1 ? <Button className="me-3" onClick={e=>{setSearchParams({...query, page: query['page'] - 1})}}>Prev Page</Button> : ""}		  
+			{results.length < query['page_size'] ? "" : <Button onClick={e=>{setSearchParams({...query, page: query['page'] + 1})}}>Next Page</Button>}
+		</div>
+		</div>
 		</>
 
 	);

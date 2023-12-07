@@ -49,10 +49,6 @@ const SearchFilters = ({modal}) => {
 	const { query, searchParams, setSearchParams } = useContext(SearchContext);
 	const [ shelterResults, setShelterList ] = useState([])
 
-	const ShelterOptions = () => {
-		return shelterResults.map(shelter => <option value={shelter['id']}>{shelter['name']}</option>)	
-	}
-
 	useEffect(() => {
 		fetch(`http://localhost:8000/shelters`, {
 			method: 'GET',
@@ -63,7 +59,6 @@ const SearchFilters = ({modal}) => {
 		.then(response => response.json())
 		.then(json => {
 			// Want to show all shelter options in dropdown
-			console.log(json['results'])
 			setShelterList(json['results']); // Should be an array
 		})
 	}, [])
@@ -125,11 +120,13 @@ const SearchFilters = ({modal}) => {
 		  </div>
 		  <div className="d-flex flex-column w-100 dropdown">
 			<label htmlFor="shelter">Shelter</label>
-			<select name="shelter" className="btn btn-primary" onChange={e=>{setSearchParams({...query, shelter: e.target.value})}}>
-			  <option disabled="" value="">
+			<select value={query['shelter']} name="shelter" className="btn btn-primary" onChange={e=>{
+				setSearchParams({...query, shelter: e.target.value
+				})}} defaultValue={query['shelter']}>
+			  <option disabled="" value="-1">
 				Select
 			  </option>
-			  <ShelterOptions/> 
+			  {shelterResults.map(shelter => <option value={shelter['id']}>{shelter['name']}</option>)}
 			</select>
 		  </div>
 		</div>

@@ -7,13 +7,11 @@ const PetCard = ({pet}) => {
 	}, [])
 
 	return (
-		<a className="col-4 mt-3 me-3 mb-3 shadow rounded  petinfo p-3" href="./Petpage.html">
+		<a className="col mt-3 me-3 mb-3 shadow rounded  petinfo p-3" href="./Petpage.html">
 				<img
 				  src={pet['image']}
 				  className="img-fluid rounded"
 				  alt="pet photo"
-				  height={270}
-				  width={216}
 				/>
 				<h3 className="fw-bold mt-3">{pet['name']}</h3>
 				<p className="mb-0">Age: {pet['age']} - {pet['species']} - {pet['breed']}</p>
