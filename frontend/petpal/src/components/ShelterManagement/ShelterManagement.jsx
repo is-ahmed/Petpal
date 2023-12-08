@@ -116,7 +116,7 @@ export function ShelterManagement() {
                 <hr/>
                 <div className="pet-list-title">
                     <h3>Your pet listings:</h3>
-                    <Button href={'/petcreation'} className={'button-add-pet'} variant={'primary'}
+                    <Button href={'/pet/create'} className={'button-add-pet'} variant={'primary'}
                             style={{display: 'flex', alignItems: 'center'}}>
                         <FontAwesomeIcon icon={faPlus}/>
                         Add New Pet
@@ -136,7 +136,7 @@ export function ShelterManagement() {
                                     <FontAwesomeIcon icon={faEllipsis}/>
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href={`/edit/${pet.id}`}>Edit</Dropdown.Item>
+                                    <Dropdown.Item href={`/pet/${pet.id}/update`}>Edit</Dropdown.Item>
                                     <Dropdown.Item as={'button'}
                                     onClick={() => showPetApplications(pet.id, pet.name)}>View Applicants</Dropdown.Item>
                                     <Dropdown.Item as={'button'}

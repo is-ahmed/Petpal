@@ -85,7 +85,7 @@ export default function Navigation({type, username}) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="">Home</Nav.Link>
+                    <Nav.Link href={type === 'shelter' ? '/shelters/manage' : '/pets'}>Home</Nav.Link>
                     {type === 'shelter' &&
                     <Nav.Link href="http://localhost:3000/shelters/manage">My Pets</Nav.Link>}
                     {type === 'seeker' &&
@@ -148,7 +148,7 @@ export default function Navigation({type, username}) {
                         className={'rounded-circle btn'}
                         icon={faUser}/> {username}</>)}>
                         {type === 'seeker' &&
-                        <NavDropdown.Item href="">Account Info</NavDropdown.Item>}
+                        <NavDropdown.Item href="/seeker/update">Account Info</NavDropdown.Item>}
                         {type === 'shelter' &&
                         <NavDropdown.Item href="">Account Info</NavDropdown.Item>}
                         <NavDropdown.Item href="/">
