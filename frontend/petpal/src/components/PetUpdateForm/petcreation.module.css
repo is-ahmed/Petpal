@@ -14,7 +14,7 @@
     /* width: 50% !important; */
 }
 
-.form-floating{
+.formFloating{
     color: black;
 }
 
@@ -62,16 +62,16 @@ header {
 }
 
    
-.btn.btn-primary,
-.btn.btn-primary:focus,
-.btn.btn-primary:active,
-.btn.btn-primary.active {
+.btn.btn_primary,
+.btn.btn_primary:focus,
+.btn.btn_primary:active,
+.btn.btn_primary.active {
   color: #ffffff;
   background-color: #309975;
   border-color: #309975;
 }
 
-.btn.btn-primary:focus {
+.btn.btn_primary:focus {
   color: #ffffff;
   background-color: #309975;
   border-color: #309975;
@@ -114,8 +114,28 @@ footer {
     text-overflow: clip;
 }
 
-.smallTextArea{
+.deleteButton {
+    background-color: #dc3545; /* Red color */
+    border-color: #dc3545; /* Border color */
+}
+  
+.deleteButton:hover {
+    background-color: #c82333; /* Darker red color on hover */
+    border-color: #c82333; /* Darker border color on hover */
+}
 
+.deleteButtonBorderColour {
+    border-color: #dc3545 !important;
+    color: white !important;
+}
+
+.deleteButtonBorderColour:hover{
+    color: white !important;
+    background-color: #c82333 !important;
+}
+
+.smallTextArea{
+    height: 100px;
 }
 
 .btn-primary {

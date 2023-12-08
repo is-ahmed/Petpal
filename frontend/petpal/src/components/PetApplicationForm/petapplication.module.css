@@ -1,0 +1,117 @@
+.pageColour {
+    background-color: #F0FFFF;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 2rem;
+}
+
+
+h1.text-center {
+    color: white;
+    margin-bottom: 30px;
+}
+
+.whiteText{
+    color: white;
+}
+
+.themeText {
+    color: #309975 !important;
+}
+
+.buttonBorderColour {
+    border-color: #309975 !important;
+    color: white !important;
+}
+
+.buttonBorderColour:hover{
+    color: white !important;
+    background-color: #108965 !important;
+}
+
+
+.container {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    max-width: 800px !important;
+}
+
+.card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    border: none !important;
+    max-width: 18rem;
+}
+
+.cardImgTop {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+.textAreaSize{
+    height: 100px !important;
+}
+
+@media screen and (max-width: 991.98px) {
+    .container {
+        max-width: 100% !important;
+    }
+}
+
+footer {
+	background-color: #F0FFFF!important;
+	color: #309975 !important;
+}
+
+.labelWrap {
+    display: block !important;
+    width: 100% !important;
+    white-space: normal !important;
+    overflow-wrap: break-word !important;
+    overflow: visible !important; 
+    text-overflow: clip;
+}
+
+.smallTextArea{
+
+}
+
+.btn_primary {
+    background-color: #309975 !important;
+    border: none !important;
+}
+
+
+.btn_primary:hover, .btn_primary:active, .btn_primary:focus {
+    background-color: #108965 !important;
+}
+
+.small-screen {
+    display:none !important;
+}
+
+@media screen and (max-width: 500px ) {
+    .page-container {
+        padding: 50px;
+        padding-top: 110px;
+    }
+
+    .big-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: inline-block !important;
+    }
+
+    .smallTextArea {
+        padding-top: 3rem !important;
+        background-color: white !important;
+    }
+}
