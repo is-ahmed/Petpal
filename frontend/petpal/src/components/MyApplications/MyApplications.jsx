@@ -48,7 +48,7 @@ export function MyApplications() {
             })
             .then(json => {
                 setApplicationInfo(json.results)
-                setTotalPage(Math.ceil(json.count / 10))
+                setTotalPage(Math.max(Math.ceil(json.count / 10), 1))
             })
             .catch(error => {
                 setError(error.toString())

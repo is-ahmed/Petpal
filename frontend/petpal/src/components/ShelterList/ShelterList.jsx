@@ -84,7 +84,7 @@ export function ShelterList() {
             .then(res => res.json())
             .then(json => {
                 setShelters(json.results)
-                setTotalPage(Math.ceil(json.count / 10))
+                setTotalPage(Math.max(Math.ceil(json.count / 10)), 1)
             })
     }, [page])
 
