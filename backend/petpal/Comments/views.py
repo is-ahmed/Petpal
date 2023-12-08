@@ -9,6 +9,7 @@ from .models import Comment
 from auth_api.models import Shelter, AbstractUser
 from applications.models import Application
 from django.utils import timezone
+from notifications.models import Notification
 
 # Create your views here.
 class CommentPagination(PageNumberPagination):
@@ -30,6 +31,8 @@ class UserCommentCreate(CreateAPIView):
             shelter = get_object_or_404(Shelter, pk=object_id)
             content_type_instance = ContentType.objects.get(model=content_type.lower())
             serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
+            notification = Notification.objects.create(type="COMMENT", read=False, creation_time=timezone.now(), for_user=shelter, link=f"http://localhost:3000/shelters/{shelter}")
+            notification.save()
 
         elif content_type == 'application':
             if  user.account_type == "seeker":
@@ -39,6 +42,10 @@ class UserCommentCreate(CreateAPIView):
                 serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
                 application.last_update_time = timezone.now()
                 application.save()
+                notiUser = application.shelter
+                notification = Notification.objects.create(type="COMMENT", read=False, creation_time=timezone.now(), for_user=notiUser, link=f"http://localhost:3000/application/{serializer.instance.id}")
+                notification.save()
+              
             elif user.account_type == "shelter":
                 application = get_object_or_404(Application, pk=object_id, shelter=user)
 
@@ -46,9 +53,14 @@ class UserCommentCreate(CreateAPIView):
                 serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
                 application.last_update_time = timezone.now()
                 application.save()
+                notiUser = application.user
+                notification = Notification.objects.create(type="COMMENT", read=False, creation_time=timezone.now(), for_user=notiUser, link=f"http://localhost:3000/application/{serializer.instance.id}")
+                notification.save()
+               
 
             else:
                 raise PermissionDenied("You do not have permission to comment on this application.")
+
 
 class ShelterCommentsListView(ListCreateAPIView):
     serializer_class = CommentSerializer
