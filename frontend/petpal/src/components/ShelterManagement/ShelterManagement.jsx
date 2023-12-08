@@ -6,6 +6,8 @@ import './shelter-manager.sm.css'
 import {Button, CloseButton, Dropdown, Modal, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faEllipsis, faPlus} from '@fortawesome/free-solid-svg-icons'
+import Navigation from "../Navigation";
+import Footer from "../Footer";
 
 export function ShelterManagement() {
     const [shelterDetails, setShelterDetails] = useState({})
@@ -105,6 +107,9 @@ export function ShelterManagement() {
         return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
     }
     return <>
+		<header>
+			<Navigation type={'shelter'}/>
+		</header>
         {(error) ? <p>{error}</p>:
             <main className="page-container">
                 <h1 className="management-title">Manage your pets</h1>
@@ -268,5 +273,6 @@ export function ShelterManagement() {
                     </div>
                 </div>
             </main>}
+		<Footer/>
     </>
 }

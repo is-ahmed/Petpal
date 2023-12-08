@@ -90,6 +90,7 @@ export default function Navigation({type, username}) {
                     <Nav.Link href="">My Pets</Nav.Link>}
                     {type === 'seeker' &&
                         <Nav.Link href="">My Applications</Nav.Link>}
+                    <Nav.Link href="http://localhost:3000/shelters/list">Shelters</Nav.Link>
 
                 </Nav>
                 <Nav className={'justify-content-end'}>
