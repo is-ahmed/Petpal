@@ -19,6 +19,9 @@ import RegisterSuccess from './pages/RegisterSuccess';
 import {ShelterManagement} from "./components/ShelterManagement/ShelterManagement";
 import {ShelterDetails} from "./components/ShelterDetails/ShelterDetails";
 import PetCreate from './pages/petcreate';
+import {ShelterList} from "./components/ShelterList/ShelterList";
+import {Reports} from "./components/Reports/Reports";
+import {NotFound} from "./components/NotFound";
 
 function App() {
   return (
@@ -46,7 +49,12 @@ function App() {
 	                      <Route path={'shelters/:shelter_id'} element={
 				                                  <ShelterDetails/>
 				                          }/>
- 
+                    		<Route path={'admin'} element={<Reports/>}/>
+	                      <Route path="*" element={<NotFound/>}/>
+                    <Route path={'shelters/list'} element={
+			                            <ShelterList/>
+			                        }/>
+
 			</Route>
 		</Routes>
 	  </Router>
