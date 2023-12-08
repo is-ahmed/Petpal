@@ -6,6 +6,8 @@ import './shelter-manager.sm.css'
 import {Button, CloseButton, Dropdown, Modal, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faChevronRight, faEllipsis, faPlus} from '@fortawesome/free-solid-svg-icons'
+import Navigation from "../Navigation";
+import Footer from "../Footer"
 
 export function Reports() {
     const [shelterDetails, setShelterDetails] = useState({})
@@ -96,6 +98,9 @@ export function Reports() {
         return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
     }
     return <>
+		<header>
+			<Navigation type={'admin'}/>
+		</header>
         {(error) ? <p>{error}</p>:
             <main className="page-container">
                 <h1 className="management-title">Admin Panel</h1>
@@ -283,5 +288,6 @@ export function Reports() {
                     </div>
                 </div>
             </main>}
+			<Footer/>
     </>
 }
