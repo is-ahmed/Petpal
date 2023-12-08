@@ -14,3 +14,7 @@ class Pet(models.Model):
     days_on_petpal=models.IntegerField(default=0)
     color=models.CharField(max_length=120, null=True)
     shelter=models.ForeignKey(Shelter, on_delete=models.SET_NULL, null=True) 
+    description=models.CharField(max_length=3000)
+    behavior=models.CharField(max_length=3000)
+    medicalhistory=models.CharField(max_length=3000)
+    needs=models.CharField(max_length=3000, blank=True)
