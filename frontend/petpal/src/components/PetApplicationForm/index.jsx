@@ -21,6 +21,14 @@ function PetApplicationForm () {
 
     const navigate = useNavigate(); 
     const { id } = useParams();
+    var userType = localStorage.getItem('user_type');
+    //userType = "seeker";
+
+    useEffect(() => {
+        if (userType === "shelter") {
+            navigate('/'); //redirect to 404
+        }
+    }, [navigate, userType]); // Dependencies array
 
     //info for petcard
     const [petInfo, setPetInfo] = useState({
@@ -47,7 +55,8 @@ function PetApplicationForm () {
         ajax_or_login(`/petlistings/pets/${id}`, settings)
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('Network response was not ok');
+                  //navigate('/'); //redirect to 404
+                  throw new Error('Network response was not ok');
                 }
                 return response.json();
             })
@@ -208,7 +217,7 @@ function PetApplicationForm () {
                     onChange={handleChange}
                     value={formData.extraInfo}
                   ></textarea>
-                  <label className="labelWrap" htmlFor="extraInfo">
+                  <label className={styles.labelWrap}  htmlFor="extraInfo">
                     Anything else you'd like to add? (Optional)
                   </label>
                 </div>
