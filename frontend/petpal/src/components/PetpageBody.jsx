@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import './css/style.css';
 import './css/petpage.css';
 import { ajax_or_login } from "../ajax";
+import Navigation  from "./Navigation";
 
 
 function getStatusClass(status) {
@@ -78,6 +79,7 @@ function Pet(){
     }
   }
     return <>
+    <Navigation type={AccountType.toLowerCase()}/>
     <main>
   <div className="container">
     <div
