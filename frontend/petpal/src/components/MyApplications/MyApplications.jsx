@@ -125,7 +125,7 @@ export function MyApplications() {
                             <img src={pet.pet_image}/>
                             {console.log(pet)}
                             <p className="pet-name">{pet.pet_name}</p>
-                            <p className="date-added">(Date Added: {
+                            <p className="date-added">(Application Date: {
                                 makeDate(pet.creation_time)
                             })</p>
                             <Dropdown className={'pet-dropdown'}>
@@ -141,10 +141,12 @@ export function MyApplications() {
                                                        fetch(`http://localhost:8000/applications/${pet.id}/`, {
                                                            method: 'PATCH',
                                                            headers: {
-                                                               Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                                                               Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                                                               'Content-Type': 'application/json'
                                                            },
                                                            body: JSON.stringify({status: 'withdrawn'})
                                                        })
+                                                           .then(console.log(JSON.stringify({status: 'withdrawn'})))
                                                    }}>Withdraw</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
