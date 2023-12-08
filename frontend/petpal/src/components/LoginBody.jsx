@@ -44,6 +44,7 @@ const LoginBody = ({type}) => {
 					} else {
 						// navigate
 						localStorage.setItem('user_type', 'admin')
+						navigate('/admin')
 					}
 				}
 			})
