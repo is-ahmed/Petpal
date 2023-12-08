@@ -4,9 +4,9 @@ from .models import Comment
 
 
 class CommentSerializer(ModelSerializer):
-    #author = PrimaryKeyRelatedField(read_only=True)
-    #date_created = DateTimeField(read_only=True)
+    author = PrimaryKeyRelatedField(source='author.username', read_only=True)
+    date_created = DateTimeField(read_only=True)
 
     class Meta:
         model = Comment
-        fields = ['text']
+        fields = ['text', 'author', 'date_created', 'rating']

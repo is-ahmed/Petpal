@@ -13,6 +13,8 @@ class Comment(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='comments')
     text = models.CharField(max_length=200)
     date_created = models.DateTimeField(default=timezone.now)
+    rating = models.PositiveIntegerField(null=True, blank=True)
+
 
     content_type = models.ForeignKey(ContentType, on_delete=models.CASCADE)
     object_id = models.PositiveIntegerField()
