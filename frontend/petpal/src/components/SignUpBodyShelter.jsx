@@ -18,9 +18,8 @@ const SignUpBodyShelter = (props) => {
 	const [password, setPassword] = useState("")
 	const [password2, setPassword2] = useState("")
 	const [address, setAddress] = useState("")
-	const [city, setCity] = useState("")
-	const [province, setProvince] = useState("")
-	const [postalCode, setPostalCode] = useState("")
+	const [phoneNumber, setPhoneNumber] = useState("")
+	const [mission, setMissionStatement] = useState("")
 	const [avatar, setAvatar] = useState()
 	const [errors, setErrors] = useState({})
 	let navigate = useNavigate();
@@ -41,6 +40,8 @@ const SignUpBodyShelter = (props) => {
 		data.append('name', shelterName)
 		data.append('avatar', avatar)
 		data.append('address', address)
+		data.append('phone_number', phoneNumber)
+		data.append('mission', mission)
 		event.preventDefault();
 		let request = fetch(`http://localhost:8000/shelter/`, {
 			method: 'POST',
@@ -148,6 +149,26 @@ const SignUpBodyShelter = (props) => {
               id="inputAddress"
               placeholder="1234 Main St"
 			  onChange={e=>setAddress(e.target.value)}
+            />
+            <label htmlFor="inputPhoneNumber" className="form-label">
+			  Phone number 
+            </label>
+            <input
+              type="tel"
+              className="form-control"
+              id="inputPhoneNumber"
+              placeholder="123-456-7890"
+			  onChange={e=>setPhoneNumber(e.target.value)}
+            />
+            <label htmlFor="inputMission" className="form-label">
+			  Mission Statement 
+            </label>
+            <input
+              type="text"
+              className="form-control"
+              id="inputMission"
+              placeholder=""
+			  onChange={e=>setMissionStatement(e.target.value)}
             />
           </div> 
           <div className="col-12">
