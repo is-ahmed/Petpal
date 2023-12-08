@@ -18,6 +18,11 @@ import Shelters from './pages/SearchShelters';
 import RegisterSuccess from './pages/RegisterSuccess';
 import {ShelterManagement} from "./components/ShelterManagement/ShelterManagement";
 import {ShelterDetails} from "./components/ShelterDetails/ShelterDetails";
+import PetCreate from './pages/petcreate';
+import PetUpdate from './pages/petupdate';
+import PetApplication from './pages/petapplication';
+import PetApplicationUpdate from './pages/petapplicationupdate';
+import ErrorPage from './pages/error';
 
 function App() {
   return (
@@ -34,17 +39,17 @@ function App() {
 				<Route path="pets" element={<Pets/>}></Route>
 			    <Route path="shelters" element={<Shelters/>}></Route>
 				<Route path="signup-success" element={<RegisterSuccess/>}></Route>
-        <Route path="pet/:petId/" element={<Pet />} />
-      <Route path="seeker/update" element={<UserUpdatePage />}/>
-      <Route path="shelter/update" element={<ShelterUpdatePage />}/>
-      <Route path="success" element={<UserUpdateSuccessPage/>}/>
-	                    <Route path={'shelters/manage'} element={
-				                            <ShelterManagement/>
-				                        }/>
-	                      <Route path={'shelters/:shelter_id'} element={
-				                                  <ShelterDetails/>
-				                          }/>
- 
+				<Route path="pet/:petId/" element={<Pet />} />
+				<Route path="seeker/update" element={<UserUpdatePage />}/>
+				<Route path="shelter/update" element={<ShelterUpdatePage />}/>
+				<Route path="success" element={<UserUpdateSuccessPage/>}/>
+				<Route path={'shelters/manage'} element={<ShelterManagement/>}/>
+				<Route path={'shelters/:shelter_id'} element={<ShelterDetails/>}/>
+				<Route path="pet/create" exact element={<PetCreate />} />
+				<Route path="pet/:id/update" exact element={<PetUpdate />} />
+				<Route path="pet/:id/application" exact element={<PetApplication />} />
+				<Route path="application/:id" exact element={<PetApplicationUpdate />} />
+				<Route path="404error" exact element={<ErrorPage />} />
 			</Route>
 		</Routes>
 	  </Router>

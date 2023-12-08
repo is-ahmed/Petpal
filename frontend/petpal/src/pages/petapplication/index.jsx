@@ -1,13 +1,14 @@
 import React from 'react';
-//import Navbar from './Navbar';
 import PetApplicationForm from '../../components/PetApplicationForm';
-//import Footer from './Footer';
+import Navigation from "../../components/Navigation";
+import Footer from "../../components/Footer";
+
 function PetCreate(){
     return (
         <>
-            {/* <Navbar /> */}
+            <header><Navigation type='seeker' username='username'/></header>
             <PetApplicationForm />
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 };

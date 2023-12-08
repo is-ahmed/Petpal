@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './petapplication.module.css';
 import { ajax_or_login } from "../../ajax";
+import { UserContext } from '../../contexts/UserContext';
 
 function PetApplicationForm () {
+    //const { usernameContext, userType, userid } = useContext(UserContext);
+    const navigate = useNavigate(); 
+    const [errorMessages, setErrorMessages] = useState({});
     const [formData, setFormData] = useState({
         adopterName: '',
         //email: '',
@@ -12,6 +16,7 @@ function PetApplicationForm () {
         extraInfo: '',
         status: 'available', // Add 'status' field with a default value
     });
+    
 
     // function mapDataToModelNames(formData) {
     //     return {
@@ -19,14 +24,15 @@ function PetApplicationForm () {
     //     };
     // }
 
-    const navigate = useNavigate(); 
+    
     const { id } = useParams();
     var userType = localStorage.getItem('user_type');
     //userType = "seeker";
+    //console.log(userType);
 
     useEffect(() => {
         if (userType === "shelter") {
-            navigate('/'); //redirect to 404
+            navigate('/404error'); //redirect to 404
         }
     }, [navigate, userType]); // Dependencies array
 
@@ -52,10 +58,11 @@ function PetApplicationForm () {
             method: 'GET',
         };
     
-        ajax_or_login(`/petlistings/pets/${id}`, settings)
+        ajax_or_login(`/petlistings/pets/${id}`, settings, navigate)
             .then(response => {
                 if (!response.ok) {
                   //navigate('/'); //redirect to 404
+                  navigate('/404error'); //when pet doesn't exist
                   throw new Error('Network response was not ok');
                 }
                 return response.json();
@@ -67,7 +74,7 @@ function PetApplicationForm () {
                 console.error('Error:', error);
         });
 
-        ajax_or_login(`/seeker`, settings)
+        ajax_or_login(`/seeker`, settings, navigate)
           .then(response => {
               if (!response.ok) {
                   throw new Error('Network response was not ok');
@@ -83,10 +90,11 @@ function PetApplicationForm () {
     }, [id]); // Trigger the effect when the id changes
 
     function handleChange(e) {
-        setFormData({
-            ...formData,
-            [e.target.name]: e.target.value
-        });
+      setErrorMessages(prevErrors => ({ ...prevErrors, alreadySubmitted: '' }));
+      setFormData({
+          ...formData,
+          [e.target.name]: e.target.value
+      });
     };
     
 
@@ -94,7 +102,14 @@ function PetApplicationForm () {
         e.preventDefault();
         
         const formData = new FormData(e.target);
-        
+        const validationErrors = validateForm(formData);
+        console.log(validationErrors);
+
+        if (Object.keys(validationErrors).length > 0) {
+          setErrorMessages(validationErrors);
+          return; // Prevent form submission
+        }
+        setErrorMessages({});
 
         for (let [key, value] of formData.entries()) {
             console.log(`${key}:`, value);
@@ -113,18 +128,50 @@ function PetApplicationForm () {
         ajax_or_login(`/petlistings/pets/${id}/applications/`, settings, navigate)
             .then(response => {
                 if (!response.ok) {
+                    //setErrorMessage("You have already have an application with this pet!");
+                    setErrorMessages(prevErrors => ({ ...prevErrors, alreadySubmitted: 'You have already have an application with this pet!' }));
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
             })
             .then(data => {
                 console.log('Success:', data);
+                navigate(`/application/${data.id}`);
                 //navigate('/success-route'); // Replace with your actual success route
             })
             .catch(error => {
                 console.error('Error:', error);
                 // Handle network errors or other exceptions
             });
+    }
+
+    function validateForm(formData) {
+      let errors = {};
+
+      const adopterName = formData.get('adopterName');
+      const postalCode = formData.get('postalCode');
+      const phoneNumber = formData.get('phoneNumber');
+      console.log(phoneNumber);
+    
+      // Validate Name - Required
+      if (!adopterName.trim()) {
+        errors.adopterName = 'Name is required';
+      }
+
+      // Validate postalCode
+      if (postalCode.trim() && !/^[A-Za-z]\d[A-Za-z]\s\d[A-Za-z]\d$/.test(postalCode.trim().toUpperCase())) {
+        errors.postalCode = 'Invalid postal code format';
+      }
+      // Validate phoneNumber
+      if (phoneNumber.trim() && !/^\(\d{3}\) \d{3}-\d{4}$/.test(phoneNumber.trim())) {
+        errors.phoneNumber = 'Phone number must be in the format of (xxx) xxx-xxxx';
+      }
+
+
+    
+      // Other fields (like extraInfo) are optional and have no specific format, so no validation needed
+    
+      return errors;
     }
 
     return (
@@ -223,6 +270,13 @@ function PetApplicationForm () {
                 </div>
               </div>
               <div className="col-12 mt-4">
+                {Object.keys(errorMessages).map(key => (
+                  errorMessages[key] && (
+                    <div key={key} className="alert alert-danger" role="alert">
+                      {errorMessages[key]}
+                    </div>
+                  )
+                ))}
                 <button
                   type="submit"
                   className={`btn btn-primary buttonBorderColour ${styles.btn} ${styles.btn_primary} ${styles.buttonBorderColour}`}

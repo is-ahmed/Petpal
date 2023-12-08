@@ -1,15 +1,16 @@
 import React from 'react';
 //import Navbar from './Navbar';
 import PetApplicationUpdateForm from '../../components/PetApplicationUpdateForm';
-//import ApplicationChat from '../../components/ApplicationChat';
-//import Footer from './Footer';
+import Navigation from "../../components/Navigation";
+import Footer from "../../components/Footer";
 function PetCreate(){
+    var userType = localStorage.get('user_type');
+
     return (
         <>
-            {/* <Navbar /> */}
+            <header><Navigation type='seeker' username='username'/></header>
             <PetApplicationUpdateForm />
-            {/* <ApplicationChat /> */}
-            {/* <Footer /> */}
+            <Footer />
         </>
     );
 };

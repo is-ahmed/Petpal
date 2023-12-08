@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './petcreation.module.css';
 import { ajax_or_login } from "../../ajax";
 import {faCircleInfo, faPaw, faImage, faStar, faBrain, faClipboard, faNotesMedical,faListCheck} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { UserContext } from '../../contexts/UserContext';
 
 function PetStatusUpdateForm() {
     const [formData, setFormData] = useState({
@@ -15,6 +16,7 @@ function PetStatusUpdateForm() {
         breed: '',
         color: '',
         size: '',
+        image: '',
         // petDesc: '',
         // behaviorDetails: '',
         // medicalHistory: '',
@@ -30,7 +32,7 @@ function PetStatusUpdateForm() {
     const userType = localStorage.getItem('user_type');
     useEffect(() => {
         if (userType === "seeker") {
-            navigate('/');
+            navigate('/404error');
         }
     }, [navigate, userType]); // Dependencies array
 
@@ -39,6 +41,7 @@ function PetStatusUpdateForm() {
         ajax_or_login(`/petlistings/pets/${id}`, { method: 'GET' }) // Update the API endpoint and method accordingly
             .then((response) => {
             if (!response.ok) {
+                navigate('/404error'); //pet doesn't exist or user doesn't have access to pet
                 //navigate('/'); //redirect to 404
                 //throw new Error('Network response was not ok');
             }
@@ -120,11 +123,12 @@ function PetStatusUpdateForm() {
             return response.json();
             })
             .then((data) => {
-            console.log('Success:', data);
+                console.log('Success:', data);
+                navigate(`/pet/${id}`);
             // Handle success (e.g., showing a success message or redirecting)
             })
             .catch((error) => {
-            console.error('Error:', error);
+                console.error('Error:', error);
             // Handle network errors or other exceptions
             });
     }
@@ -148,7 +152,7 @@ function PetStatusUpdateForm() {
                 // Pet deleted successfully, you can handle this as needed
                 console.log('Pet deleted successfully');
                 // Navigate to some page after successful deletion
-                //navigate('/some-other-page');
+                navigate('/shelters/manage');
             } else {
                 // Handle errors or display an error message to the user
                 console.error('Error deleting pet:', response.status);
@@ -390,7 +394,8 @@ function PetStatusUpdateForm() {
                 </div>
 
                 {/* Pet Picture Upload */}
-                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faImage} /> Upload a picture for your pet</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faImage} /> Update Pet Picture</h4>
+                <img src={formData.image} className={`px-4 mb-2 ${styles.cardImgTop}`} />
                 <div className="form-group px-4">
                     <input 
                         className="form-control" 
