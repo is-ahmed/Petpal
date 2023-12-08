@@ -25,7 +25,7 @@ class ReportRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
 
     def perform_update(self, serializer):
         user = serializer.instance.subject
-        if serializer.instance.status == 'accepted':
+        if self.request.data['status'] == 'accepted':
             user_instance = User.objects.get(pk=user.id)
             user_instance.delete()
             serializer.instance.delete()

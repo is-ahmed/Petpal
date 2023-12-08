@@ -10,17 +10,17 @@ import { useNavigate } from 'react-router';
 function getMessage(msg_type) {
 	let msg;
 	if (msg_type === 'CONVERSATION') {
-		msg = "A conversation has had an update!"
+		msg = "Conversation update!"
 	} else if (msg_type === 'APPLICATION_STATUS') {
-		msg = "An application recieved an update!"
+		msg = "Application update!"
 	} else if (msg_type === 'NEW_APPLICATION') {
-		msg = "A new application has been submitted!"
+		msg = "New application!"
 	} else if (msg_type === 'COMMENT') {
-		msg = "A new comment has been added!"
+		msg = "New comments!"
 	} else if (msg_type === 'REVIEW') {
-		msg = "You have new reviews!"
+		msg = "New reviews!"
 	} else {
-		msg = "A new pet has been added!"
+		msg = "New pet!"
 	}
 	return msg
 }

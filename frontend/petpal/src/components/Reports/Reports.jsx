@@ -169,13 +169,14 @@ export function Reports() {
                         <Button variant={'danger'} onClick={() => {
                             fetch(`http://localhost:8000/reports/${id}/`,
                                 {
-                                    method: 'patch',
+                                    method: 'PATCH',
                                     headers: {
-                                        Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                                        Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+										'Content-Type': 'application/json'
                                     },
-                                    body: {
+                                    body: JSON.stringify({
                                         status: 'accepted'
-                                    }
+                                    })
                                 })
                             hide()
                             setK(k + 1)
