@@ -18,6 +18,7 @@ import Shelters from './pages/SearchShelters';
 import RegisterSuccess from './pages/RegisterSuccess';
 import {ShelterManagement} from "./components/ShelterManagement/ShelterManagement";
 import {ShelterDetails} from "./components/ShelterDetails/ShelterDetails";
+import PetCreate from './pages/petcreate';
 
 function App() {
   return (
@@ -34,6 +35,7 @@ function App() {
 				<Route path="pets" element={<Pets/>}></Route>
 			    <Route path="shelters" element={<Shelters/>}></Route>
 				<Route path="signup-success" element={<RegisterSuccess/>}></Route>
+				<Route path="petcreation" element={<PetCreate/>}></Route>
         <Route path="pet/:petId/" element={<Pet />} />
       <Route path="seeker/update" element={<UserUpdatePage />}/>
       <Route path="shelter/update" element={<ShelterUpdatePage />}/>
