@@ -17,10 +17,10 @@ function PetStatusUpdateForm() {
         color: '',
         size: '',
         image: '',
-        // petDesc: '',
-        // behaviorDetails: '',
-        // medicalHistory: '',
-        // specialNeeds: '',
+        description: '',
+        behavior: '',
+        medicalhistory: '',
+        needs: '',
         status: '',
     });
 
@@ -124,7 +124,7 @@ function PetStatusUpdateForm() {
             })
             .then((data) => {
                 console.log('Success:', data);
-                navigate(`/pet/${id}`);
+                navigate(`/pet/${id}/`);
             // Handle success (e.g., showing a success message or redirecting)
             })
             .catch((error) => {
@@ -328,15 +328,15 @@ function PetStatusUpdateForm() {
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
                             className={`form-control ${styles.textAreaSize}`}
-                            id="petDesc" 
+                            id="description" 
                             rows="4" 
-                            name="petDesc" 
+                            name="description" 
                             placeholder="Tell us about your pet!"
-                            value={formData.petDesc}
+                            value={formData.description}
                             onChange={handleChange}
                             required
                         ></textarea>
-                        <label htmlFor="petDesc">Tell us about your pet!</label>
+                        <label htmlFor="description">Tell us about your pet!</label>
                     </div>
                 </div>
 
@@ -346,15 +346,15 @@ function PetStatusUpdateForm() {
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
                             className={`form-control ${styles.textAreaSize} ${styles.smallTextArea}`}
-                            id="behaviorDetails" 
+                            id="behavior" 
                             rows="4" 
-                            name="behaviorDetails" 
+                            name="behavior" 
                             placeholder="Any habits or behaviours we should know about?"
-                            value={formData.behaviorDetails}
+                            value={formData.behavior}
                             onChange={handleChange}
-                            // required
+                            required
                         ></textarea>
-                        <label className={styles.labelWrap} htmlFor="behaviorDetails">Any habits or behaviours we should know about?</label>
+                        <label className={styles.labelWrap} htmlFor="behavior">Any habits or behaviours we should know about?</label>
                     </div>
                 </div>
 
@@ -364,15 +364,15 @@ function PetStatusUpdateForm() {
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
                             className={`form-control ${styles.textAreaSize} ${styles.smallTextArea}`}
-                            id="medicalHistory" 
+                            id="medicalhistory" 
                             rows="4" 
-                            name="medicalHistory" 
+                            name="medicalhistory" 
                             placeholder="Vaccination History, Spray/Neutered, Chip Status, etc."
-                            value={formData.medicalHistory}
+                            value={formData.medicalhistory}
                             onChange={handleChange}
-                            // required
+                            required
                         ></textarea>
-                        <label className={styles.labelWrap} htmlFor="medicalHistory">Vaccination History, Spray/Neutered, Chip Status, etc.</label>
+                        <label className={styles.labelWrap} htmlFor="medicalhistory">Vaccination History, Spray/Neutered, Chip Status, etc.</label>
                     </div>
                 </div>
 
@@ -382,14 +382,14 @@ function PetStatusUpdateForm() {
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
                             className={`form-control ${styles.textAreaSize}`}
-                            id="specialNeeds" 
+                            id="needs" 
                             rows="4" 
-                            name="specialNeeds" 
+                            name="needs" 
                             placeholder="Please fill out if applicable"
-                            value={formData.specialNeeds}
+                            value={formData.needs}
                             onChange={handleChange}
                         ></textarea>
-                        <label htmlFor="specialNeeds">Please fill out if applicable</label>
+                        <label htmlFor="needs">Please fill out if applicable</label>
                     </div>
                 </div>
 
