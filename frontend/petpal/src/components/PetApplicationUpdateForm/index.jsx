@@ -15,12 +15,10 @@ function PetApplicationUpdateForm () {
         user: '',
         shelter: '',
     });
+    const [initialStatus, setInitialStatus] = useState(formData.status);
+    var userType = localStorage.getItem('user_type');
+    userType = "shelter";
 
-    // function mapDataToModelNames(formData) {
-    //     return {
-    //         name: formData.name,
-    //     };
-    // }
 
     const navigate = useNavigate(); 
     const { id } = useParams();
@@ -115,10 +113,14 @@ function PetApplicationUpdateForm () {
               // Fetch formData
               const formDataResponse = await ajax_or_login(`/applications/${id}/`, settings);
               if (!formDataResponse.ok) {
+                  //navigate('/'); //redirect to 404
                   throw new Error('Network response was not ok');
               }
               const formDataData = await formDataResponse.json();
               const pet_id = formDataData.pet_listing;
+              const user_id = formDataData.user;
+              setInitialStatus(formDataData.status);
+              //const orignal_status = formDataData.status;
               setFormData(formDataData);
   
               // Fetch petInfo
@@ -135,12 +137,22 @@ function PetApplicationUpdateForm () {
               setPetInfo(petInfoData);
   
               // Fetch userInfo
-              const userInfoResponse = await ajax_or_login(`/seeker`, settings);
-              if (!userInfoResponse.ok) {
-                  throw new Error('Network response was not ok');
+              if (userType === "seeker"){
+                const userInfoResponse = await ajax_or_login(`/seeker`, settings);
+                if (!userInfoResponse.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const userInfoData = await userInfoResponse.json();
+                setUserInfo(userInfoData);
+              } else{
+                const userInfoResponse = await ajax_or_login(`/seeker/${user_id}`, settings);
+                if (!userInfoResponse.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const userInfoData = await userInfoResponse.json();
+                setUserInfo(userInfoData);
               }
-              const userInfoData = await userInfoResponse.json();
-              setUserInfo(userInfoData);
+
 
               //fetch comments
               const commentResponse = await ajax_or_login(`/comment/applications/${id}/comments/`, settings);
@@ -354,17 +366,23 @@ function PetApplicationUpdateForm () {
                   onChange={handleChange}
                   required
                   >
-                  <option value="pending">Pending</option>
-                  <option value="accepted">Available</option>
-                  <option value="denied">Adopted</option>
-                  <option value="withdrawn">Withdrawn</option> 
+                  {/* <option value="pending">Pending</option>
+                  <option value="accepted">Accepted</option>
+                  <option value="denied">Denied</option>
+                  <option value="withdrawn">Withdrawn</option>  */}
+                    {(initialStatus === "pending") && <option value="pending">Pending</option>}
+                    {(initialStatus === "accepted" || (initialStatus === "pending" && userType === "shelter")) && <option value="accepted">Accepted</option>}
+                    {(initialStatus === "denied" || (initialStatus === "pending" && userType === "shelter")) && <option value="denied">Denied</option>}
+                    {(initialStatus === "withdrawn" || ((initialStatus === "pending" || initialStatus === "accepted") && userType === "seeker")) && <option value="withdrawn">Withdrawn</option>}
                   </select>
                   <label htmlFor="status">Application Status</label>
               </div>
               <div className="col-12 mt-4">
                 <button
                   type="submit"
-                  className={`btn btn-primary buttonBorderColour ${styles.btn} ${styles.btn_primary} ${styles.buttonBorderColour}`}>
+                  className={`btn btn-primary buttonBorderColour ${styles.btn} ${styles.btn_primary} ${styles.buttonBorderColour}`}
+                  disabled={initialStatus === "withdrawn" || initialStatus === "denied" || (initialStatus === "accepted" && userType === "shelter")}
+                  >
                   Update
                 </button>
               </div>

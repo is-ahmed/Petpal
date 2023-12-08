@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './petcreation.module.css';
 import { ajax_or_login } from "../../ajax";
+import {faCircleInfo, faPaw, faImage, faStar, faBrain, faClipboard, faNotesMedical} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function PetRegistrationForm () {
+    const navigate = useNavigate(); 
+    var userType = localStorage.getItem('user_type');
+    //userType = "seeker";
+
+    useEffect(() => {
+        if (userType === "seeker") {
+            navigate('/');
+        }
+    }, [navigate, userType]); // Dependencies array
+    
     const [formData, setFormData] = useState({
         name: '',
         gender: '',
@@ -23,7 +35,7 @@ function PetRegistrationForm () {
     const [files, setFiles] = useState([]);
 
 
-    const navigate = useNavigate(); 
+    
 
     function handleChange(e) {
         setFormData({
@@ -85,9 +97,9 @@ function PetRegistrationForm () {
     return (
         <div className={styles.pageColour}>
         <div className={`container justify-content-center ${styles.container} mt-5 mb-5`}>
-            <h2 className="text-center"><i className="fa-solid fa-paw"></i> Register a New Pet <i className="fa-solid fa-paw"></i></h2>
+            <h2 className="text-center"><FontAwesomeIcon icon={faPaw} /> Register a New Pet <FontAwesomeIcon icon={faPaw} /></h2>
             <form onSubmit={handleSubmit}>
-            <h4 className="mt-4 mb-3 px-4"><i className="fa-solid fa-circle-info"></i> General Information</h4>
+            <h4 className="mt-4 mb-3 px-4"><FontAwesomeIcon icon={faCircleInfo} /> General Information</h4>
                 <div className="row g-5 mb-3 px-4">
                     {/* Pet Name */}
                     <div className="col-md-6">
@@ -237,7 +249,7 @@ function PetRegistrationForm () {
 
 
                 {/* Pet Description */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-regular fa-clipboard"></i> Pet Description</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faClipboard} /> Pet Description</h4>
                 <div className="form-group px-4">
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
@@ -255,7 +267,7 @@ function PetRegistrationForm () {
                 </div>
 
                 {/* Behavior */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-solid fa-brain"></i> Behavior</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faBrain} /> Behavior</h4>
                 <div className="form-group px-4">
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
@@ -273,7 +285,7 @@ function PetRegistrationForm () {
                 </div>
 
                 {/* Medical History */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-solid fa-notes-medical"></i> Medical History</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faNotesMedical} /> Medical History</h4>
                 <div className="form-group px-4">
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
@@ -291,7 +303,7 @@ function PetRegistrationForm () {
                 </div>
 
                 {/* Special Needs & Requirements */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-regular fa-star"></i> Special Needs & Requirements</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faStar} /> Special Needs & Requirements</h4>
                 <div className="form-group px-4">
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
@@ -308,7 +320,7 @@ function PetRegistrationForm () {
                 </div>
 
                 {/* Pet Picture Upload */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-regular fa-image"></i> Upload a picture for your pet</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faImage} /> Upload a picture for your pet</h4>
                 <div className="form-group px-4">
                     <input 
                         className="form-control" 

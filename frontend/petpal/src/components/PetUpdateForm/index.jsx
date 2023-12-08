@@ -2,35 +2,44 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './petcreation.module.css';
 import { ajax_or_login } from "../../ajax";
+import {faCircleInfo, faPaw, faImage, faStar, faBrain, faClipboard, faNotesMedical,faListCheck} from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function PetStatusUpdateForm() {
-  const [formData, setFormData] = useState({
-    name: '', // Include all fields
-    gender: '',
-    age: '',
-    species: '',
-    otherType: '',
-    breed: '',
-    color: '',
-    size: '',
-    // petDesc: '',
-    // behaviorDetails: '',
-    // medicalHistory: '',
-    // specialNeeds: '',
-    status: '',
-  });
+    const [formData, setFormData] = useState({
+        name: '', // Include all fields
+        gender: '',
+        age: '',
+        species: '',
+        otherType: '',
+        breed: '',
+        color: '',
+        size: '',
+        // petDesc: '',
+        // behaviorDetails: '',
+        // medicalHistory: '',
+        // specialNeeds: '',
+        status: '',
+    });
 
-  //const [status, setStatus] = useState('');
-  const [files, setFiles] = useState([]);
+    //const [status, setStatus] = useState('');
+    const [files, setFiles] = useState([]);
 
-  const { id } = useParams(); // Get the pet ID from the URL
-  const navigate = useNavigate();
+    const { id } = useParams(); // Get the pet ID from the URL
+    const navigate = useNavigate();
+    const userType = localStorage.getItem('user_type');
+    useEffect(() => {
+        if (userType === "seeker") {
+            navigate('/');
+        }
+    }, [navigate, userType]); // Dependencies array
 
     useEffect(() => {
-    // Fetch the pet data using the ID when the component mounts
+        // Fetch the pet data using the ID when the component mounts
         ajax_or_login(`/petlistings/pets/${id}`, { method: 'GET' }) // Update the API endpoint and method accordingly
             .then((response) => {
             if (!response.ok) {
+                //navigate('/'); //redirect to 404
                 //throw new Error('Network response was not ok');
             }
             return response.json();
@@ -133,7 +142,7 @@ function PetStatusUpdateForm() {
             },
         };
 
-        ajax_or_login(`/petlistings/pets/${id}`, settings, navigate) // Update the API endpoint
+        ajax_or_login(`/petlistings/pets/${id}`, settings, navigate)
             .then((response) => {
             if (response.ok) {
                 // Pet deleted successfully, you can handle this as needed
@@ -157,11 +166,10 @@ function PetStatusUpdateForm() {
     <div className={styles.pageColour}>
       <div className={`container justify-content-center ${styles.container} mt-5 mb-5`}>
         <h2 className="text-center">
-          <i className="fa-solid fa-paw"></i> Update Pet Status{' '}
-          <i className="fa-solid fa-paw"></i>
+        <FontAwesomeIcon icon={faPaw} /> Update Pet Status <FontAwesomeIcon icon={faPaw} />
         </h2>
         <form onSubmit={handleSubmit}>
-            <h4 className="mt-4 mb-3 px-4"><i className="fa-solid fa-circle-info"></i> General Information</h4>
+            <h4 className="mt-4 mb-3 px-4"><FontAwesomeIcon icon={faCircleInfo} /> General Information</h4>
                 <div className="row g-5 mb-3 px-4">
                     {/* Pet Name */}
                     <div className="col-md-6">
@@ -311,7 +319,7 @@ function PetStatusUpdateForm() {
 
 
                 {/* Pet Description */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-regular fa-clipboard"></i> Pet Description</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faClipboard} /> Pet Description</h4>
                 <div className="form-group px-4">
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
@@ -329,7 +337,7 @@ function PetStatusUpdateForm() {
                 </div>
 
                 {/* Behavior */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-solid fa-brain"></i> Behavior</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faBrain} /> Behavior</h4>
                 <div className="form-group px-4">
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
@@ -347,7 +355,7 @@ function PetStatusUpdateForm() {
                 </div>
 
                 {/* Medical History */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-solid fa-notes-medical"></i> Medical History</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faNotesMedical} /> Medical History</h4>
                 <div className="form-group px-4">
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
@@ -365,7 +373,7 @@ function PetStatusUpdateForm() {
                 </div>
 
                 {/* Special Needs & Requirements */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-regular fa-star"></i> Special Needs & Requirements</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faStar} /> Special Needs & Requirements</h4>
                 <div className="form-group px-4">
                     <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
@@ -382,7 +390,7 @@ function PetStatusUpdateForm() {
                 </div>
 
                 {/* Pet Picture Upload */}
-                <h4 className="headerColour mt-4 px-4"><i className="fa-regular fa-image"></i> Upload a picture for your pet</h4>
+                <h4 className="headerColour mt-4 px-4"><FontAwesomeIcon icon={faImage} /> Upload a picture for your pet</h4>
                 <div className="form-group px-4">
                     <input 
                         className="form-control" 
@@ -396,7 +404,7 @@ function PetStatusUpdateForm() {
                 </div>
           {/* Include all other fields similarly (make them readonly) */}
             <h4 className="headerColour mt-4 px-4">
-            <i className="fa-solid fa-list-check"></i> Pet Status
+            <FontAwesomeIcon icon={faListCheck} /> Pet Status
             </h4>
             <div className="col-md-4 px-4">
             <div className={`form-floating ${styles.formFloating}`}>
