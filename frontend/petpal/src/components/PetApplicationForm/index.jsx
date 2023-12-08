@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './petapplication.css';
+import styles from './petapplication.module.css';
 import { ajax_or_login } from "../../ajax";
 
 function PetApplicationForm () {
@@ -119,18 +119,18 @@ function PetApplicationForm () {
     }
 
     return (
-        <div className="pageColour">
-          <div className="container mt-5 mb-5 px-5 py-5">
-            <h2 className="text-center themeText">Adopt me!</h2>
+        <div className= {styles.pageColour}>
+          <div className= {`container ${styles.container} mt-5 mb-5 px-5 py-5`}>
+            <h2 className={`text-center ${styles.themeText}`}>Adopt me!</h2>
             <div className="d-flex justify-content-center mt-0">
-              <div className="card">
+              <div className={`card ${styles.card}`}>
                 <img
                   src={petInfo.image}
-                  className="card-img-top"
+                  className={`card-img-top ${styles.cardImgTop}`}
                   alt="Pet"
                 />
                 <div className="card-body text-center">
-                    <h5 className="card-title themeText">{petInfo.name}</h5>
+                    <h5 className={`card-title ${styles.themeText}`}>{petInfo.name}</h5>
                     <p className="card-text">Breed: {petInfo.breed}</p>
                     <p className="card-text">{petInfo.age} years | {petInfo.gender} | {petInfo.size} lbs</p>
                     {/* <p className="card-text">Location: {petInfo.location}</p> */}
@@ -138,7 +138,7 @@ function PetApplicationForm () {
               </div>
             </div>
             <form onSubmit={handleSubmit}>
-              <h4 className="mt-4 mb-3 themeText">Applicant Information</h4>
+              <h4 className={`mt-4 mb-3 ${styles.themeText}`}>Applicant Information</h4>
               <div className="col-md-12 mb-3">
                 <div className="form-floating">
                   <input
@@ -216,7 +216,7 @@ function PetApplicationForm () {
               <div className="col-12 mt-4">
                 <button
                   type="submit"
-                  className="btn btn-primary buttonBorderColour"
+                  className={`btn btn-primary buttonBorderColour ${styles.btn} ${styles.btn_primary} ${styles.buttonBorderColour}`}
                 >
                   Submit
                 </button>
