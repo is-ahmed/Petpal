@@ -14,7 +14,7 @@
     /* width: 50% !important; */
 }
 
-.form-floating{
+.formFloating{
     color: black;
 }
 
@@ -114,37 +114,17 @@ footer {
     text-overflow: clip;
 }
 
-.deleteButton {
-    background-color: #dc3545; /* Red color */
-    border-color: #dc3545; /* Border color */
-}
-  
-.deleteButton:hover {
-    background-color: #c82333; /* Darker red color on hover */
-    border-color: #c82333; /* Darker border color on hover */
-}
-
-.deleteButtonBorderColour {
-    border-color: #dc3545 !important;
-    color: white !important;
-}
-
-.deleteButtonBorderColour:hover{
-    color: white !important;
-    background-color: #c82333 !important;
-}
-
 .smallTextArea{
 
 }
 
-.btn-primary {
+.btn_primary {
     background-color: #309975 !important;
     border: none !important;
 }
 
 
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+.btn-_rimary:hover, .btn_primary:active, .btn_primary:focus {
     background-color: #108965 !important;
 }
 

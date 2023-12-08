@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './petapplication.css';
+import styles from './petapplication.module.css';
 import { ajax_or_login } from "../../ajax";
 
 function PetApplicationUpdateForm () {
@@ -245,18 +245,18 @@ function PetApplicationUpdateForm () {
     }
 
     return (
-        <div className="pageColour">
-          <div className="container mt-5 mb-5 px-5 py-5">
-            <h2 className="text-center themeText">View Application</h2>
+        <div className={styles.pageColour}>
+          <div className={`container ${styles.container} mt-5 mb-5 px-5 py-5`}>
+            <h2 className={`text-center ${styles.themeText}`}>View Application</h2>
             <div className="d-flex justify-content-center mt-0">
-              <div className="card">
+              <div className={`card ${styles.card}`}>
                 <img
                   src={petInfo.image}
-                  className="card-img-top"
+                  className={`card-img-top ${styles.cardImgTop}`}
                   alt="Pet"
                 />
                 <div className="card-body text-center">
-                    <h5 className="card-title themeText">{petInfo.name}</h5>
+                    <h5 className={`card-title ${styles.themeText}`}>{petInfo.name}</h5>
                     <p className="card-text">Breed: {petInfo.breed}</p>
                     <p className="card-text">{petInfo.age} years | {petInfo.gender} | {petInfo.size} lbs</p>
                     {/* <p className="card-text">Location: {petInfo.location}</p> */}
@@ -264,7 +264,7 @@ function PetApplicationUpdateForm () {
               </div>
             </div>
             <form onSubmit={handleSubmit}>
-              <h4 className="mt-4 mb-3 themeText">Applicant Information</h4>
+              <h4 className={`mt-4 mb-3 ${styles.themeText}`}>Applicant Information</h4>
               <div className="col-md-12 mb-3">
                 <div className="form-floating">
                   <input
@@ -364,14 +364,13 @@ function PetApplicationUpdateForm () {
               <div className="col-12 mt-4">
                 <button
                   type="submit"
-                  className="btn btn-primary buttonBorderColour"
-                >
+                  className={`btn btn-primary buttonBorderColour ${styles.btn} ${styles.btn_primary} ${styles.buttonBorderColour}`}>
                   Update
                 </button>
               </div>
             </form>
             <div className="card mt-3 col-12 full-width-chat">
-              <div className="card-header chatColour whiteText">
+              <div className={`card-header ${styles.chatColour} ${styles.whiteText}`}>
                   Chat
               </div>
               <div className="card-body">
@@ -379,7 +378,7 @@ function PetApplicationUpdateForm () {
                       {comments.map((comment, index) => (
                           <div key={index} className="d-flex flex-row justify-content-start mb-4">
                               {/* <img className="rounded-circle chatImage" src={comment.author === 'Author1' ? "./images/Author1Avatar.jpg" : "./images/Author2Avatar.jpg"} alt={comment.author} /> */}
-                              <div className="p-3 ms-3 userChat">
+                              <div className={`p-3 ms-3 ${styles.userChat}`}>
                                   {/* <strong>{comment.author}</strong>: <p className="small mb-0">{comment.text}</p> */}
                                   <strong>Author</strong>: <p className="small mb-0">{comment.text}</p>
                               </div>
@@ -394,7 +393,7 @@ function PetApplicationUpdateForm () {
                         onChange={handleChat}
                     ></textarea>
                     <label className="form-label" htmlFor="textAreaChat">Enter your message</label>
-                    <button className="btn btn-primary" onClick={handleSubmitMessage}>Send Message</button> {/* Added button */}
+                    <button className={`btn btn-primary buttonBorderColour ${styles.btn} ${styles.btn_primary} ${styles.buttonBorderColour}`} onClick={handleSubmitMessage}>Send Message</button> {/* Added button */}
                   </ul>
               </div>
             </div>

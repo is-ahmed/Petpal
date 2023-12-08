@@ -48,7 +48,7 @@ h1.text-center {
     max-width: 18rem;
 }
 
-.card-img-top {
+.cardImgTop {
     width: 100%;
     height: auto;
     object-fit: cover;
@@ -82,13 +82,13 @@ footer {
 
 }
 
-.btn-primary {
+.btn_primary {
     background-color: #309975 !important;
     border: none !important;
 }
 
 
-.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+.btn_primary:hover, .btn_primary:active, .btn_primary:focus {
     background-color: #108965 !important;
 }
 

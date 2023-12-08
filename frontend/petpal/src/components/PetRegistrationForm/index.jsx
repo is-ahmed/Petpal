@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './petcreation.css';
+import styles from './petcreation.module.css';
 import { ajax_or_login } from "../../ajax";
 
 function PetRegistrationForm () {
@@ -83,15 +83,15 @@ function PetRegistrationForm () {
     }
 
     return (
-        <div className="pageColour">
-        <div className="container justify-content-center mt-5 mb-5">
+        <div className={styles.pageColour}>
+        <div className={`container justify-content-center ${styles.container} mt-5 mb-5`}>
             <h2 className="text-center"><i className="fa-solid fa-paw"></i> Register a New Pet <i className="fa-solid fa-paw"></i></h2>
             <form onSubmit={handleSubmit}>
             <h4 className="mt-4 mb-3 px-4"><i className="fa-solid fa-circle-info"></i> General Information</h4>
                 <div className="row g-5 mb-3 px-4">
                     {/* Pet Name */}
                     <div className="col-md-6">
-                        <div className="form-floating">
+                        <div className={`form-floating ${styles.formFloating}`}>
                             <input 
                                 type="text" 
                                 className="form-control" 
@@ -109,7 +109,7 @@ function PetRegistrationForm () {
 
                     {/* Pet Gender */}
                     <div className="col-md-4">
-                        <div className="form-floating">
+                        <div className={`form-floating ${styles.formFloating}`}>
                             <select 
                                 className="form-select" 
                                 id="gender" 
@@ -129,7 +129,7 @@ function PetRegistrationForm () {
 
                     {/* Pet Age */}
                     <div className="col-md-2">
-                        <div className="form-floating">
+                        <div className={`form-floating ${styles.formFloating}`}>
                             <input 
                                 type="number" 
                                 className="form-control" 
@@ -148,7 +148,7 @@ function PetRegistrationForm () {
                 <div className="row g-5 mb-3 px-4">
                     {/* Pet Type and Other Type */}
                     <div className="col-md">
-                        <div className="form-floating">
+                        <div className={`form-floating ${styles.formFloating}`}>
                             <select 
                                 className="form-select" 
                                 id="species" 
@@ -168,7 +168,7 @@ function PetRegistrationForm () {
                     </div>
 
                     <div className="col-md">
-                        <div className="form-floating">
+                        <div className={`form-floating ${styles.formFloating}`}>
                             <input 
                                 type="text" 
                                 className="form-control" 
@@ -185,7 +185,7 @@ function PetRegistrationForm () {
                 <div className="row g-5 mb-3 px-4">
                     {/* Pet Breed, Colour, and Size */}
                     <div className="col-md">
-                        <div className="form-floating">
+                        <div className={`form-floating ${styles.formFloating}`}>
                             <input 
                                 type="text" 
                                 className="form-control" 
@@ -201,7 +201,7 @@ function PetRegistrationForm () {
                     </div>
 
                     <div className="col-md">
-                        <div className="form-floating">
+                        <div className={`form-floating ${styles.formFloating}`}>
                             <input 
                                 type="text" 
                                 className="form-control" 
@@ -217,7 +217,7 @@ function PetRegistrationForm () {
                     </div>
 
                     <div className="col-md">
-                        <div className="form-floating">
+                        <div className={`form-floating ${styles.formFloating}`}>
                             <input 
                                 type="number" 
                                 className="form-control" 
@@ -239,9 +239,9 @@ function PetRegistrationForm () {
                 {/* Pet Description */}
                 <h4 className="headerColour mt-4 px-4"><i className="fa-regular fa-clipboard"></i> Pet Description</h4>
                 <div className="form-group px-4">
-                    <div className="form-floating">
+                    <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
-                            className="form-control textAreaSize" 
+                            className={`form-control ${styles.textAreaSize}`}
                             id="petDesc" 
                             rows="4" 
                             name="petDesc" 
@@ -257,9 +257,9 @@ function PetRegistrationForm () {
                 {/* Behavior */}
                 <h4 className="headerColour mt-4 px-4"><i className="fa-solid fa-brain"></i> Behavior</h4>
                 <div className="form-group px-4">
-                    <div className="form-floating">
+                    <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
-                            className="form-control textAreaSize smallTextArea" 
+                            className={`form-control ${styles.textAreaSize} ${styles.smallTextArea}`}
                             id="behaviorDetails" 
                             rows="4" 
                             name="behaviorDetails" 
@@ -268,16 +268,16 @@ function PetRegistrationForm () {
                             onChange={handleChange}
                             required
                         ></textarea>
-                        <label htmlFor="behaviorDetails">Any habits or behaviours we should know about?</label>
+                        <label className={styles.labelWrap} htmlFor="behaviorDetails">Any habits or behaviours we should know about?</label>
                     </div>
                 </div>
 
                 {/* Medical History */}
                 <h4 className="headerColour mt-4 px-4"><i className="fa-solid fa-notes-medical"></i> Medical History</h4>
                 <div className="form-group px-4">
-                    <div className="form-floating">
+                    <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
-                            className="form-control textAreaSize smallTextArea" 
+                            className={`form-control ${styles.textAreaSize} ${styles.smallTextArea}`}
                             id="medicalHistory" 
                             rows="4" 
                             name="medicalHistory" 
@@ -286,16 +286,16 @@ function PetRegistrationForm () {
                             onChange={handleChange}
                             required
                         ></textarea>
-                        <label htmlFor="medicalHistory">Vaccination History, Spray/Neutered, Chip Status, etc.</label>
+                        <label className={styles.labelWrap} htmlFor="medicalHistory">Vaccination History, Spray/Neutered, Chip Status, etc.</label>
                     </div>
                 </div>
 
                 {/* Special Needs & Requirements */}
                 <h4 className="headerColour mt-4 px-4"><i className="fa-regular fa-star"></i> Special Needs & Requirements</h4>
                 <div className="form-group px-4">
-                    <div className="form-floating">
+                    <div className={`form-floating ${styles.formFloating}`}>
                         <textarea 
-                            className="form-control textAreaSize" 
+                            className={`form-control ${styles.textAreaSize}`}
                             id="specialNeeds" 
                             rows="4" 
                             name="specialNeeds" 
@@ -322,7 +322,7 @@ function PetRegistrationForm () {
 
                 {/* Submit Button */}
                 <div className="col-12 mt-4 px-4">
-                    <button type="submit" className="btn btn-primary buttonBorderColour">Save</button>
+                    <button type="submit" className={`btn btn-primary buttonBorderColour ${styles.btn} ${styles.btn_primary} ${styles.buttonBorderColour}`}>Save</button>
                 </div>
             </form>
         </div>
