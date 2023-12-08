@@ -42,9 +42,7 @@ function App() {
 				                            <ShelterManagement/>
 				                        }/>
 	                      <Route path={'shelters/:shelter_id'} element={
-				                              <userContext.Provider value={useUserContext()}>
 				                                  <ShelterDetails/>
-				                              </userContext.Provider>
 				                          }/>
  
 			</Route>
