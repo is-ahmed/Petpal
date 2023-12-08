@@ -179,10 +179,10 @@ export function ShelterManagement() {
                         <div className="applicants-card-holder">
                             {showPetAppId in applications ? (
                                 applications[showPetAppId].map((pet, i) => (
-                                    <Button href={'temp'} variant={'link'} className={'applicants-card'} key={i}>
-                                        <h3 className="applicant-name">Josh</h3>
+                                    <Button href={`/application/${pet.id}`} variant={'link'} className={'applicants-card'} key={i}>
+                                        <h3 className="applicant-name">{pet.adopterName}</h3>
                                         <p className="applicant-message">
-                                            Blah blah blah
+											{pet.extraInfo}
                                         </p>
                                     </Button>
                                 ))

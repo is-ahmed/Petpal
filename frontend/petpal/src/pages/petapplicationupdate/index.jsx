@@ -4,7 +4,7 @@ import PetApplicationUpdateForm from '../../components/PetApplicationUpdateForm'
 import Navigation from "../../components/Navigation";
 import Footer from "../../components/Footer";
 function PetCreate(){
-    var userType = localStorage.get('user_type');
+    var userType = localStorage.getItem('user_type');
 
     return (
         <>
