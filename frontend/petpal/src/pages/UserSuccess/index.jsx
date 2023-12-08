@@ -2,8 +2,12 @@
 import Footer from "../../components/Footer";
 import './style.css';
 import './UserUpdate.css';
+import Navigation from "../../components/Navigation"; 
 function UserUpdateSuccessPage() {
+
+  let AccountType =  localStorage.getItem('user_type');
 	return <>
+  <Navigation type={AccountType.toLowerCase()}/>
     <main>
   <div className="container mt-5">
     <div className="alert alert-success" role="alert">
