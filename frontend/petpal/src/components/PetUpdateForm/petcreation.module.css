@@ -48,6 +48,11 @@
     color: #309975;
 }
 
+.cardImgTop {
+    width: auto;
+    height: 200px;
+    object-fit: cover;
+}
 
 header {
     background-color: #F0FFFF ;

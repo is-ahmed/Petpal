@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './petapplication.module.css';
 import { ajax_or_login } from "../../ajax";
+import { UserContext } from '../../contexts/UserContext';
 
 function PetApplicationUpdateForm () {
     const [formData, setFormData] = useState({
@@ -17,7 +18,7 @@ function PetApplicationUpdateForm () {
     });
     const [initialStatus, setInitialStatus] = useState(formData.status);
     var userType = localStorage.getItem('user_type');
-    userType = "shelter";
+    //userType = "shelter";
 
 
     const navigate = useNavigate(); 
@@ -37,14 +38,18 @@ function PetApplicationUpdateForm () {
     const[userInfo, setUserInfo] = useState({
       username: '',
       email: '',
-    })
+    });
 
-    // const[comments, setComments] = useState({
-    //   //author: '',
-    //   text: '',
-    // })
-    const [comments, setComments] = useState([]);
+    const[comments, setComments] = useState([{
+      author: '',
+      text: '',
+      date_created: '',
+    }]);
+    //const [comments, setComments] = useState([]);
     const [message, setMessage] = useState('');
+    var currentUser = 'test_shelter';
+
+    //const [firstUser, setFirstUser] = useState('');
 
     // useEffect(() => {
     //     // Make a GET request to fetch the pet's information using ajax_or_login
@@ -113,9 +118,10 @@ function PetApplicationUpdateForm () {
               // Fetch formData
               const formDataResponse = await ajax_or_login(`/applications/${id}/`, settings);
               if (!formDataResponse.ok) {
-                  //navigate('/'); //redirect to 404
-                  throw new Error('Network response was not ok');
+                  navigate('/404error'); //redirect to 404
+                  //throw new Error('Network response was not ok');
               }
+              //console.log("getting here")
               const formDataData = await formDataResponse.json();
               const pet_id = formDataData.pet_listing;
               const user_id = formDataData.user;
@@ -181,6 +187,23 @@ function PetApplicationUpdateForm () {
         });
     };
 
+    async function getComments(){
+      try{
+
+        const settings = {
+          method: 'GET',
+        };
+        const commentResponse = await ajax_or_login(`/comment/applications/${id}/comments/`, settings);
+        if (!commentResponse.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const commentData = await commentResponse.json();
+        setComments(commentData.results);
+      } catch (error) {
+        console.error("Error fetching comments:", error);
+      }
+    }
+
     function handleSubmitMessage(e){
       e.preventDefault();
       const messageData = new FormData();
@@ -201,8 +224,9 @@ function PetApplicationUpdateForm () {
           })
           .then(data => {
               console.log('Success:', data);
-              //setComments([...comments, { author: 'Current User', text: message }]);
-              setComments([...comments, { text: message }]);
+              //setComments([...comments, { author: 'Current User', text: message }]);\
+              getComments();
+              //setComments([...comments, { text: message, author: "currentUser"}]);
               setMessage(''); // Clear the text area after successful submission
               //navigate('/success-route'); // Replace with your actual success route
           })
@@ -248,6 +272,8 @@ function PetApplicationUpdateForm () {
             })
             .then(data => {
                 console.log('Success:', data);
+                setFormData(data);
+                //navigate('/'); 
                 //navigate('/success-route'); // Replace with your actual success route
             })
             .catch(error => {
@@ -354,9 +380,7 @@ function PetApplicationUpdateForm () {
                   </label>
                 </div>
               </div>
-              <h4 className="headerColour mt-2">
-              <i className="fa-solid fa-list-check"></i> Application Status
-              </h4>
+              <h4 className={`mt-4 mb-3 ${styles.themeText}`}>Application Status</h4>
               <div className="form-floating">
                   <select
                   className="form-select"
@@ -396,9 +420,14 @@ function PetApplicationUpdateForm () {
                       {comments.map((comment, index) => (
                           <div key={index} className="d-flex flex-row justify-content-start mb-4">
                               {/* <img className="rounded-circle chatImage" src={comment.author === 'Author1' ? "./images/Author1Avatar.jpg" : "./images/Author2Avatar.jpg"} alt={comment.author} /> */}
-                              <div className={`p-3 ms-3 ${styles.userChat}`}>
-                                  {/* <strong>{comment.author}</strong>: <p className="small mb-0">{comment.text}</p> */}
-                                  <strong>Author</strong>: <p className="small mb-0">{comment.text}</p>
+                              {/* <div className={`p-3 ms-3 ${styles.userChat}`}> */}
+                              <div className={comment.author === currentUser ? `${styles.userChat} p-3 ms-3` : `${styles.shelterChat} p-3 ms-3`}>
+                                <div>
+                                  <strong>{comment.author}</strong>
+                                </div>
+                                <div>
+                                    <p className="small mb-0 ms-2">{comment.text}</p>
+                                </div>
                               </div>
                           </div>
                       ))}

@@ -73,7 +73,7 @@ h1.text-center {
     }
 }
 
-.shelterChat{
+.shelterChatFormat{
     background-color: #58b368;
     border-radius: 15px;
 }
@@ -114,6 +114,15 @@ footer {
 
 .userChat {
     background-color: #f0f0f0; 
+    border-radius: 15px;
+    padding: 10px; 
+    margin-left: 10px; 
+    max-width: 80%; 
+    position: relative; 
+}
+
+.shelterChat {
+    background-color: #A8E6CF; 
     border-radius: 15px;
     padding: 10px; 
     margin-left: 10px; 

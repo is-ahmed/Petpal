@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from './petcreation.module.css';
 import { ajax_or_login } from "../../ajax";
 import {faCircleInfo, faPaw, faImage, faStar, faBrain, faClipboard, faNotesMedical} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { UserContext } from '../../contexts/UserContext';
 
 function PetRegistrationForm () {
     const navigate = useNavigate(); 
@@ -12,7 +13,7 @@ function PetRegistrationForm () {
 
     useEffect(() => {
         if (userType === "seeker") {
-            navigate('/');
+            navigate('/404error');
         }
     }, [navigate, userType]); // Dependencies array
     
@@ -86,6 +87,7 @@ function PetRegistrationForm () {
             })
             .then(data => {
                 console.log('Success:', data);
+                navigate(`/pet/${data.id}/`);
                 //navigate('/success-route'); // Replace with your actual success route
             })
             .catch(error => {

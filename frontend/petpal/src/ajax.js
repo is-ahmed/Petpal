@@ -19,7 +19,7 @@ export async function ajax_or_login(url, settings, navigate) {
     switch (response.status) {
     case 401:
     case 403:
-        navigate('/');
+        //navigate('/');
         break;
     case 404:
         navigate('/pets'); // can replace this with 404 page
