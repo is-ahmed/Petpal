@@ -23,7 +23,7 @@ export function ShelterManagement() {
     const cancelDelete = () => setPetDelete(0)
 
     const getPets = () => {
-        fetch(`http://localhost:8000/petlistings/pets?shelter=${shelterDetails.id}&status=all`,
+        fetch(`http://localhost:8000/petlistings/pets?shelter=${shelterDetails.shelter_id}&status=all`,
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -93,7 +93,7 @@ export function ShelterManagement() {
     }, []);
 
     useEffect(() => {
-        if ('id' in shelterDetails) {
+        if ('shelter_id' in shelterDetails) {
             getPets()
         }
     }, [shelterDetails]);
