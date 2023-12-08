@@ -6,6 +6,8 @@ import './shelter-manager.sm.css'
 import {Button, CloseButton, Dropdown, Modal, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faChevronLeft, faChevronRight, faEllipsis, faPlus} from '@fortawesome/free-solid-svg-icons'
+import Footer from "../Footer";
+import Navigation from "../Navigation";
 
 export function ShelterList() {
     const [shelterDetails, setShelterDetails] = useState({})
@@ -92,7 +94,10 @@ export function ShelterList() {
         console.log(date, date.getDay())
         return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
     }
+
+    const type = 'shelter'
     return <>
+        <Navigation type={type} username={'username'}/>
         {(error) ? <p>{error}</p>:
             <main className="page-container">
                 <h1 className="management-title">PetPal Shelters</h1>
@@ -257,5 +262,6 @@ export function ShelterList() {
                     </div>
                 </div>
             </main>}
+        <Footer/>
     </>
 }

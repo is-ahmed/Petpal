@@ -17,6 +17,8 @@ import {
 } from '@fortawesome/free-solid-svg-icons'
 import PetCard from "../PetCard";
 import Pet from "../../pages/Pet";
+import Footer from "../Footer";
+import Navigation from "../Navigation";
 
 export function ShelterDetails(props) {
     const {shelter_id} = useParams()
@@ -167,6 +169,7 @@ export function ShelterDetails(props) {
     }, [petsPage]);
 
     return <>
+        <Navigation type={type}/>
         {!error &&
             <main className="page-container">
                 <div className="shelter-title">
@@ -322,11 +325,11 @@ export function ShelterDetails(props) {
                         flexDirection: isMobile ? 'column' : 'row'
                     }}>
                         {pets.map((pet, i) => {
-                            console.log(pet)
                             return <PetCard key={i} pet={pet} flagjeff={!isMobile}/>
                         })}
                     </div>
                 </div>
             </main>}
+        <Footer/>
     </>
 }
