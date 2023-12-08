@@ -35,6 +35,8 @@ class ApplicationUpdateSerializer(serializers.ModelSerializer):
         return super().update(instance, validated_data)
     
 class ApplicationSerializer(serializers.ModelSerializer):
+    pet_name = serializers.CharField(source='pet_listing.name', read_only=True)
+    image = serializers.ImageField(source='pet_listing.image', read_only=True)
     class Meta:
         model = Application
         #fields = ['id', 'pet_listing', 'user', 'status', 'creation_time', 'last_update_time']

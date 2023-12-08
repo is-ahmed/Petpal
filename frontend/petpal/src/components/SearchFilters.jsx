@@ -18,7 +18,9 @@ const BreedOptions = ({ species }) => {
 		.then(json => {
 			// Want to show all shelter options in dropdown
 			let speciesPets = json['results'].filter(pet => pet['species'] === species)
-			setBreedOptions(speciesPets.map((pet, index) => {return pet['breed']})); // Should be an array
+			let breed_Options = speciesPets.map((pet, index) => {return pet['breed']})
+
+			setBreedOptions(breed_Options.filter((breed, index, array) => array.indexOf(breed) === index)); // Should be an array
 		})
 	}, [breedOptions])
 	return (

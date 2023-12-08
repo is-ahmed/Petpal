@@ -3,14 +3,13 @@ import {useEffect, useState} from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './style.sm.css'
 import './shelter-manager.sm.css'
-import {Button, CloseButton, Dropdown, Modal, Navbar} from "react-bootstrap";
+import {Button, CloseButton, Dropdown, Form, Modal, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEllipsis, faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faChevronLeft, faChevronRight, faEllipsis, faPlus} from '@fortawesome/free-solid-svg-icons'
 import Navigation from "../Navigation";
 import Footer from "../Footer";
 
-export function ShelterManagement() {
-    const [shelterDetails, setShelterDetails] = useState({})
+export function MyApplications() {
     const [pets, setPets] = useState([])
     const [petDelete, setPetDelete] = useState(0) // will hold the id of the pet to delete
     const [error, setError] = useState('')
@@ -20,12 +19,22 @@ export function ShelterManagement() {
     const [showPetAppId, setShowPetAppId] = useState()
     const [showPetApp, setShowPetApp] = useState(false)
 
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(1)
+
     const closePetApp = () => setShowPetApp(false)
 
     const cancelDelete = () => setPetDelete(0)
 
+    const [applicationInfo, setApplicationInfo] = useState([])
+    const [status, setStatus] = useState('')
+    const [sorting, setSorting] = useState('last_update_time')
+
     const getPets = () => {
-        fetch(`http://localhost:8000/petlistings/pets?shelter=${shelterDetails.shelter_id}&status=all`,
+        setApplicationInfo([])
+        fetch(`http://localhost:8000/applications/?page=${page}&pagesize=10` +
+            `&ordering=${sorting}` +
+            `&status=${status}`,
             {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('access_token')}`
@@ -38,96 +47,88 @@ export function ShelterManagement() {
                 throw new Error(`${response.status}: ${response.statusText}`)
             })
             .then(json => {
-                setPets(json.results)
+                setApplicationInfo(json.results)
+                setTotalPage(Math.max(Math.ceil(json.count / 10), 1))
             })
             .catch(error => {
                 setError(error.toString())
             })
     }
 
-    const getPetApplications = () => {
-        fetch(`http://localhost:8000/applications/`, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem('access_token')}`
-            }
-        })
-            .then(response => response.json())
-            .then(json => {
-                let result_object = {}
-                for (let obj of json.results) {
-                    if (!(obj.pet_listing in result_object)) {
-                        result_object[obj.pet_listing] = []
-                    }
-
-                    result_object[obj.pet_listing].push(obj)
-                }
-
-                setApplications(result_object)
-            })
-    }
-
-    const showPetApplications = (id, name) => {
-        setShowPetAppName(name)
-        setShowPetApp(true)
-        setShowPetAppId(id)
-    }
-
     useEffect(() => {
-        fetch('http://localhost:8000/shelter', {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                }
-                throw new Error(`${response.status}: ${response.statusText}`)
-            })
-            .then(json => {
-                setShelterDetails(json)
-            })
-            .catch(error => {
-                setError(error.toString())
-            })
-
-        getPetApplications()
-    }, []);
-
-    useEffect(() => {
-        if ('shelter_id' in shelterDetails) {
-            getPets()
-        }
-    }, [shelterDetails]);
+        getPets()
+    }, [page, sorting, status]);
 
     const makeDate = (days_on_petpal) => {
-        let date = new Date()
-        date.setDate(date.getDate() - days_on_petpal)
-        return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
+        let date = new Date(days_on_petpal.slice(0, 10))
+        return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`
     }
     return <>
-		<header>
-			<Navigation type={'shelter'}/>
-		</header>
-        {(error) ? <p>{error}</p>:
+        <header>
+            <Navigation type={'shelter'}/>
+        </header>
+        {(error) ? <p>{error}</p> :
             <main className="page-container">
-                <h1 className="management-title">Manage your pets</h1>
+                <h1 className="management-title">View Applications</h1>
+                <div className="sorts"
+                style = {{
+                    display: 'flex',
+                    justifyContent: 'center',
+                    alignItems: 'center',
+                }}>
+                    <Form>
+                        <Form.Select onChange={(e) => {setSorting(e.target.value)}}>
+                            <option value="">Sort Options</option>
+                            <option value="last_update_time">Last Update</option>
+                            <option value="creation_time">Creation Time</option>
+                        </Form.Select>
+                        <Form.Select onChange={e => {setStatus(e.target.value)}}>
+                            <option value="">Filter by</option>
+                            <option value="">All</option>
+                            <option value="pending">Pending</option>
+                            <option value="withdrawn">Withdrawn</option>
+                            <option value="denied">Denied</option>
+                        </Form.Select>
+                    </Form>
+                </div>
                 <hr/>
                 <div className="pet-list-title">
-                    <h3>Your pet listings:</h3>
-                    <Button href={'/pet/create'} className={'button-add-pet'} variant={'primary'}
-                            style={{display: 'flex', alignItems: 'center'}}>
-                        <FontAwesomeIcon icon={faPlus}/>
-                        Add New Pet
-                    </Button>
+                    <h3>Your Applications:</h3>
+                    <div className="button-add-pet">
+                        {applications.length !== 0 &&
+                            <div className="page-button-container"
+                                 style={{marginRight: 'auto'}}>
+                                <Button variant={'link'}
+                                        className={'page-button'} disabled={page <= 1}
+                                        onClick={() => {
+                                            setPage(page - 1)
+                                        }}>
+                                    <FontAwesomeIcon icon={faChevronLeft}/>
+                                </Button>
+
+                                <Button variant={'link'}
+                                        className={'page-button'} disabled={page >= totalPage}
+                                        onClick={() => {
+                                            setPage(page + 1)
+                                        }}>
+                                    <FontAwesomeIcon icon={faChevronRight}/>
+                                </Button>
+
+                                <span>Page: {page}/{totalPage}</span>
+                            </div>}
+
+                    </div>
+
                 </div>
                 <div className="pet-list-holder">
-                    {pets.map((pet, i) => {
+                    {console.log(applicationInfo)}
+                    {applicationInfo.map((pet, i) => {
                         return <div className="pet-list-card" key={`petlist${i}`}>
-                            <img src={pet.image}/>
-                            <p className="pet-name">{pet.name}</p>
-                            <p className="date-added">(Date Added: {
-                                makeDate(pet.days_on_petpal)
+                            <img src={pet.pet_image}/>
+                            {console.log(pet)}
+                            <p className="pet-name">{pet.pet_name}</p>
+                            <p className="date-added">(Application Date: {
+                                makeDate(pet.creation_time)
                             })</p>
                             <Dropdown className={'pet-dropdown'}>
                                 <Dropdown.Toggle className={'pet-dropdown-toggle'}
@@ -135,11 +136,20 @@ export function ShelterManagement() {
                                     <FontAwesomeIcon icon={faEllipsis}/>
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu>
-                                    <Dropdown.Item href={`/pet/${pet.id}/update`}>Edit</Dropdown.Item>
+                                    <Dropdown.Item href={`/application/${pet.id}`}>View
+                                        Application</Dropdown.Item>
                                     <Dropdown.Item as={'button'}
-                                    onClick={() => showPetApplications(pet.id, pet.name)}>View Applicants</Dropdown.Item>
-                                    <Dropdown.Item as={'button'}
-                                                   onClick={() => setPetDelete(pet.id)}>Remove</Dropdown.Item>
+                                                   onClick={() => {
+                                                       fetch(`http://localhost:8000/applications/${pet.id}/`, {
+                                                           method: 'PATCH',
+                                                           headers: {
+                                                               Authorization: `Bearer ${localStorage.getItem('access_token')}`,
+                                                               'Content-Type': 'application/json'
+                                                           },
+                                                           body: JSON.stringify({status: 'withdrawn'})
+                                                       })
+                                                           .then(console.log(JSON.stringify({status: 'withdrawn'})))
+                                                   }}>Withdraw</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
@@ -178,10 +188,11 @@ export function ShelterManagement() {
                         <div className="applicants-card-holder">
                             {showPetAppId in applications ? (
                                 applications[showPetAppId].map((pet, i) => (
-                                    <Button href={`/application/${pet.id}`} variant={'link'} className={'applicants-card'} key={i}>
+                                    <Button href={`/application/${pet.id}`} variant={'link'}
+                                            className={'applicants-card'} key={i}>
                                         <h3 className="applicant-name">{pet.adopterName}</h3>
                                         <p className="applicant-message">
-											{pet.extraInfo}
+                                            {pet.extraInfo}
                                         </p>
                                     </Button>
                                 ))
@@ -272,6 +283,6 @@ export function ShelterManagement() {
                     </div>
                 </div>
             </main>}
-		<Footer/>
+        <Footer/>
     </>
 }

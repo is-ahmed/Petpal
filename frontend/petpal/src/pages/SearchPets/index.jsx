@@ -30,7 +30,7 @@ const Pets = () => {
 	useEffect(() => {
 		async function fetchPets() {
 			const { page, page_size, ordering, shelter, species, age, status, daysOnPetPal, gender, breed } = query;
-			const response = await fetch(`http://localhost:8000/petlistings/pets?p=${page}&page_size=6&status=all&ordering=${ordering.toLowerCase()}&shelter=${shelter}&species=${species}&status=${status}&gender=${gender}&breed=${breed}`, {
+			const response = await fetch(`http://localhost:8000/petlistings/pets?p=${page}&page_size=6&status=all&ordering=${ordering.toLowerCase()}&shelter=${shelter}&species=${species.toLowerCase()}&status=${status}&gender=${gender}&breed=${breed}`, {
 				method: 'GET',
 				headers: {
 					Authorization: `Bearer ${localStorage.getItem('access_token')}`
