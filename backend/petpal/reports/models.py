@@ -18,6 +18,7 @@ class Report(models.Model):
     status = models.CharField(max_length=10, choices=report_status, default='pending')
     description = models.TextField(max_length=500)
     name= models.CharField(max_length=100)
+    subject_type = models.CharField(max_length=200)
 
     class Meta:
         constraints = [
