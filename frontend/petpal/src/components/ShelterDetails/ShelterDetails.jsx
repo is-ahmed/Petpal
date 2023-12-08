@@ -15,6 +15,10 @@ import {
     faPhone,
     faEnvelope, faStar, faStarHalf
 } from '@fortawesome/free-solid-svg-icons'
+import PetCard from "../PetCard";
+import Pet from "../../pages/Pet";
+import Footer from "../Footer";
+import Navigation from "../Navigation";
 
 export function ShelterDetails(props) {
     const {shelter_id} = useParams()
@@ -133,7 +137,39 @@ export function ShelterDetails(props) {
             })
     }, [reviewsPage]);
 
+    const [width, setWidth] = useState(window.innerWidth);
+
+    // https://stackoverflow.com/questions/39435395/reactjs-how-to-determine-if-the-application-is-being-viewed-on-mobile-or-deskto
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+
+    const isMobile = width <= 768;
+
+    const [petsPage, setPetsPage] = useState(1)
+    const [petsTotalPage, setPetsTotalPage] = useState(1)
+    const [pets, setPets] = useState([])
+
+    useEffect(() => {
+        fetch(`http://localhost:8000/petlistings/pets?shelter=${shelter_id}`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(json => {
+                setPets(json.results)
+            })
+    }, [petsPage]);
+
     return <>
+        <Navigation type={type}/>
         {!error &&
             <main className="page-container">
                 <div className="shelter-title">
@@ -280,191 +316,20 @@ export function ShelterDetails(props) {
                         </Button>
                     </Modal.Footer>
                 </Modal>
-                <div
-                    className="modal"
-                    id="write-review"
-                    aria-hidden="true"
-                    aria-labelledby="modal-title-write"
-                    tabIndex={-1}
-                >
-                    <div className="modal-dialog modal-dialog-centered">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <h1 className="modal-title fs-5" id="modal-title-write">
-                                    Write Review
-                                </h1>
-                                <button
-                                    type="button"
-                                    className="btn-close"
-                                    data-bs-dismiss="modal"
-                                    aria-label="Close"
-                                />
-                            </div>
-                            <div className="modal-body">
-                                {/*                    https://codepen.io/hesguru/pen/BaybqXv*/}
-                                <div className="star-rating">
-                                    <span className="fa fa-star bright"/>
-                                    <span className="fa fa-star bright"/>
-                                    <span className="fa fa-star bright"/>
-                                    <span className="fa fa-star"/>
-                                    <span className="fa fa-star"/>
-                                </div>
-                                <form
-                                    action="https://postman-echo.com/post"
-                                    encType="multipart/form-data"
-                                    method="post"
-                                >
-                                    <div className="mb-3">
-                                        <label htmlFor="review-text" className="col-form-label">
-                                            Write your review:
-                                        </label>
-                                        <textarea
-                                            style={{height: "10rem"}}
-                                            className="form-control"
-                                            id="review-text"
-                                            defaultValue={""}
-                                        />
-                                    </div>
-                                </form>
-                            </div>
-                            <div className="modal-footer">
-                                <button
-                                    className="btn btn-link back-button-footer"
-                                    data-bs-target="#reviews_modal"
-                                    data-bs-toggle="modal"
-                                >
-                                    Back
-                                </button>
-                                <button
-                                    className="btn btn-primary"
-                                    data-bs-target="#reviews_modal"
-                                    data-bs-toggle="modal"
-                                >
-                                    Submit review
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <hr/>
                 <div className="shelter-pets-holder">
+                    <hr/>
                     <h2 className="shelter-pets-title">Pets from Test Shelter</h2>
-                    {/*        <div class="shelter-pets">*/}
-                    {/*            <div class="pets-card">*/}
-                    {/*                <div class="card">*/}
-                    {/*                    <img class="card-img-top" src="./images/dog.jpg" alt="Card image cap">*/}
-                    {/*                    <div class="card-body">*/}
-                    {/*                        <h5 class="card-title pet-name">Ben</h5>*/}
-                    {/*                        <a href="#" class="btn btn-primary">Check out Ben!</a>*/}
-                    {/*                    </div>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*            <div class="pets-card">*/}
-                    {/*                <div class="card">*/}
-                    {/*                    <img class="card-img-top" src="./images/dog.jpg" alt="Card image cap">*/}
-                    {/*                    <div class="card-body">*/}
-                    {/*                        <h5 class="card-title pet-name">Ben</h5>*/}
-                    {/*                        <a href="#" class="btn btn-primary">Check out Ben!</a>*/}
-                    {/*                    </div>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*            <div class="pets-card">*/}
-                    {/*                <div class="card">*/}
-                    {/*                    <img class="card-img-top" src="./images/dog.jpg" alt="Card image cap">*/}
-                    {/*                    <div class="card-body">*/}
-                    {/*                        <h5 class="card-title pet-name">Ben</h5>*/}
-                    {/*                        <a href="#" class="btn btn-primary">Check out Ben!</a>*/}
-                    {/*                    </div>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    {/*            <div class="pets-card">*/}
-                    {/*                <div class="card">*/}
-                    {/*                    <img class="card-img-top" src="./images/dog.jpg" alt="Card image cap">*/}
-                    {/*                    <div class="card-body">*/}
-                    {/*                        <h5 class="card-title pet-name">Ben</h5>*/}
-                    {/*                        <a href="#" class="btn btn-primary">Check out Ben!</a>*/}
-                    {/*                    </div>*/}
-                    {/*                </div>*/}
-                    {/*            </div>*/}
-                    <div className="container container-fluid">
-                        <div className="row">
-                            <a
-                                className=" col shadow rounded  petinfo p-3"
-                                href="./Petpage-shelter.html"
-                            >
-                                <img
-                                    src="./images/dog.jpg"
-                                    className="img-fluid rounded"
-                                    alt="dog photo"
-                                />
-                                <h3 className="fw-bold mt-3">Sample</h3>
-                                <p className="mb-0">Young - 2 miles away</p>
-                            </a>
-                            <a
-                                className=" col shadow rounded  petinfo p-3"
-                                href="./Petpage-shelter.html"
-                            >
-                                <img
-                                    src="./images/dog.jpg"
-                                    className="img-fluid rounded"
-                                    alt="dog photo"
-                                />
-                                <h3 className="fw-bold mt-3">Sample</h3>
-                                <p className="mb-0">Young - 2 miles away</p>
-                            </a>
-                            <a
-                                className=" col shadow rounded  petinfo p-3"
-                                href="./Petpage-shelter.html"
-                            >
-                                <img
-                                    src="./images/dog.jpg"
-                                    className="img-fluid rounded"
-                                    alt="dog photo"
-                                />
-                                <h3 className="fw-bold mt-3">Sample</h3>
-                                <p className="mb-0">Young - 2 miles away</p>
-                            </a>
-                        </div>
-                        <div className="row">
-                            <a
-                                className=" col shadow rounded  petinfo p-3"
-                                href="./Petpage-shelter.html"
-                            >
-                                <img
-                                    src="./images/dog.jpg"
-                                    className="img-fluid rounded"
-                                    alt="dog photo"
-                                />
-                                <h3 className="fw-bold mt-3">Sample</h3>
-                                <p className="mb-0">Young - 2 miles away</p>
-                            </a>
-                            <a
-                                className=" col shadow rounded  petinfo p-3"
-                                href="./Petpage-shelter.html"
-                            >
-                                <img
-                                    src="./images/dog.jpg"
-                                    className="img-fluid rounded"
-                                    alt="dog photo"
-                                />
-                                <h3 className="fw-bold mt-3">Sample</h3>
-                                <p className="mb-0">Young - 2 miles away</p>
-                            </a>
-                            <a
-                                className=" col shadow rounded  petinfo p-3"
-                                href="./Petpage-shelter.html"
-                            >
-                                <img
-                                    src="./images/dog.jpg"
-                                    className="img-fluid rounded"
-                                    alt="dog photo"
-                                />
-                                <h3 className="fw-bold mt-3">Sample</h3>
-                                <p className="mb-0">Young - 2 miles away</p>
-                            </a>
-                        </div>
+                    <div className="container container-fluid" style={{
+                        display: 'flex',
+                        flexWrap: 'wrap',
+                        flexDirection: isMobile ? 'column' : 'row'
+                    }}>
+                        {pets.map((pet, i) => {
+                            return <PetCard key={i} pet={pet} flagjeff={!isMobile}/>
+                        })}
                     </div>
                 </div>
             </main>}
+        <Footer/>
     </>
 }

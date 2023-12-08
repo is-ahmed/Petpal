@@ -26,6 +26,8 @@ class Shelter(models.Model):
     user = models.OneToOneField(User, primary_key=True, on_delete = models.CASCADE)
     name = models.TextField(max_length=200)
     address = models.TextField(max_length=200)
+    phone_number = models.TextField(max_length=200)
+    mission = models.TextField(max_length=800)
 
     def delete(self, *args, **kwargs):
         self.user.delete()

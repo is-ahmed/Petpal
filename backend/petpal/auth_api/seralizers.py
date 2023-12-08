@@ -1,5 +1,5 @@
 from rest_framework.serializers import ModelSerializer, DateTimeField, ListField, \
-    PrimaryKeyRelatedField, HyperlinkedRelatedField, CharField, ImageField, EmailField
+    PrimaryKeyRelatedField, HyperlinkedRelatedField, CharField, ImageField, EmailField, IntegerField
 
 from .models import Seeker, Shelter, User, Admin
 
@@ -33,8 +33,9 @@ class ShelterSerializer(ModelSerializer):
     password1 = CharField(write_only=True)
     password2 = CharField(write_only=True)
     avatar = ImageField(source='user.avatar')
+    shelter_id = IntegerField(source='user.id', read_only=True)
 
     class Meta:
         model = Shelter
-        fields = ['name', 'address', 'email', 'username', 'password1', 'password2', 'avatar']
+        fields = ['name', 'address', 'email', 'username', 'password1', 'password2', 'avatar', 'shelter_id', 'mission', 'phone_number']
 

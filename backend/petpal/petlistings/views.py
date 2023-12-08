@@ -87,7 +87,7 @@ class PetsListCreate(ListCreateAPIView):
         serializer.instance.shelter = self.request.user.shelter
         serializer.save()
         for seeker in seekers:
-            notification = Notification.objects.create(type="NEW_PET_LISTING", read=False, creation_time=datetime.now(), for_user=seeker.user, link=f"http://localhost:8000/petlistings/pets/{serializer.instance.id}")
+            notification = Notification.objects.create(type="NEW_PET_LISTING", read=False, creation_time=datetime.now(), for_user=seeker.user, link=f"http://localhost:3000/pet/{serializer.instance.id}")
             notification.save()
     
     

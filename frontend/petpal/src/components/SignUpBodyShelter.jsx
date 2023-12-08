@@ -23,14 +23,6 @@ const SignUpBodyShelter = (props) => {
 	const [avatar, setAvatar] = useState()
 	const [errors, setErrors] = useState({})
 	let navigate = useNavigate();
-	const mainStyles = {
-		display: 'flex',
-		'flex-grow': 1,
-		'flex-direction': 'column',
-		'justify-content': 'center',
-		'align-items': 'center',
-		background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${"../assets/family-dog.jpg"});` 
-	}
 	const submit = (event) => {
 		let data = new FormData()
 		data.append('username', username)
@@ -82,7 +74,7 @@ const SignUpBodyShelter = (props) => {
 		
 	}
 	return (
-	<main style={mainStyles} className={`${styles.signupbody}`}>
+	<main className={`${styles.signupbody}`}>
 		    <div id="content" className="d-flex justify-content-end align-items-center">
       <div
         id="form"

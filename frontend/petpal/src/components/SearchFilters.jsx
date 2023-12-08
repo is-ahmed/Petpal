@@ -6,42 +6,26 @@ import { SearchContext } from '../contexts/SearchContext'
 import styles from './css/search.module.css'
 
 const BreedOptions = ({ species }) => {
-	if (species === 'Dog') {
-		return (
-			<>
-			  <option>Afghan Hound</option>
-			  <option>Alaskan Malamute</option>
-			  <option>Beagle</option>
-			  <option>German Shepherd</option>
-			  <option>Golden Retriever</option>
-			  <option>Rotweiller</option>
-			</>
-		);
-	} else if ( species === 'Cat') {
-		return (
-			<>
-			  <option>American Shorthair</option>
-			  <option>British Shorthair</option>
-			  <option>Siamese</option>
-			</>
-		)
-	} else if (species === 'Rabbit') {
-		return (
-			<>
-			  <option>American Fuzzy Lop</option>
-			  <option>Holland Lop</option>
-			  <option>Polish Rabbit</option>
-			</>
-		)
-	} else if (species === 'Fish') {
-		return (
-			<>
-			  <option>Betta Fish</option>
-			  <option>Clownfish</option>
-			  <option>Goldfish</option>
-			</>
-		)
-	}
+	const [breedOptions, setBreedOptions] = useState([]);
+	useEffect(() => {
+		fetch(`http://localhost:8000/petlistings/pets?status=all`, {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${localStorage.getItem('access_token')}`
+			}
+		})
+		.then(response => response.json())
+		.then(json => {
+			// Want to show all shelter options in dropdown
+			let speciesPets = json['results'].filter(pet => pet['species'] === species)
+			setBreedOptions(speciesPets.map((pet, index) => {return pet['breed']})); // Should be an array
+		})
+	}, [breedOptions])
+	return (
+			breedOptions.map(function(breed) {
+				return (<option key={breed}>{breed}</option>)
+			})	
+	);
 }
 
 
@@ -74,7 +58,7 @@ const SearchFilters = ({modal}) => {
 			  <option>Dog</option>
 			  <option>Cat</option>
 			  <option>Rabbit</option>
-			  <option>Fish</option>
+			  <option>Other</option>
 			</select>
 		  </div>
 		  <div className="d-flex flex-column w-100 dropdown">

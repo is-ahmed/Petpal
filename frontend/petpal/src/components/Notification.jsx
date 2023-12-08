@@ -4,6 +4,7 @@ import {faUser, faBell, faCheck} from '@fortawesome/free-solid-svg-icons'
 import {useEffect, useState, useContext} from "react";
 import { UserContext } from '../contexts/UserContext';
 import CloseButton from 'react-bootstrap/CloseButton';
+import { useNavigate } from 'react-router';
 
 
 function getMessage(msg_type) {
@@ -25,6 +26,7 @@ function getMessage(msg_type) {
 }
 
 const Notification = ({notification, deleteNotif, readNotif}) => {
+	let navigate = useNavigate()
 
 	return (
 		<NavDropdown.Item style={notification['read'] ? {
@@ -36,14 +38,17 @@ const Notification = ({notification, deleteNotif, readNotif}) => {
 			justifyContent: 'space-between',
 			background: 'rgba(0, 0, 0, 0.1)'
 		}}>
-			<a href={notification['link']}
-				style={{
-					fontSize: "14px",
-					textDecoration: 'none',
-					marginRight: "10px"
-				}}>
-				{getMessage(notification['type'])}
-			</a>
+			<div onClick={() => {navigate(notification['link'].replace("http://localhost:3000", ""))}}>
+				<a
+					style={{
+						fontSize: "14px",
+						textDecoration: 'none',
+						marginRight: "10px"
+					}}>
+					{getMessage(notification['type'])}
+				</a>
+			</div>
+
 			<span style={{ display: 'inline-flex', alignItems: 'center' }}>
 				<span className='me-1' onClick={() => readNotif(notification['id'])}><FontAwesomeIcon icon={faCheck} /></span>
 				<CloseButton onClick={() => deleteNotif(notification['id'])}/>

@@ -1,12 +1,13 @@
 
 import UpdateUser from "../../components/UserUpdateBody";
-
+import Footer from "../../components/Footer";
 
 function UserUpdatePage() {
 	return (
-    // footer and header will be added 
+    // navbar, header not complete
 		<>		
 		<UpdateUser/>
+    <Footer/>
 		</>
 	)	
 }
