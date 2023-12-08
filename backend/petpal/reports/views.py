@@ -42,4 +42,11 @@ class ReportListCreate(ListCreateAPIView):
             self.permission_classes = [IsAdmin]
         return super(ReportListCreate, self).get_permissions()
 
+    def perform_create(self, serializer):
+        reports = Report.objects.filter(author=self.request.user)
+        for report in reports:
+            if report.subject == serializer.validated_data['subject']:
+                return Response({"detail": "Not allowed to make another report"})
+        serializer.save(author=self.request.user)
+
 

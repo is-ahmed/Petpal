@@ -12,9 +12,8 @@ class Report(models.Model):
     ]
     author = models.ForeignKey(User, on_delete = models.CASCADE,
                                related_name = 'author') #person who reported
-    subject = models.ForeignKey(User, on_delete = models.SET_NULL,
-                                related_name = 'subject', null=True)
-
+    subject = models.ForeignKey(User, on_delete = models.CASCADE,
+                                related_name = 'subject')
 
     status = models.CharField(max_length=10, choices=report_status, default='pending')
     description = models.TextField(max_length=500)

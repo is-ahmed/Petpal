@@ -4,7 +4,7 @@ from django.contrib.auth.models import AbstractUser
 # Create your models here.
 class User(AbstractUser):
     #https://stackoverflow.com/questions/72139491/how-to-have-multiple-user-types-in-django
-    account_type = models.TextField(choices=(('seeker', 'Seeker'), ('shelter', 'Shelter')))
+    account_type = models.TextField(choices=(('seeker', 'Seeker'), ('shelter', 'Shelter'), ('admin', 'Admin')))
     avatar = models.ImageField(upload_to='media/')
 
 class Admin(models.Model):
