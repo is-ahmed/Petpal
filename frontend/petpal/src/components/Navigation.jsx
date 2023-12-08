@@ -87,7 +87,7 @@ export default function Navigation({type, username}) {
                 <Nav className="me-auto">
                     <Nav.Link href="">Home</Nav.Link>
                     {type === 'shelter' &&
-                    <Nav.Link href="">My Pets</Nav.Link>}
+                    <Nav.Link href="http://localhost:3000/shelters/manage">My Pets</Nav.Link>}
                     {type === 'seeker' &&
                         <Nav.Link href="">My Applications</Nav.Link>}
                     <Nav.Link href="http://localhost:3000/shelters/list">Shelters</Nav.Link>
