@@ -26,6 +26,7 @@ import ErrorPage from './pages/error';
 import {ShelterList} from "./components/ShelterList/ShelterList";
 import {Reports} from "./components/Reports/Reports";
 import {NotFound} from "./components/NotFound";
+import Pet from './components/PetpageBody';
 
 function App() {
   return (
