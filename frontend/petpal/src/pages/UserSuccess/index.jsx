@@ -1,5 +1,5 @@
 
-
+import Footer from "../../components/Footer";
 import './style.css';
 import './UserUpdate.css';
 function UserUpdateSuccessPage() {
@@ -13,12 +13,13 @@ function UserUpdateSuccessPage() {
       <p className="mb-0">Thank you for keeping your information up to date.</p>
     </div>
     <div className="d-flex justify-content-center">
-      <a href="/dashboard" className="btn btn-primary">
+      <a href="/pets" className="btn btn-primary">
         Go to Dashboard
       </a>
     </div>
   </div>
 </main>
+<Footer/>
 </>
     // footer and header will be added 
 		
