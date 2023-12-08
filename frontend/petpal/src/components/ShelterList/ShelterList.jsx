@@ -70,34 +70,6 @@ export function ShelterList() {
         setShowPetAppId(id)
     }
 
-    useEffect(() => {
-        fetch('http://localhost:8000/shelter', {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                }
-                throw new Error(`${response.status}: ${response.statusText}`)
-            })
-            .then(json => {
-                setShelterDetails(json)
-            })
-            .catch(error => {
-                setError(error.toString())
-            })
-
-        getPetApplications()
-    }, []);
-
-    useEffect(() => {
-        if ('id' in shelterDetails) {
-            getPets()
-        }
-    }, [shelterDetails]);
-
     const [page, setPage] = useState(1)
     const [totalPage, setTotalPage] = useState(1)
     const [shelters, setShelters] = useState([])
@@ -177,7 +149,6 @@ export function ShelterList() {
                                 }
                             })
                                 .then(() => {
-                                    getPets()
                                     setPetDelete(0)
                                 })
                         }}>Confirm</Button>
