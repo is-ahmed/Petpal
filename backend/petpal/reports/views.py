@@ -20,7 +20,8 @@ class IsAdmin(permissions.BasePermission):
 class ReportRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     ...
     serializer_class = ReportSerializer
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAdmin]
+    queryset = Report.objects.all()
 
     def perform_update(self, serializer):
         user = serializer.instance.subject
