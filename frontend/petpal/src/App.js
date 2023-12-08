@@ -16,6 +16,8 @@ import LoginPage from './pages/Login';
 import Pets from './pages/SearchPets';
 import Shelters from './pages/SearchShelters';
 import RegisterSuccess from './pages/RegisterSuccess';
+import {ShelterManagement} from "./components/ShelterManagement/ShelterManagement";
+import {ShelterDetails} from "./components/ShelterDetails/ShelterDetails";
 
 function App() {
   return (
@@ -36,6 +38,14 @@ function App() {
       <Route path="seeker/update" element={<UserUpdatePage />}/>
       <Route path="shelter/update" element={<ShelterUpdatePage />}/>
       <Route path="success" element={<UserUpdateSuccessPage/>}/>
+	                    <Route path={'shelters/manage'} element={
+				                            <ShelterManagement/>
+				                        }/>
+	                      <Route path={'shelters/:shelter_id'} element={
+				                              <userContext.Provider value={useUserContext()}>
+				                                  <ShelterDetails/>
+				                              </userContext.Provider>
+				                          }/>
  
 			</Route>
 		</Routes>
