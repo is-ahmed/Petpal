@@ -22,38 +22,10 @@ function UpdateShelter(){
         password1: '',
         password2: '',
         avatar: null
-        // Add other fields as necessary
     });
 
-    let credentials = {
-        'username': "bataa1234",
-        'password': "Everyday1!"
-    };
     useEffect(() => {
-        // Fetch user data including file URL
-
-        fetch('http://localhost:8000/token/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(credentials)
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (!("access" in data)) {
-                setError("Login failed");
-            } else {
-                localStorage.setItem('access_token', data['access']);
-            }
-        })
-        .catch(error => {
-            setError("Network or server error occurred");
-            console.error('Login error:', error);
-        });
-
-                
-        
+                 
         ajax_or_login('/shelter/', { method: 'GET' }, navigate)
             .then(response => {
                 if (response.ok) {
@@ -71,7 +43,7 @@ function UpdateShelter(){
                     username: data.username,
                     avatar: data.avatar,
                   
-                    // Do not set passwords or files
+                    
                 });
             })
             .catch(error => setError(error.toString()));
@@ -88,6 +60,22 @@ function UpdateShelter(){
         return digit && lowercase && uppercase && special && password1.length >= 8;
     };
     const passwordsMatch = (password1, password2) => password1 === password2;
+
+    const handleDelete = () => {
+      if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+          ajax_or_login('/shelter/', { 
+              method: 'DELETE'
+          }, navigate)
+          .then(response => {
+              if (response.ok) {
+                  navigate('/'); 
+              } else {
+                  throw new Error('Failed to delete account');
+              }
+          })
+          .catch(error => setError(error.toString()));
+      }
+  };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -117,9 +105,7 @@ function UpdateShelter(){
             }, navigate)
             .then(response => {
                 if (response.ok) {
-                    // Handle successful update (e.g., show a success message or redirect)
-                    // navigate to some other route, for example:
-                    // navigate('/profile');
+                  navigate('/success');
                 } else {
                     throw new Error('Failed to update account');
                 }
@@ -242,10 +228,14 @@ function UpdateShelter(){
                 onChange={e => setUserData({... userData, avatar: e.target.files[0]})}
                 />
                 </div>
-                
-              <button type="submit" className="btn btn-primary mt-2">
+              <div>
+              <button type="submit" className="btn btn-primary mt-2" style={{ marginRight: "10px" }}>
                 Update
               </button>
+              <button type="button" className="btn btn-danger mt-2 ml-2" onClick={handleDelete}>
+                Delete Account
+            </button>
+              </div>
               {error && <p className="notification">{error}</p>}
             </form>
           </div>

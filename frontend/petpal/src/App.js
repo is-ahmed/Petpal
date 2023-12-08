@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Pet from './pages/Pet';
+import RetirevePetPage from './pages/Pet';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -36,7 +36,7 @@ function App() {
 			    <Route path="shelters" element={<Shelters/>}></Route>
 				<Route path="signup-success" element={<RegisterSuccess/>}></Route>
 				<Route path="petcreation" element={<PetCreate/>}></Route>
-        <Route path="pet/:petId/" element={<Pet />} />
+        <Route path="pet/:petId/" element={<RetirevePetPage />} />
       <Route path="seeker/update" element={<UserUpdatePage />}/>
       <Route path="shelter/update" element={<ShelterUpdatePage />}/>
       <Route path="success" element={<UserUpdateSuccessPage/>}/>
