@@ -5,7 +5,7 @@ import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import { useNavigate } from 'react-router-dom'
-import "./css/landing.css"
+import styles from "./css/landing.module.css"
 
 
 // Retrieved from here: https://react-bootstrap.netlify.app/docs/forms/layout/#formgroup
@@ -81,7 +81,7 @@ const SignUpBody = (props) => {
 		
 	}
 	return (
-	<main id="signupbody" style={mainStyles}>
+	<main style={mainStyles} className={`${styles.signupbody}`}>
 		    <div id="content" className="d-flex justify-content-end align-items-center">
       <div
         id="form"

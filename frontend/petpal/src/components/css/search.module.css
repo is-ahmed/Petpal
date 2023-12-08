@@ -18,7 +18,7 @@ a.nav-link:hover {
 
 
 
-#filter {
+.filter {
 	width: 15%;
 	background-color: #F0FFFF ;
 }
@@ -66,7 +66,7 @@ footer {
 	color: #309975;
 }
 
-#filter .dropdown {
+.filter .dropdown {
 	margin-bottom: 20px;
 }
 
@@ -84,7 +84,7 @@ a.petinfo {
 	list-style-type: none;
 }
 
-#mobile-filters {
+.mobilefilters {
 	display: none;
 }
 
@@ -108,7 +108,7 @@ div.row a {
 }
 
 @media screen and (max-width: 500px) {
-	#filter {
+	.filter {
 		display: none !important;
 	}
 
@@ -133,7 +133,7 @@ div.row a {
 	}	
 
 
-	#mobile-filters {
+	.mobilefilters {
 		display: revert;
 	}
 

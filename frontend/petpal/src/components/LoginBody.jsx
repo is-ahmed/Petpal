@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
-import "./css/landing.css"
+import styles from "./css/landing.module.css"
 import { UserContext } from '../contexts/UserContext'
 
 const LoginBody = ({type}) => {
@@ -47,7 +47,7 @@ const LoginBody = ({type}) => {
 	}
 	return (
 		<main>
-		 <div className="fade-in container min-vh-100 d-flex justify-content-center align-items-center">
+		 <div className={`${styles.fadein} ${styles.container} min-vh-100 d-flex justify-content-center align-items-center`}>
 	 <form action="#" onSubmit={submit} className="shadow mb-5 rounded bg-white form-container m-3 mt-5 p-5">
 	   <h1>Login</h1>
 	   <div className="mb-3">

@@ -2,7 +2,7 @@ import React, { useEffect, useState, useContext } from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
-import './css/search.css'
+import styles from './css/search.module.css'
 import PetCard from './PetCard'
 import { SearchContext } from '../contexts/SearchContext'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -52,7 +52,7 @@ const PetSearchResults = ({results}) => {
 		<>
 		 <div className="container container-fluid">
 		 <span className="d-flex justify-content-center">
-			<button id="mobile-filters" type="button" className="mt-3 btn btn-primary" onClick={handleShow}>
+			<button type="button" className={`mt-3 btn btn-primary ${styles.mobilefilters}`} onClick={handleShow}>
 				Filters
 				<FontAwesomeIcon className='ms-2'icon={faFilter} />
 			</button>

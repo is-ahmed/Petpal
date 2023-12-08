@@ -3,7 +3,7 @@ import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
 import { useNavigate } from 'react-router-dom'
 import { SearchContext } from '../contexts/SearchContext'
-import './css/search.css'
+import styles from './css/search.module.css'
 
 const BreedOptions = ({ species }) => {
 	if (species === 'Dog') {
@@ -64,7 +64,7 @@ const SearchFilters = ({modal}) => {
 	}, [])
 	
 	return (
-		<div id={modal ? "modal-filter": "filter"} className="d-flex flex-column justify-content-start align-items-center me-3 shadow rounded p-2">
+		<div className={`d-flex flex-column justify-content-start align-items-center me-3 shadow rounded p-2 ${modal ? "modal-filter" :styles.filter}`}>
 		  <div className="d-flex flex-column w-100 dropdown mt-3">
 			<label htmlFor="species">Species</label>
 			<select name="species" className="btn btn-primary" onChange={e=>{setSearchParams({...query, species: e.target.value})}} defaultValue={query['species']}>

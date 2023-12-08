@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import './css/search.css'
+import styles from './css/search.module.css'
 
 const PetCard = ({pet}) => {
 	

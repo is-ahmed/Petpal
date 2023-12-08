@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
-import "./css/landing.css"
+import styles from "./css/landing.module.css"
 import Form from 'react-bootstrap/Form'
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
@@ -82,7 +82,7 @@ const SignUpBodyShelter = (props) => {
 		
 	}
 	return (
-	<main id="signupbody" style={mainStyles}>
+	<main style={mainStyles} className={`${styles.signupbody}`}>
 		    <div id="content" className="d-flex justify-content-end align-items-center">
       <div
         id="form"

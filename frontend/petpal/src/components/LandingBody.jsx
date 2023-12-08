@@ -1,12 +1,13 @@
 import React from 'react'
 import { Navbar, Nav, Container, NavDropdown } from 'react-bootstrap'
 import Button from 'react-bootstrap/Button'
-import "./css/landing.css"
+import styles from "./css/landing.module.css"
 
 const LandingBody = () => {
 	return (
-	  <main id="landing-page" className="d-flex justify-content-center align-items-center">
-		<div id="landing-div" className="fade-in d-flex flex-column justify-content-center align-items-center">
+	  <main 
+		className={`d-flex justify-content-center align-items-center ${styles.landingpage}`}>
+		<div id="landing-div" className={`${styles.fadein} justify-content-center align-items-center`}>
 		 <Container>
 		  <h1 className="text-white">Pet adoption made easy</h1>
 		  <div className="d-flex justify-content-center align-items-center">
