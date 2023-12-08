@@ -84,8 +84,10 @@ export function MyApplications() {
                         </Form.Select>
                         <Form.Select onChange={e => {setStatus(e.target.value)}}>
                             <option value="">Filter by</option>
-                            <option value="all">All</option>
+                            <option value="">All</option>
                             <option value="pending">Pending</option>
+                            <option value="withdrawn">Withdrawn</option>
+                            <option value="denied">Denied</option>
                         </Form.Select>
                     </Form>
                 </div>
