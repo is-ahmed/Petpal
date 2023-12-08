@@ -7,7 +7,7 @@ const PetCard = ({pet}) => {
 	}, [])
 
 	return (
-		<a className="col mt-3 me-3 mb-3 shadow rounded  petinfo p-3" href="./Petpage.html">
+		<a className={`col mt-3 me-3 mb-3 shadow rounded ${styles.petinfo} p-3`} href="./Petpage.html">
 				<img
 				  src={pet['image']}
 				  className="img-fluid rounded"

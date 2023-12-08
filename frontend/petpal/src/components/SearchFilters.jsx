@@ -33,7 +33,7 @@ const BreedOptions = ({ species }) => {
 			  <option>Polish Rabbit</option>
 			</>
 		)
-	} else if (species === 'Fish') {
+	} else if (species === 'Other') {
 		return (
 			<>
 			  <option>Betta Fish</option>
@@ -74,7 +74,7 @@ const SearchFilters = ({modal}) => {
 			  <option>Dog</option>
 			  <option>Cat</option>
 			  <option>Rabbit</option>
-			  <option>Fish</option>
+			  <option>Other</option>
 			</select>
 		  </div>
 		  <div className="d-flex flex-column w-100 dropdown">
