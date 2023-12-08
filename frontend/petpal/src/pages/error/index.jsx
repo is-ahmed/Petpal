@@ -1,4 +1,6 @@
 import React from 'react';
+import Navigation from "../../components/Navigation";
+import Footer from "../../components/Footer";
 
 function NotFoundPage() {
   const style = {
@@ -14,13 +16,18 @@ function NotFoundPage() {
     fontWeight: 'bold',
     textAlign: 'center'
   };
+  
+  var userType = localStorage.getItem('user_type');
+  var userName = localStorage.getItem('user_name'); 
 
   return (
-    <>
-    <div style={style}>
-      404: Page not found
-    </div>
-    </>
+      <>
+        <header><Navigation type= {userType} username={userName}/></header>
+        <div style={style}>
+          404: Page not found
+        </div>
+        <Footer />
+      </>
     );
 }
 

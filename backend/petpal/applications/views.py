@@ -87,7 +87,7 @@ class ApplicationCreateAPIView(CreateAPIView):
             extraInfo=self.request.data.get('extraInfo')
         )
 
-        notification = Notification.objects.create(type="NEW_APPLICATION", read=False, creation_time=datetime.now(), for_user=serializer.instance.shelter, link=f"http://localhost:8000/applications/{serializer.instance.id}")
+        notification = Notification.objects.create(type="NEW_APPLICATION", read=False, creation_time=datetime.now(), for_user=serializer.instance.shelter, link=f"http://localhost:3000/application/{serializer.instance.id}")
         notification.save()
 
 class ApplicationUpdateAPIView(UpdateAPIView):
@@ -167,5 +167,5 @@ class ApplicationRetrieveUpdateView(RetrieveUpdateAPIView):
                 notiUser = serializer.instance.user
             elif user.account_type == 'seeker':
                 notiUser = serializer.instance.shelter
-            notification = Notification.objects.create(type="APPLICATION_STATUS", read=False, creation_time=datetime.now(), for_user=notiUser, link=f"http://localhost:8000/applications/{serializer.instance.id}")
+            notification = Notification.objects.create(type="APPLICATION_STATUS", read=False, creation_time=datetime.now(), for_user=notiUser, link=f"http://localhost:3000/application/{serializer.instance.id}")
             notification.save()

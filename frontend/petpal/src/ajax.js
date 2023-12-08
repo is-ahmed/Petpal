@@ -22,7 +22,7 @@ export async function ajax_or_login(url, settings, navigate) {
         //navigate('/');
         break;
     case 404:
-        navigate('/pets'); // can replace this with 404 page
+        navigate('/404error'); // can replace this with 404 page
     default:
         break;
     }
