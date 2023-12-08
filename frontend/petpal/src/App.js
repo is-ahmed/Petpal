@@ -27,6 +27,7 @@ import {ShelterList} from "./components/ShelterList/ShelterList";
 import {Reports} from "./components/Reports/Reports";
 import {NotFound} from "./components/NotFound";
 import Pet from './components/PetpageBody';
+import {MyApplications} from "./components/MyApplications/MyApplications";
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
         <Route path={'admin'} element={<Reports/>}/>
         <Route path="*" element={<NotFound/>}/>
         <Route path={'shelters/list'} element={<ShelterList/>}/>
+				<Route path={'/applications'} element={<MyApplications/>}/>
 			</Route>
 		</Routes>
 	  </Router>
