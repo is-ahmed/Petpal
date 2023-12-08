@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Pet from './pages/Pet';
+import RetirevePetPage from './pages/Pet';
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -23,6 +23,9 @@ import PetUpdate from './pages/petupdate';
 import PetApplication from './pages/petapplication';
 import PetApplicationUpdate from './pages/petapplicationupdate';
 import ErrorPage from './pages/error';
+import {ShelterList} from "./components/ShelterList/ShelterList";
+import {Reports} from "./components/Reports/Reports";
+import {NotFound} from "./components/NotFound";
 
 function App() {
   return (
@@ -50,6 +53,9 @@ function App() {
 				<Route path="pet/:id/application" exact element={<PetApplication />} />
 				<Route path="application/:id" exact element={<PetApplicationUpdate />} />
 				<Route path="404error" exact element={<ErrorPage />} />
+        <Route path={'admin'} element={<Reports/>}/>
+        <Route path="*" element={<NotFound/>}/>
+        <Route path={'shelters/list'} element={<ShelterList/>}/>
 			</Route>
 		</Routes>
 	  </Router>

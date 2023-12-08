@@ -5,6 +5,10 @@ body {
     background-color: azure;
 }
 
+strong {
+	margin-left: 5px;
+}
+
 .page-container {
     padding-top: 120px;
     padding-left: 15rem;

@@ -5,11 +5,11 @@ import './style.sm.css'
 import './shelter-manager.sm.css'
 import {Button, CloseButton, Dropdown, Modal, Navbar} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faEllipsis, faPlus} from '@fortawesome/free-solid-svg-icons'
+import {faChevronLeft, faChevronRight, faEllipsis, faPlus} from '@fortawesome/free-solid-svg-icons'
 import Navigation from "../Navigation";
-import Footer from "../Footer";
+import Footer from "../Footer"
 
-export function ShelterManagement() {
+export function Reports() {
     const [shelterDetails, setShelterDetails] = useState({})
     const [pets, setPets] = useState([])
     const [petDelete, setPetDelete] = useState(0) // will hold the id of the pet to delete
@@ -22,28 +22,11 @@ export function ShelterManagement() {
 
     const closePetApp = () => setShowPetApp(false)
 
+    const [accountType ,setAccountType] = useState('')
+    const [subjectID ,setSubjectID] = useState('')
+
     const cancelDelete = () => setPetDelete(0)
 
-    const getPets = () => {
-        fetch(`http://localhost:8000/petlistings/pets?shelter=${shelterDetails.shelter_id}&status=all`,
-            {
-                headers: {
-                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                }
-                throw new Error(`${response.status}: ${response.statusText}`)
-            })
-            .then(json => {
-                setPets(json.results)
-            })
-            .catch(error => {
-                setError(error.toString())
-            })
-    }
 
     const getPetApplications = () => {
         fetch(`http://localhost:8000/applications/`, {
@@ -73,32 +56,40 @@ export function ShelterManagement() {
     }
 
     useEffect(() => {
-        fetch('http://localhost:8000/shelter', {
-            headers: {
-                'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-            }
-        })
-            .then(response => {
-                if (response.ok) {
-                    return response.json()
-                }
-                throw new Error(`${response.status}: ${response.statusText}`)
-            })
-            .then(json => {
-                setShelterDetails(json)
-            })
-            .catch(error => {
-                setError(error.toString())
-            })
-
-        getPetApplications()
-    }, []);
-
-    useEffect(() => {
-        if ('shelter_id' in shelterDetails) {
-            getPets()
+        if ('id' in shelterDetails) {
         }
     }, [shelterDetails]);
+
+    const [page, setPage] = useState(1)
+    const [totalPage, setTotalPage] = useState(1)
+    const [reports, setReports] = useState([])
+    const [description, setDescription] = useState('')
+    const [id, setID] = useState(NaN)
+    const [name, setName] = useState('')
+    const [visible, setVisible] = useState(false)
+
+    const show = () => {
+        setVisible(true)
+    }
+
+    const hide = () => {
+        setVisible(false)
+    }
+
+    const [k, setK] = useState(0)
+    useEffect(() => {
+        fetch(`http://localhost:8000/reports/?page=${page}&page_size=10`, {
+            headers: {
+                Authorization: `Bearer ${localStorage.getItem('access_token')}`
+            }
+        })
+            .then(res => res.json())
+            .then(json => {
+                console.log(json)
+                setReports(json.results)
+                setTotalPage(Math.ceil(json.count / 10))
+            })
+    }, [page, k])
 
     const makeDate = (days_on_petpal) => {
         let date = new Date()
@@ -108,66 +99,87 @@ export function ShelterManagement() {
     }
     return <>
 		<header>
-			<Navigation type={'shelter'}/>
+			<Navigation type={'admin'}/>
 		</header>
         {(error) ? <p>{error}</p>:
             <main className="page-container">
-                <h1 className="management-title">Manage your pets</h1>
+                <h1 className="management-title">Admin Panel</h1>
                 <hr/>
                 <div className="pet-list-title">
-                    <h3>Your pet listings:</h3>
-                    <Button href={'/petcreation'} className={'button-add-pet'} variant={'primary'}
-                            style={{display: 'flex', alignItems: 'center'}}>
-                        <FontAwesomeIcon icon={faPlus}/>
-                        Add New Pet
-                    </Button>
+                    <h3>Reports:</h3>
+                    <div className="button-add-pet">
+                        {reports.length !== 0 &&
+                            <div className="page-button-container"
+                                 style={{marginRight: 'auto'}}>
+                                <Button variant={'link'}
+                                        className={'page-button'} disabled={page <= 1}
+                                        onClick={() => {setPage(page - 1)}}>
+                                    <FontAwesomeIcon icon={faChevronLeft}/>
+                                </Button>
+
+                                <Button variant={'link'}
+                                        className={'page-button'} disabled={page >= totalPage}
+                                        onClick={() => {setPage(page + 1)}}>
+                                    <FontAwesomeIcon icon={faChevronRight}/>
+                                </Button>
+
+                                <span>Page: {page}/{totalPage}</span>
+                            </div>}
+
+                    </div>
                 </div>
                 <div className="pet-list-holder">
-                    {pets.map((pet, i) => {
-                        return <div className="pet-list-card" key={`petlist${i}`}>
-                            <img src={pet.image}/>
-                            <p className="pet-name">{pet.name}</p>
-                            <p className="date-added">(Date Added: {
-                                makeDate(pet.days_on_petpal)
-                            })</p>
-                            <Dropdown className={'pet-dropdown'}>
-                                <Dropdown.Toggle className={'pet-dropdown-toggle'}
-                                                 variant={'link'}>
-                                    <FontAwesomeIcon icon={faEllipsis}/>
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu>
-                                    <Dropdown.Item href={`/edit/${pet.id}`}>Edit</Dropdown.Item>
-                                    <Dropdown.Item as={'button'}
-                                    onClick={() => showPetApplications(pet.id, pet.name)}>View Applicants</Dropdown.Item>
-                                    <Dropdown.Item as={'button'}
-                                                   onClick={() => setPetDelete(pet.id)}>Remove</Dropdown.Item>
-                                </Dropdown.Menu>
-                            </Dropdown>
-                        </div>
+                    {reports.map((report, i) => {
+                        return <Button variant={'link'}
+                                       style={{textDecoration: 'none'}}
+                                       className="pet-list-card" key={`petlist${i}`}
+                        disabled={report.status === 'accepted'}
+                        onClick={() => {
+                            setDescription(report.description)
+                            setName(report.name)
+                            setID(report.id)
+                            setSubjectID(report.subject)
+                            setAccountType(report.subject_type)
+
+                            show()
+                        }}>
+                            <p className="pet-name">{report.name}</p>
+                            <div className="applicant-message-holder">
+                                <p className="applicant-message">
+                                    {report.description}
+                                </p>
+                            </div>
+                        </Button>
                     })}
                 </div>
-                <Modal show={petDelete} onHide={cancelDelete}>
+
+                <Modal show={visible} onHide={hide}>
                     <Modal.Header>
-                        <Modal.Title className={'fs-5'}>Are you sure you want to remove this pet?</Modal.Title>
-                        <CloseButton onClick={cancelDelete}/>
+                        <Modal.Title className={'fs-5'}>Report for {name}</Modal.Title>
+                        <CloseButton onClick={hide}/>
                     </Modal.Header>
                     <Modal.Body>
-                        You won't be able to undo this!
+                        <h6>Report description</h6>
+                        <p>{description}</p>
+                        <Button style={{width: '100%'}}variant={'link'}
+                        href={`/${accountType ? 'shelters' : 'temp'}/${subjectID}`}>View Account</Button>
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant={'secondary'} onClick={cancelDelete}>Cancel</Button>
-                        <Button variant={'primary'} onClick={() => {
-                            fetch(`http://localhost:8000/petlistings/pets/${petDelete}`, {
-                                method: 'DELETE',
-                                headers: {
-                                    'Authorization': `Bearer ${localStorage.getItem('access_token')}`
-                                }
-                            })
-                                .then(() => {
-                                    getPets()
-                                    setPetDelete(0)
+                        <Button variant={'secondary'} onClick={hide}>Cancel</Button>
+                        <Button variant={'danger'} onClick={() => {
+                            fetch(`http://localhost:8000/reports/${id}/`,
+                                {
+                                    method: 'patch',
+                                    headers: {
+                                        Authorization: `Bearer ${localStorage.getItem('access_token')}`
+                                    },
+                                    body: {
+                                        status: 'accepted'
+                                    }
                                 })
-                        }}>Confirm</Button>
+                            hide()
+                            setK(k + 1)
+                        }}>Ban</Button>
                     </Modal.Footer>
                 </Modal>
                 <Modal show={showPetApp} onHide={closePetApp}>
@@ -181,9 +193,12 @@ export function ShelterManagement() {
                                 applications[showPetAppId].map((pet, i) => (
                                     <Button href={'temp'} variant={'link'} className={'applicants-card'} key={i}>
                                         <h3 className="applicant-name">Josh</h3>
-                                        <p className="applicant-message">
-                                            Blah blah blah
-                                        </p>
+                                        <div className="applicant-message-holder">
+                                            <p className="applicant-message">
+                                                Blah blah blah
+                                            </p>
+                                        </div>
+
                                     </Button>
                                 ))
                             ) : (
@@ -273,6 +288,6 @@ export function ShelterManagement() {
                     </div>
                 </div>
             </main>}
-		<Footer/>
+			<Footer/>
     </>
 }

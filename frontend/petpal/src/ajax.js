@@ -21,6 +21,8 @@ export async function ajax_or_login(url, settings, navigate) {
     case 403:
         //navigate('/');
         break;
+    case 404:
+        navigate('/pets'); // can replace this with 404 page
     default:
         break;
     }

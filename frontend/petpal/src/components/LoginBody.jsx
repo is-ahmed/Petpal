@@ -35,11 +35,16 @@ const LoginBody = ({type}) => {
 					console.log(data['access'])
 					// TODO: Perform two more fetches to see user type
 					if (type === 'adopter') {
+						localStorage.setItem('user_type', 'seeker')
 						navigate('/pets')
 					} else if (type === 'shelter') {
 						// navigate to shelter main page 
+						localStorage.setItem('user_type', 'shelter')
+						navigate('/shelters/manage')
 					} else {
 						// navigate
+						localStorage.setItem('user_type', 'admin')
+						navigate('/admin')
 					}
 				}
 			})
