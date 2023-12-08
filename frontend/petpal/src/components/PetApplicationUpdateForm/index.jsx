@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './petapplication.module.css';
 import { ajax_or_login } from "../../ajax";
+import {Button, CloseButton, Form, Modal} from 'react-bootstrap';
 import { UserContext } from '../../contexts/UserContext';
 
 function PetApplicationUpdateForm () {
@@ -20,6 +21,11 @@ function PetApplicationUpdateForm () {
     var userType = localStorage.getItem('user_type');
     //userType = "shelter";
 
+    const [report, setReport] = useState({
+      description: '',
+      subject: '',
+      status: '',
+    });
 
     const navigate = useNavigate(); 
     const { id } = useParams();
@@ -47,7 +53,12 @@ function PetApplicationUpdateForm () {
     }]);
     //const [comments, setComments] = useState([]);
     const [message, setMessage] = useState('');
-    var currentUser = 'test_shelter';
+    const [applicantID, setApplicantID] = useState('');
+    var currentUser = localStorage.getItem('user_name');
+    // if(userType == 'shelter'){
+    //   currentUser = ''
+    // }
+    
 
     //const [firstUser, setFirstUser] = useState('');
 
@@ -116,22 +127,25 @@ function PetApplicationUpdateForm () {
               };
   
               // Fetch formData
-              const formDataResponse = await ajax_or_login(`/applications/${id}/`, settings);
+              const formDataResponse = await ajax_or_login(`/applications/${id}/`, settings, navigate);
               if (!formDataResponse.ok) {
-                  navigate('/404error'); //redirect to 404
+                  navigate('/404error'); //redirect to 404 
                   //throw new Error('Network response was not ok');
               }
+              console.log(formDataResponse);
               //console.log("getting here")
               const formDataData = await formDataResponse.json();
               const pet_id = formDataData.pet_listing;
               const user_id = formDataData.user;
+              setApplicantID(formData.user);
               setInitialStatus(formDataData.status);
               //const orignal_status = formDataData.status;
               setFormData(formDataData);
   
               // Fetch petInfo
-              const petInfoResponse = await ajax_or_login(`/petlistings/pets/${pet_id}`, settings);
+              const petInfoResponse = await ajax_or_login(`/petlistings/pets/${pet_id}`, settings,navigate);
               if (!petInfoResponse.ok) {
+                  console.log("has error");
                   throw new Error('Network response was not ok');
               }
               const petInfoData = await petInfoResponse.json();
@@ -282,6 +296,61 @@ function PetApplicationUpdateForm () {
             });
     }
 
+    const handleReportChange = (e) => {
+      const { name, value } = e.target;
+      setReport(prevReport => ({
+          ...prevReport,
+          [name]: value
+      }));
+  };
+
+  function submitReport(e) {
+      e.preventDefault();
+      
+      var reportData = new FormData(e.target);
+
+      const settings = {
+          method: 'POST',
+          body: reportData,
+      };
+      reportData.set('status','pending');
+      reportData.set('subject',`${applicantID}`);
+
+      for (let [key, value] of reportData.entries()) {
+          console.log(`${key}:`, value);
+      }
+      
+  
+      ajax_or_login(`/reports/`, settings, navigate)
+          .then(response => {
+              if (!response.ok) {
+                  throw new Error('Network response was not ok');
+              }
+              return response.json();
+          })
+          .then(data => {
+              console.log('Success:', data);
+              if(data.id){
+                  setSubmissionMessage('Your report has been submitted!');
+              }else{
+                  setSubmissionMessage('You\'ve already subbmited a report.');
+              }
+              
+              //navigate(`/application/${data.id}`);
+              //navigate('/success-route'); // Replace with your actual success route
+          })
+          .catch(error => {
+              console.error('Error:', error);
+              // Handle network errors or other exceptions
+      });
+    }
+
+    const [showReport, setShowReport] = useState(false)
+    const closeReport = () => setShowReport(false)
+    const openReport = () => setShowReport(true)
+
+    const [submissionMessage, setSubmissionMessage] = useState('');
+
     return (
         <div className={styles.pageColour}>
           <div className={`container ${styles.container} mt-5 mb-5 px-5 py-5`}>
@@ -301,8 +370,39 @@ function PetApplicationUpdateForm () {
                 </div>
               </div>
             </div>
-            <form onSubmit={handleSubmit}>
+            <div className={`${styles.headerContainer}`}>
               <h4 className={`mt-4 mb-3 ${styles.themeText}`}>Applicant Information</h4>
+              {userType === 'shelter' &&<Button variant={'primary'} onClick={openReport}>Report Applicant</Button>}
+            </div>
+                  <Modal show={showReport} onHide={closeReport}>
+                      <Modal.Header>
+                          <Modal.Title>Report Shelter</Modal.Title>
+                          <CloseButton onClick={closeReport}/>
+                      </Modal.Header>
+                      <form onSubmit={submitReport}>
+                          <Modal.Body>
+                              <Form.Group>
+                                  <Form.Label>Reason for Reporting:</Form.Label>
+                                  <Form.Control 
+                                      as="textarea" 
+                                      name="description"
+                                      rows={3} 
+                                      value={report.description} 
+                                      onChange={handleReportChange}
+                                  />
+                              </Form.Group>
+                              {submissionMessage && (
+                                  <div className="mt-3 text-success">{submissionMessage}</div>
+                              )}
+                          </Modal.Body>
+                          <Modal.Footer>
+                              <Button variant="primary" type="submit">Submit Report</Button>
+                          </Modal.Footer>
+                      </form>
+                  </Modal>
+              
+            <form onSubmit={handleSubmit}>
+              {/* <h4 className={`mt-4 mb-3 ${styles.themeText}`}>Applicant Information</h4> */}
               <div className="col-md-12 mb-3">
                 <div className="form-floating">
                   <input
@@ -421,7 +521,7 @@ function PetApplicationUpdateForm () {
                           <div key={index} className="d-flex flex-row justify-content-start mb-4">
                               {/* <img className="rounded-circle chatImage" src={comment.author === 'Author1' ? "./images/Author1Avatar.jpg" : "./images/Author2Avatar.jpg"} alt={comment.author} /> */}
                               {/* <div className={`p-3 ms-3 ${styles.userChat}`}> */}
-                              <div className={comment.author === currentUser ? `${styles.userChat} p-3 ms-3` : `${styles.shelterChat} p-3 ms-3`}>
+                              <div className={comment.author === currentUser ? `${styles.shelterChat} p-3 ms-3` : `${styles.userChat} p-3 ms-3`}>
                                 <div>
                                   <strong>{comment.author}</strong>
                                 </div>

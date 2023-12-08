@@ -1,10 +1,12 @@
-import {useParams} from "react-router-dom";
+import {useParams, useNavigate} from "react-router-dom";
 import {useContext, useEffect, useState} from "react";
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../../style.css'
 import './shelter.sd.css'
 import {Button, CloseButton, Form, Modal} from 'react-bootstrap';
 import {userContext} from "../../contexts/UserContext";
+import { ajax_or_login } from "../../ajax";
 
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {
@@ -37,6 +39,12 @@ export function ShelterDetails(props) {
     const [validatedReviews, setValidatedReviews] = useState(false)
     const [reviewsGood, setReviewsGood] = useState(false)
 
+    const [report, setReport] = useState({
+        description: '',
+        subject: '',
+        status: '',
+    });
+
     // https://react-bootstrap.netlify.app/docs/forms/validation
     const handleSubmit = (event) => {
         const form = event.currentTarget;
@@ -60,6 +68,62 @@ export function ShelterDetails(props) {
         setValidatedReviews(true);
         return false
     };
+
+    const handleReportChange = (e) => {
+        const { name, value } = e.target;
+        setReport(prevReport => ({
+            ...prevReport,
+            [name]: value
+        }));
+    };
+
+    const navigate = useNavigate();
+    function submitReport(e) {
+        e.preventDefault();
+        
+        var reportData = new FormData(e.target);
+
+        const settings = {
+            method: 'POST',
+            body: reportData,
+        };
+        reportData.set('status','pending');
+        reportData.set('subject',`${shelter_id}`);
+
+        for (let [key, value] of reportData.entries()) {
+            console.log(`${key}:`, value);
+        }
+        
+    
+        ajax_or_login(`/reports/`, settings, navigate)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Success:', data);
+                if(data.id){
+                    setSubmissionMessage('Your report has been submitted!');
+                }else{
+                    setSubmissionMessage('You\'ve already subbmited a report.');
+                }
+                
+                //navigate(`/application/${data.id}`);
+                //navigate('/success-route'); // Replace with your actual success route
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                // Handle network errors or other exceptions
+        });
+    }
+
+    const [showReport, setShowReport] = useState(false)
+    const closeReport = () => setShowReport(false)
+    const openReport = () => setShowReport(true)
+
+    const [submissionMessage, setSubmissionMessage] = useState('');
 
     const [reviewRating, setReviewsRating] = useState(0)
     const [reviewText, setReviewText] = useState('')
@@ -206,7 +270,33 @@ export function ShelterDetails(props) {
                     </div>
                 </div>
 
-                <Button variant={'secondary'}>Report</Button>
+                <Button variant={'secondary'} onClick={openReport}>Report</Button>
+                <Modal show={showReport} onHide={closeReport}>
+                    <Modal.Header>
+                        <Modal.Title>Report Shelter</Modal.Title>
+                        <CloseButton onClick={closeReport}/>
+                    </Modal.Header>
+                    <form onSubmit={submitReport}>
+                        <Modal.Body>
+                            <Form.Group>
+                                <Form.Label>Reason for Reporting:</Form.Label>
+                                <Form.Control 
+                                    as="textarea" 
+                                    name="description"
+                                    rows={3} 
+                                    value={report.description} 
+                                    onChange={handleReportChange}
+                                />
+                            </Form.Group>
+                            {submissionMessage && (
+                                <div className="mt-3 text-success">{submissionMessage}</div>
+                            )}
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="primary" type="submit">Submit Report</Button>
+                        </Modal.Footer>
+                    </form>
+                </Modal>
                 {/* https://www.w3schools.com/bootstrap5/bootstrap_modal.php */}
                 <Modal show={showNotifications} onHide={closeNotifications}>
                     <Modal.Header>
