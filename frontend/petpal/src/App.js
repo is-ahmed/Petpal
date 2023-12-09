@@ -28,6 +28,7 @@ import {Reports} from "./components/Reports/Reports";
 import {NotFound} from "./components/NotFound";
 import Pet from './components/PetpageBody';
 import {MyApplications} from "./components/MyApplications/MyApplications";
+import NotFoundPage from "./pages/error";
 
 function App() {
   return (
@@ -56,7 +57,7 @@ function App() {
 				<Route path="application/:id" exact element={<PetApplicationUpdate />} />
 				<Route path="404error" exact element={<ErrorPage />} />
         <Route path={'admin'} element={<Reports/>}/>
-        <Route path="*" element={<NotFound/>}/>
+        <Route path="*" element={<NotFoundPage/>}/>
         <Route path={'shelters/list'} element={<ShelterList/>}/>
 				<Route path={'/applications'} element={<MyApplications/>}/>
 			</Route>
