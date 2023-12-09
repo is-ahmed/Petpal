@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import './css/style.css';
 import './css/UserUpdate.css';
 
-import { ajax_or_login } from "../ajax";
+import { ajax_or_login1 } from "../ajax1";
 
 
 
@@ -25,7 +25,7 @@ function UpdateUser(){
 
     useEffect(() => {          
         
-        ajax_or_login('/seeker/', { method: 'GET' }, navigate)
+        ajax_or_login1('/seeker/', { method: 'GET' }, navigate)
             .then(response => {
                 if (response.ok) {
                     return response.json();
@@ -38,9 +38,9 @@ function UpdateUser(){
                     ...userData,
                     username: data.username,
                     email: data.email,
-                    avatar: data.avatar,
+                
                   
-                    // Do not set passwords or files
+                    
                 });
             })
             .catch(error => setError(error.toString()));
@@ -59,7 +59,7 @@ function UpdateUser(){
     const passwordsMatch = (password1, password2) => password1 === password2;
     const handleDelete = () => {
         if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-            ajax_or_login('/seeker/', { 
+            ajax_or_login1('/seeker/', { 
                 method: 'DELETE'
             }, navigate)
             .then(response => {
@@ -80,7 +80,6 @@ function UpdateUser(){
         if (!validateUsername(userData.username) ||
             !validateEmail(userData.email) ||
             !validatePassword(userData.password1) ||
-            userData.avatar === null ||
             !passwordsMatch(userData.password1, userData.password2)) {
             setError("Please correct the errors before submitting.");
           
@@ -91,14 +90,17 @@ function UpdateUser(){
             formData.append('email', userData.email);
             formData.append('password1', userData.password1);
             formData.append('password2', userData.password2);
-       
+
+            if (userData.avatar) {
+              formData.append('avatar', userData.avatar);
+          }
+  
           
-            formData.append('avatar', userData.avatar);
             
        
             setError('');
-            ajax_or_login('/seeker/', {
-                method: 'PUT',
+            ajax_or_login1('/seeker/', {
+                method: 'PATCH',
                 body: formData,
             }, navigate)
             .then(response => {

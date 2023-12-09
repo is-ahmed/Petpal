@@ -1,0 +1,55 @@
+body {
+    margin: 0;
+    padding: 0;
+    color: #454d66;
+    background-color: azure;
+}
+
+strong {
+	margin-left: 5px;
+}
+
+.page-container {
+    padding-top: 120px;
+    padding-left: 15rem;
+    padding-right: 15rem;
+    position: relative;
+    min-height: calc(100vh - 3.5rem);
+}
+
+.btn-primary {
+    background-color: #309975;
+    border: none;
+    --bs-btn-active-bg: #098660;
+}
+
+.dropdown-menu {
+    --bs-dropdown-link-active-bg: #098660;
+}
+
+footer {
+    color: #309975;
+}
+
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+    background-color: #108965;
+}
+
+.small-screen {
+    display:none !important;
+}
+
+@media screen and (max-width: 500px ) {
+    .page-container {
+        padding: 50px;
+        padding-top: 110px;
+    }
+
+    .big-screen {
+        display: none;
+    }
+
+    .small-screen {
+        display: inline-block !important;
+    }
+}

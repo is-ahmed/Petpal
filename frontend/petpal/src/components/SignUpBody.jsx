@@ -91,27 +91,27 @@ const SignUpBody = (props) => {
         <form onSubmit={submit} action="#" className="row g-3">
           <div className="col-md-6">
             <label htmlFor="name" className="form-label">
-				Name* 
+				Name
             </label>
-            <input type="text" className="form-control" id="name" onChange={e => setName(e.target.value)} required/>
+            <input type="text" className="form-control" id="name" onChange={e => setName(e.target.value)}/>
           </div>
           <div className="col-md-6">
             <label htmlFor="username" className="form-label">
 				Username* 
             </label>
-            <input type="text" className="form-control" id="username" onChange={e => setUsername(e.target.value)} required/>
+            <input type="text" className="form-control" id="username" onChange={e => setUsername(e.target.value)} />
 			{ errors['username'] ? <p style={{color: 'red'}}>{errors['username']}</p> : <p></p>}
           </div>
           <div className="col-md-6">
             <label htmlFor="email" className="form-label">
               Email*
             </label>
-            <input type="email" className="form-control" id="email" onChange={e => setEmail(e.target.value)} required/>
+            <input type="email" className="form-control" id="email" onChange={e => setEmail(e.target.value)} />
 			{ errors['email'] ? <p style={{color: 'red'}}>{errors['email']}</p> : <p></p>}
             <label htmlFor="avatar" className="form-label">
              Profile Picture* 
             </label>
-            <input type="file" className="form-control" id="avatar" onChange={e=>setAvatar(e.target.files[0])} required/>
+            <input type="file" className="form-control" id="avatar" onChange={e=>setAvatar(e.target.files[0])} />
 			{ errors['avatar'] ? <p style={{color: 'red'}}>{errors['avatar']}</p> : <p></p>}
           </div>
           <div className="col-md-6">
@@ -123,7 +123,7 @@ const SignUpBody = (props) => {
               className="form-control"
               id="password1"
 			  onChange={e=>setPassword(e.target.value)}
-			  required
+			  
             />
 			{ errors['password'] ? <p style={{color: 'red'}}>{errors['password']}</p> : <p></p>}
             <label htmlFor="password2" className="form-label">
@@ -134,7 +134,7 @@ const SignUpBody = (props) => {
               className="form-control"
               id="password2"
 			  onChange={e=>setPassword2(e.target.value)}
-			  required
+			  
             />
 			{ errors['password2'] ? <p style={{color: 'red'}}>{errors['password2']}</p> : <p></p>}
           </div> 

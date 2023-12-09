@@ -103,8 +103,7 @@ export function ShelterManagement() {
     const makeDate = (days_on_petpal) => {
         let date = new Date()
         date.setDate(date.getDate() - days_on_petpal)
-        console.log(date, date.getDay())
-        return `${date.getDay()}/${date.getMonth()}/${date.getFullYear()}`
+        return `${date.getDate()}/${date.getMonth()+1}/${date.getFullYear()}`
     }
     return <>
 		<header>

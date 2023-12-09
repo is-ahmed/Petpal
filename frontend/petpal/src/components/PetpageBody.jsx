@@ -8,13 +8,13 @@ import Navigation  from "./Navigation";
 
 function getStatusClass(status) {
     switch (status) {
-      case "Available":
+      case "available":
         return "bg-success";
-      case "Pending":
+      case "pending":
         return "bg-warning";
-      case "Adopted":
+      case "adopted":
         return "bg-danger";
-      case "Withdrawn":
+      case "withdrawn":
         return "bg-secondary"; // Set a class for "Withdrawn"
       default:
         return "bg-secondary"; // Set a default class for unknown statuses
@@ -26,61 +26,69 @@ function Pet(){
     const [showPendingAlert, setShowPendingAlert] = useState(false);
     const [showWithdrawnAlert, setShowWithdrawnAlert] = useState(false);
 
-    
-    // Retrieving pet data 
-    //const navigate = useNavigate();
-    //const { petId } = useParams(); 
-    //const [ error, setError ] = useState("");
-    //const [ pet, setPet ] = useState(null);
+  
+   
 
-    // useEffect(() => {
-    //    ajax_or_login(`/petlistings/pets/${petId}`, {}, navigate)
-    //    .then(response => { 
-    //        if (response.ok) {
-    //            return response.json();
-    //        } else {
-    //            throw Error(response.statusText);
-    //        }
-    //    })
-    //    .then(json => setPet(json))
-    //    .catch(error => setError(error.toString()));
-    //}, [navigate, petId]);
+    const navigate = useNavigate();
+    const { petId } = useParams();
+    const [error, setError] = useState('');
+    const [pet, setPet] = useState({
+        name: '',
+        age: null,
+        breed: '',
+        species: '',
+        gender: '',
+        image: null,
+        status: '',
+        size: null,
+        days_on_petpal: null,
+        color: '',
+        shelter: null,
+        description: '',
+        behavior: '',
+        medicalhistory: '',
+        needs: ''
+    });
 
+    useEffect(() => {
+        ajax_or_login(`/petlistings/pets/${petId}`, { method: 'GET' }, navigate)
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch pet data');
+                }
+            })
+            .then(data => {
+                setPet({
+                    ...pet, 
+                    ...data  
+                });
+            })
+            .catch(error => setError(error.toString()));
+    }, [petId, navigate]);
+
+ 
 
     let AccountType =  localStorage.getItem('user_type');
-    let pet_sample = {
-        "name": "Buddy",
-        "age": 3,
-        "breed": "Labrador",
-        "species": "Dog",
-        "gender": "Male",
-        "image": "http://example.com/uploads/pet_image.jpg",
-        "status": "Withdrawn",
-        "size": 20,
-        "days_on_petpal": 45,
-        "color": "Black",
-        "shelter": 1,
-        "description": "A friendly and energetic Labrador, great with kids and other pets.",
-        "medicalhistory": "Up to date on vaccinations, no known health issues.",
-        "needs": "Regular exercise and a diet suited for large breeds."
-    }
+   
     const handleAdoptClick = (event) => {
-      if (pet_sample.status === "Adopted") {
+      if (pet.status === "adopted") {
           setShowAdoptedAlert(true);
          
           event.preventDefault(); 
-      } else if (pet_sample.status === "Pending") {
+      } else if (pet.status === "pending") {
           setShowPendingAlert(true);
         
           event.preventDefault(); 
-      } else if (pet_sample.status === "Withdrawn") {
+      } else if (pet.status === "withdrawn") {
         setShowWithdrawnAlert(true);
         event.preventDefault();
     }
   }
     return <>
     <Navigation type={AccountType.toLowerCase()}/>
-    <main>
+    <main style={{marginTop: '100px'}}>
   <div className="container">
     <div
       id="exampleCarousel"
@@ -90,21 +98,21 @@ function Pet(){
       <div className="carousel-inner">
         <div className="carousel-item active">
           <img
-            src="../.././dog0.jpg"
+            src={pet.image}
             className="d-block w-100"
             alt="First slide"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="../.././dog1.jpg"
+            src="../.././dog3.jpg"
             className="d-block w-100"
             alt="Second slide"
           />
         </div>
         <div className="carousel-item">
           <img
-            src="../.././dog2.jpeg"
+            src="../.././dog4.jpg"
             className="d-block w-100"
             alt="Third slide"
           />
@@ -134,36 +142,36 @@ function Pet(){
     <div className="row">
       <div className="col-lg-4">
         <div className="info-box p-4 border rounded bg-light">
-          <h3 className="mb-3 font-weight-bold">{pet_sample.name}</h3>
+          <h3 className="mb-3 font-weight-bold">{pet.name}</h3>
           <ul className="list-unstyled">
             <li>
                 <i className="fas fa-dna mr-2"></i>
-                <strong>Species:</strong> {pet_sample.species}
+                <strong>Species:</strong> {pet.species.charAt(0).toUpperCase() + pet.species.slice(1)}
             </li>
             <li>
               <i className="fas fa-paw mr-2" />
-              <strong>Breed:</strong> {pet_sample.breed}
+              <strong>Breed:</strong> {pet.breed}
             </li>
             <li>
               <i className="fas fa-birthday-cake mr-2" />
-              <strong>Age:</strong> {pet_sample.age}
+              <strong>Age:</strong> {pet.age}
             </li>
             <li>
               <i className="fas fa-venus-mars mr-2" />
-              <strong>Gender:</strong> {pet_sample.gender}
+              <strong>Gender:</strong> {pet.gender}
             </li>
             <li>
               <i className="fas fa-weight mr-2" />
-              <strong>Size:</strong> {pet_sample.size}
+              <strong>Size:</strong> {pet.size}
             </li>
             <li>
               <i className="fas fa-palette mr-2" />
-              <strong>Color:</strong> {pet_sample.color}
+              <strong>Color:</strong> {pet.color.charAt(0).toUpperCase() + pet.color.slice(1)}
             </li>
             <li>
               <i className="fas fa-info-circle mr-2" />
               <strong>Status:</strong>{" "}
-              <span className={`badge ${getStatusClass(pet_sample.status)}`}>{pet_sample.status}</span>
+              <span className={`badge ${getStatusClass(pet.status)}`}>{pet.status}</span>
             </li>
           </ul>
         </div>
@@ -172,7 +180,7 @@ function Pet(){
         <div className="info-box p-4 border rounded bg-light">
           <h3 className="mb-3 font-weight-bold">Description</h3>
           <p>
-            {pet_sample.description}
+            {pet.description}
           </p>
         </div>
       </div>
@@ -181,13 +189,13 @@ function Pet(){
           <div>
             <h3 className="mb-3 font-weight-bold">Medical History</h3>
             <p>
-              {pet_sample.medicalhistory}
+              {pet.medicalhistory}
             </p>
           </div>
           <div>
             <h3 className="mb-3 font-weight-bold">Special Needs</h3>
             <p>
-                {pet_sample.needs}
+                {pet.needs}
             </p>
           </div>
         </div>
@@ -199,7 +207,7 @@ function Pet(){
   <>
     <div className="col-lg-12 d-flex justify-content-center align-items-center">
         <div>
-            <a href="./petadoption.html" className="btn btn-primary btn-lg"  id="Adoptme" role="button" onClick={handleAdoptClick}>
+            <a href={`/pet/${petId}/application`} className="btn btn-primary btn-lg"  id="Adoptme" role="button" onClick={handleAdoptClick}>
                 Adopt Me
             </a>
         </div>
@@ -221,7 +229,7 @@ function Pet(){
     </div>
     <div className="col-lg-12 d-flex justify-content-center align-items-center">
         <div>
-            <a href={`/shelters/${pet_sample.shelter}`} className="btn btn-primary btn-lg"  id="Adoptme" role="button"
+            <a href={`/shelters/${pet.shelter}`} className="btn btn-primary btn-lg"  id="Adoptme" role="button"
                             style={{ marginTop: 0 }}>
                             Shelter Page
             </a>
@@ -232,7 +240,7 @@ function Pet(){
     {AccountType === 'shelter' && (
     <div class="col-lg-12 d-flex justify-content-center align-items-center">
         <div>
-            <a href="./petedit.html" class="btn btn-primary btn-lg" id="Adoptme" role="button">Edit Pet</a>
+            <a href={`/pet/${petId}/update`} class="btn btn-primary btn-lg" id="Adoptme" role="button">Edit Pet</a>
         </div>
     </div>
 )}

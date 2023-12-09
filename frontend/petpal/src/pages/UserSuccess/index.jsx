@@ -8,7 +8,7 @@ function UserUpdateSuccessPage() {
   let AccountType =  localStorage.getItem('user_type');
 	return <>
   <Navigation type={AccountType.toLowerCase()}/>
-    <main>
+    <main style={{marginTop: "100px"}}>
   <div className="container mt-5">
     <div className="alert alert-success" role="alert">
       <h4 className="alert-heading">Success!</h4>

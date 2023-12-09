@@ -136,8 +136,7 @@ function PetApplicationForm () {
             })
             .then(data => {
                 console.log('Success:', data);
-                //navigate(`/application/${data.id}`);
-                navigate(`/applications/`);
+                navigate(`/applications`);
                 //navigate('/success-route'); // Replace with your actual success route
             })
             .catch(error => {
