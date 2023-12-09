@@ -126,7 +126,8 @@ export function MyApplications() {
                     {console.log(applicationInfo)}
                     {applicationInfo.map((pet, i) => {
                         return <div className="pet-list-card" key={`petlist${i}`}>
-                            <img src={pet.pet_image}/>
+                            {console.log(pet)}
+                            <img src={pet.image}/>
                             {console.log(pet)}
                             <p className="pet-name">{pet.pet_name}</p>
                             <p className="date-added">(Application Date: {
