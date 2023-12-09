@@ -413,7 +413,6 @@ function PetApplicationUpdateForm () {
                     placeholder="name"
                     onChange={handleChange}
                     value={formData.adopterName}
-                    readOnly
                   />
                   <label htmlFor="name">Name</label>
                 </div>
@@ -428,7 +427,6 @@ function PetApplicationUpdateForm () {
                     placeholder="email"
                     onChange={handleChange}
                     value={userInfo.email}
-                    readOnly
                   />
                   <label htmlFor="email">Email</label>
                 </div>
@@ -443,7 +441,6 @@ function PetApplicationUpdateForm () {
                     placeholder="postalCode"
                     onChange={handleChange}
                     value={formData.postalCode}
-                    readOnly
                   />
                   <label htmlFor="postalCode">Postal Code (Optional)</label>
                 </div>
@@ -458,7 +455,6 @@ function PetApplicationUpdateForm () {
                     placeholder="Phone number (Optional)"
                     onChange={handleChange}
                     value={formData.phoneNumber}
-                    readOnly
                   />
                   <label htmlFor="phoneNum">Phone number (Optional)</label>
                 </div>
@@ -473,7 +469,6 @@ function PetApplicationUpdateForm () {
                     placeholder="Anything else you'd like to add? (Optional)"
                     onChange={handleChange}
                     value={formData.extraInfo}
-                    readOnly
                   ></textarea>
                   <label className="labelWrap" htmlFor="extraInfo">
                     Anything else you'd like to add? (Optional)

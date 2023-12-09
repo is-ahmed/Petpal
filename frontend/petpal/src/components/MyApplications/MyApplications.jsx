@@ -130,7 +130,7 @@ export function MyApplications() {
                             <img src={pet.image}/>
                             {console.log(pet)}
                             <p className="pet-name">{pet.pet_name}</p>
-                            <p className="date-added">(Application Date: {
+                            <p className="date-added">(Applied: {
                                 makeDate(pet.creation_time)
                             })</p>
                             <Dropdown className={'pet-dropdown'}>

@@ -22,7 +22,7 @@ const Pets = () => {
 		shelter: parseInt(searchParams.get('shelter') ?? -1),
 		species: searchParams.get('species') ?? '',
 		age: parseInt(searchParams.get('age') ?? 1),
-		status: searchParams.get('status') ?? 'all',
+		status: searchParams.get('status') ?? 'available',
 		daysOnPetPal: parseInt(searchParams.get('daysOnPetpal') ?? 0),
 		gender: searchParams.get('gender') ?? '',
 		breed: searchParams.get('breed') ?? ''
