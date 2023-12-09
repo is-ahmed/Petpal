@@ -23,7 +23,7 @@ const PetSearchResults = ({results}) => {
 		let rows = [];
 		if (results.length <= 3) {
 			rows.push(
-				<div className={`p-3 row mb-3`}>
+				<div className={`p-3 row mb-3 ${styles.row}`}>
 					{results.map((pet, index) => <PetCard key={index} pet={pet}/>)}
 				</div>
 			)

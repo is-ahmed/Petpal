@@ -7,7 +7,7 @@ const PetCard = ({pet, flagjeff}) => {
 	}, [])
 
 	return (
-	<div className={`card ${styles.card}`}>
+	<a className={`card ${styles.card}`} href={`/pet/${pet.id}`}>
                 <img
                   src={pet.image}
                   className={`card-img-top ${styles.cardImgTop}`}
@@ -19,7 +19,7 @@ const PetCard = ({pet, flagjeff}) => {
                     <p className="card-text">{pet.age} years | {pet.gender} | {pet.size} lbs</p>
                     {/* <p className="card-text">Location: {petInfo.location}</p> */}
                 </div>
-    </div>	
+    </a>	
 	)
 
 }
