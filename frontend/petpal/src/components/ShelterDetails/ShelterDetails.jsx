@@ -31,6 +31,8 @@ export function ShelterDetails(props) {
     const [username, setUsername] = useState('')
     const [avatar, setAvatar] = useState('')
     const [error, setError] = useState(' ')
+    const [mission, setMission] = useState('')
+    const [phone, setPhone] = useState('')
 
     const [reviews, setReviews] = useState([])
     const [reviewsPage, setReviewsPage] = useState(1)
@@ -171,6 +173,9 @@ export function ShelterDetails(props) {
                 setName(json.name)
                 setAddress(json.address)
                 setAvatar(json.avatar)
+                setPhone(json.phone_number)
+                setMission(json.mission)
+
                 setError('')
             })
             .catch(error => {
@@ -195,6 +200,7 @@ export function ShelterDetails(props) {
             .then(json => {
                 setReviews(json.results)
                 setTotalReviewsPages(Math.ceil(json.count / 6))
+                setRat(json.rating)
             })
             .catch(error => {
                 console.log('reviews error')
@@ -220,6 +226,8 @@ export function ShelterDetails(props) {
     const [petsTotalPage, setPetsTotalPage] = useState(1)
     const [pets, setPets] = useState([])
 
+    const [rat, setRat] = useState(0)
+
     useEffect(() => {
         fetch(`http://localhost:8000/petlistings/pets?shelter=${shelter_id}`, {
             headers: {
@@ -237,9 +245,9 @@ export function ShelterDetails(props) {
         {!error &&
             <main className="page-container">
                 <div className="shelter-title">
-                    <h1 className="shelter-name">Test Shelter</h1>
+                    <h1 className="shelter-name">{name}</h1>
                     <p className="shelter-location">
-                        <FontAwesomeIcon icon={faLocationArrow}/> 1234 St George St, M61 123
+                        <FontAwesomeIcon icon={faLocationArrow}/> {address}
                     </p>
                     <div className="star-rating">
                         <Button
@@ -248,24 +256,22 @@ export function ShelterDetails(props) {
                             onClick={openNotifications}>
                             View Review
                         </Button>
-                        {makeStars(3)}
+                        {makeStars(rat)}
                     </div>
                 </div>
                 <div className="contact-information">
                     <p>
-                        <FontAwesomeIcon icon={faPhone}/> 123-456-7890
+                        <FontAwesomeIcon icon={faPhone}/> {phone}
                     </p>
                     <p>
-                        <FontAwesomeIcon icon={faEnvelope}/> mail@shelterforpets.com
+                        <FontAwesomeIcon icon={faEnvelope}/> {email}
                     </p>
                 </div>
                 <div className="shelter-body">
                     <div className="mission">
                         <h2>Our Mission</h2>
                         <p>
-                            Our mission is to protect, advocate for and facilitate responsible
-                            animal care through adoption, education, sterilization and community
-                            outreach in efforts to end companion animal homelessness.{" "}
+                            {mission}
                         </p>
                     </div>
                 </div>
