@@ -30,6 +30,8 @@ export function MyApplications() {
     const [status, setStatus] = useState('')
     const [sorting, setSorting] = useState('last_update_time')
 
+    const type = localStorage.getItem('user_type')
+
     const getPets = () => {
         setApplicationInfo([])
         fetch(`http://localhost:8000/applications/?page=${page}&page_size=10` +
@@ -146,10 +148,10 @@ export function MyApplications() {
                                                                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                                                                'Content-Type': 'application/json'
                                                            },
-                                                           body: JSON.stringify({status: 'withdrawn'})
+                                                           body: JSON.stringify({status: type==='user' ? 'withdraw': 'denied'})
                                                        })
-                                                           .then(console.log(JSON.stringify({status: 'withdrawn'})))
-                                                   }}>Withdraw</Dropdown.Item>
+                                                           .then(console.log(JSON.stringify({status: type==='user' ? 'withdraw': 'denied'})))
+                                                   }}>{type === 'user' ? 'Withdraw' : 'Decline'}</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>
