@@ -88,7 +88,7 @@ function Pet(){
   }
     return <>
     <Navigation type={AccountType.toLowerCase()}/>
-    <main>
+    <main style={{marginTop: '100px'}}>
   <div className="container">
     <div
       id="exampleCarousel"
@@ -146,7 +146,7 @@ function Pet(){
           <ul className="list-unstyled">
             <li>
                 <i className="fas fa-dna mr-2"></i>
-                <strong>Species:</strong> {pet.species}
+                <strong>Species:</strong> {pet.species.charAt(0).toUpperCase() + pet.species.slice(1)}
             </li>
             <li>
               <i className="fas fa-paw mr-2" />
@@ -166,7 +166,7 @@ function Pet(){
             </li>
             <li>
               <i className="fas fa-palette mr-2" />
-              <strong>Color:</strong> {pet.color}
+              <strong>Color:</strong> {pet.color.charAt(0).toUpperCase() + pet.color.slice(1)}
             </li>
             <li>
               <i className="fas fa-info-circle mr-2" />
@@ -207,7 +207,7 @@ function Pet(){
   <>
     <div className="col-lg-12 d-flex justify-content-center align-items-center">
         <div>
-            <a href={`pet/${petId}/application`} className="btn btn-primary btn-lg"  id="Adoptme" role="button" onClick={handleAdoptClick}>
+            <a href={`/pet/${petId}/application`} className="btn btn-primary btn-lg"  id="Adoptme" role="button" onClick={handleAdoptClick}>
                 Adopt Me
             </a>
         </div>
@@ -240,7 +240,7 @@ function Pet(){
     {AccountType === 'shelter' && (
     <div class="col-lg-12 d-flex justify-content-center align-items-center">
         <div>
-            <a href={`pet/${petId}/update`} class="btn btn-primary btn-lg" id="Adoptme" role="button">Edit Pet</a>
+            <a href={`/pet/${petId}/update`} class="btn btn-primary btn-lg" id="Adoptme" role="button">Edit Pet</a>
         </div>
     </div>
 )}

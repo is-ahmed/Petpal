@@ -32,7 +32,7 @@ export function MyApplications() {
 
     const getPets = () => {
         setApplicationInfo([])
-        fetch(`http://localhost:8000/applications/?page=${page}&pagesize=10` +
+        fetch(`http://localhost:8000/applications/?page=${page}&page_size=10` +
             `&ordering=${sorting}` +
             `&status=${status}`,
             {
@@ -65,7 +65,7 @@ export function MyApplications() {
     }
     return <>
         <header>
-            <Navigation type={'shelter'}/>
+            <Navigation type={localStorage.getItem('user_type')}/>
         </header>
         {(error) ? <p>{error}</p> :
             <main className="page-container">

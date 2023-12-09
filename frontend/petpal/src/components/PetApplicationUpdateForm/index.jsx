@@ -137,7 +137,7 @@ function PetApplicationUpdateForm () {
               const formDataData = await formDataResponse.json();
               const pet_id = formDataData.pet_listing;
               const user_id = formDataData.user;
-              setApplicantID(formData.user);
+              setApplicantID(formDataData.user);
               setInitialStatus(formDataData.status);
               //const orignal_status = formDataData.status;
               setFormData(formDataData);
