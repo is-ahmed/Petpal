@@ -141,7 +141,7 @@ function PetApplicationUpdateForm () {
               setInitialStatus(formDataData.status);
               //const orignal_status = formDataData.status;
               setFormData(formDataData);
-  
+              //console.log("getting here");
               // Fetch petInfo
               const petInfoResponse = await ajax_or_login(`/petlistings/pets/${pet_id}`, settings,navigate);
               if (!petInfoResponse.ok) {
