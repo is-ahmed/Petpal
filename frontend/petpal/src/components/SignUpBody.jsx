@@ -91,7 +91,7 @@ const SignUpBody = (props) => {
         <form onSubmit={submit} action="#" className="row g-3">
           <div className="col-md-6">
             <label htmlFor="name" className="form-label">
-				Name* 
+				Name
             </label>
             <input type="text" className="form-control" id="name" onChange={e => setName(e.target.value)}/>
           </div>
