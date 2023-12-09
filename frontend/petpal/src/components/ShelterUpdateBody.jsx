@@ -4,7 +4,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import './css/style.css';
 import './css/UserUpdate.css';
 
-import { ajax_or_login } from "../ajax";
+import { ajax_or_login1 } from "../ajax1";
 
 
 
@@ -26,11 +26,12 @@ function UpdateShelter(){
 
     useEffect(() => {
                  
-        ajax_or_login('/shelter/', { method: 'GET' }, navigate)
+        ajax_or_login1('/shelter/', { method: 'GET' }, navigate)
             .then(response => {
                 if (response.ok) {
                     return response.json();
                 } else {
+                  
                     throw new Error('Failed to fetch user data');
                 }
             })
@@ -41,7 +42,6 @@ function UpdateShelter(){
                     address: data.address,
                     email: data.email,
                     username: data.username,
-                    avatar: data.avatar,
                   
                     
                 });
@@ -63,7 +63,7 @@ function UpdateShelter(){
 
     const handleDelete = () => {
       if (window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
-          ajax_or_login('/shelter/', { 
+          ajax_or_login1('/shelter/', { 
               method: 'DELETE'
           }, navigate)
           .then(response => {
@@ -82,7 +82,6 @@ function UpdateShelter(){
         if (!validateUsername(userData.username) ||
             !validateEmail(userData.email) ||
             !validatePassword(userData.password1) ||
-            userData.avatar === null ||
             !passwordsMatch(userData.password1, userData.password2)) {
             setError("Please correct the errors before submitting.");
           
@@ -95,12 +94,14 @@ function UpdateShelter(){
             formData.append('username', userData.username);
             formData.append('password1', userData.password1);
             formData.append('password2', userData.password2);
-            formData.append('avatar', userData.avatar);
+            if (userData.avatar){
+              formData.append('avatar', userData.avatar);
+            }
             
        
             setError('');
-            ajax_or_login('/shelter/', {
-                method: 'PUT',
+            ajax_or_login1('/shelter/', {
+                method: 'PATCH',
                 body: formData,
             }, navigate)
             .then(response => {

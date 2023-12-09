@@ -73,15 +73,15 @@ function Pet(){
     let AccountType =  localStorage.getItem('user_type');
    
     const handleAdoptClick = (event) => {
-      if (pet.status === "Adopted") {
+      if (pet.status === "adopted") {
           setShowAdoptedAlert(true);
          
           event.preventDefault(); 
-      } else if (pet.status === "Pending") {
+      } else if (pet.status === "pending") {
           setShowPendingAlert(true);
         
           event.preventDefault(); 
-      } else if (pet.status === "Withdrawn") {
+      } else if (pet.status === "withdrawn") {
         setShowWithdrawnAlert(true);
         event.preventDefault();
     }
