@@ -149,10 +149,10 @@ export function MyApplications() {
                                                                Authorization: `Bearer ${localStorage.getItem('access_token')}`,
                                                                'Content-Type': 'application/json'
                                                            },
-                                                           body: JSON.stringify({status: type==='user' ? 'withdraw': 'denied'})
+                                                           body: JSON.stringify({status: type==='seeker' ? 'withdraw': 'denied'})
                                                        })
-                                                           .then(console.log(JSON.stringify({status: type==='user' ? 'withdraw': 'denied'})))
-                                                   }}>{type === 'user' ? 'Withdraw' : 'Decline'}</Dropdown.Item>
+                                                           .then(console.log(JSON.stringify({status: type==='seeker' ? 'withdraw': 'denied'})))
+                                                   }}>{type === 'seeker' ? 'Withdraw' : 'Decline'}</Dropdown.Item>
                                 </Dropdown.Menu>
                             </Dropdown>
                         </div>

@@ -10,7 +10,7 @@ import {faFilter} from '@fortawesome/free-solid-svg-icons'
 import Modal from 'react-bootstrap/Modal';
 import SearchFilters from './SearchFilters'
 
-const PetSearchResults = ({results}) => {
+const PetSearchResults = ({results, isMobile}) => {
 
   const { query, searchParams, setSearchParams } = useContext(SearchContext);
   const [show, setShow] = useState(false);

@@ -13,6 +13,7 @@ const Pets = () => {
 	const [searchParams, setSearchParams] = useSearchParams();
 	const [petResults, setPetResults] = useState();
 	const [getResults, setResultsFinished] = useState(0);
+    const [width, setWidth] = useState(window.innerWidth);
 
 	const query = useMemo(() => ({
 		page : parseInt(searchParams.get("page") ?? 1),
@@ -26,6 +27,20 @@ const Pets = () => {
 		gender: searchParams.get('gender') ?? '',
 		breed: searchParams.get('breed') ?? ''
 	}), [searchParams]);
+
+    // https://stackoverflow.com/questions/39435395/reactjs-how-to-determine-if-the-application-is-being-viewed-on-mobile-or-deskto
+    function handleWindowSizeChange() {
+        setWidth(window.innerWidth);
+    }
+    useEffect(() => {
+        window.addEventListener('resize', handleWindowSizeChange);
+        return () => {
+            window.removeEventListener('resize', handleWindowSizeChange);
+        }
+    }, []);
+
+
+
 
 	useEffect(() => {
 		async function fetchPets() {
@@ -46,6 +61,7 @@ const Pets = () => {
 		.catch(err => console.log(err))
 	}, [query]) // dependent on query
 
+    const isMobile = width <= 768;
 	return (
 		<>
 		<header>
@@ -54,7 +70,7 @@ const Pets = () => {
 		<main className="d-flex" style={{paddingTop: '65px'}}>
 		<SearchContext.Provider value={{query, searchParams, setSearchParams}}>	
 			<SearchFilters modal={false}/>
-		{getResults ? <PetSearchResults results={petResults}/> : ""}	
+		{getResults ? <PetSearchResults results={petResults} isMobile={isMobile}/> : ""}	
 		</SearchContext.Provider>
 		</main>	
 		<Footer/>
