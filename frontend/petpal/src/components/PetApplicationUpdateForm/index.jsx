@@ -389,7 +389,11 @@ function PetApplicationUpdateForm () {
                                       rows={3} 
                                       value={report.description} 
                                       onChange={handleReportChange}
+                                      required minLength={20}
                                   />
+                                  <Form.Control.Feedback type="invalid">
+                                      Must write at least 20 characters.
+                                  </Form.Control.Feedback>
                               </Form.Group>
                               {submissionMessage && (
                                   <div className="mt-3 text-success">{submissionMessage}</div>
