@@ -97,7 +97,7 @@ export function ShelterList() {
 
     const type = 'shelter'
     return <>
-        <Navigation type={type} username={'username'}/>
+        <Navigation type={localStorage.getItem('user_type')} username={'username'}/>
         {(error) ? <p>{error}</p>:
             <main className="page-container">
                 <h1 className="management-title">PetPal Shelters</h1>

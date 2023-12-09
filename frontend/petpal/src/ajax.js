@@ -18,12 +18,12 @@ export async function ajax_or_login(url, settings, navigate) {
     const response = await ajax(url, settings);
     switch (response.status) {
     case 401:
-        navigate('/')
+//        navigate('/')
     case 403:
-        navigate('/');
+ //       navigate('/');
         break;
     case 404:
-        navigate('/404error'); // can replace this with 404 page
+       // navigate('/404error'); // can replace this with 404 page
     default:
         break;
     }

@@ -89,12 +89,12 @@ export default function Navigation({type, username}) {
                     {type === 'shelter' &&
                     <Nav.Link href="http://localhost:3000/shelters/manage">My Pets</Nav.Link>}
                     {type === 'seeker' &&
-                        <Nav.Link href="">My Applications</Nav.Link>}
+                        <Nav.Link href="/applications">My Applications</Nav.Link>}
                     <Nav.Link href="http://localhost:3000/shelters/list">Shelters</Nav.Link>
 
                 </Nav>
                 <Nav className={'justify-content-end'}>
-                    <NavDropdown title={
+                    <NavDropdown align={'end'}title={
                         (<>{isMobile ? <span>Notification</span> :
                             <FontAwesomeIcon
                         style={{
@@ -122,7 +122,7 @@ export default function Navigation({type, username}) {
 							onClick={() => {setPage(page - 1)}}>
 								<FontAwesomeIcon icon={faChevronLeft}/>
 							</Button>
-							<p>{page}</p>
+							<p style={{margin: 0}}>{page}</p>
 							<Button variant={'link'} className={'page-button'} disabled={page >= totalNotifPages}
 							onClick={() => {setPage(page + 1)}}>
 								<FontAwesomeIcon icon={faChevronRight}/>

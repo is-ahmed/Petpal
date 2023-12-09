@@ -49,7 +49,7 @@ function PetStatusUpdateForm() {
             })
             .then((data) => {
             // Update the form data with the fetched pet data
-                if(data.species && !['Dog', 'Cat', 'Rabbit', 'Other'].includes(data.species)){
+                if(data.species && !['dog', 'cat', 'rabbit', 'other'].includes(data.species)){
                     //formData.append('otherType','');
                     setFormData({
                         ...data,
@@ -244,10 +244,10 @@ function PetStatusUpdateForm() {
                                 required
                             >
                                 <option value="">Choose your pet type</option>
-                                <option value="Dog">Dog</option>
-                                <option value="Cat">Cat</option>
-                                <option value="Rabbit">Rabbit</option>
-                                <option value="Other">Other</option>
+                                <option value="dog">Dog</option>
+                                <option value="cat">Cat</option>
+                                <option value="rabbit">Rabbit</option>
+                                <option value="other">Other</option>
                             </select>
                             <label htmlFor="species">Pet Species</label>
                         </div>
