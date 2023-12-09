@@ -6,6 +6,7 @@ from .seralizers import SeekerSerializer, ShelterSerializer, AdminSerializer
 from .models import Seeker, Shelter, User
 from rest_framework.permissions import AllowAny, IsAuthenticated
 
+from rest_framework.pagination import PageNumberPagination
 from rest_framework.exceptions import ValidationError, PermissionDenied
 
 from applications.models import Application
@@ -249,9 +250,15 @@ class Shelters(CreateAPIView, RetrieveUpdateDestroyAPIView):
         self.request.user.shelter.save()
         self.request.user.save()
 
+class SheltersPagination(PageNumberPagination):
+    page_size = 10
+    page_size_query_param = 'page_size'
+    max_page_size = 10000
+
 class SheltersList(ListAPIView):
     serializer_class = ShelterSerializer
     permission_classes=[AllowAny] # TODO: Remove this later
+    pagination_class = SheltersPagination
 
     def get_queryset(self):
         return Shelter.objects.all()
