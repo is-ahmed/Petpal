@@ -105,6 +105,7 @@ function UpdateUser(){
             }, navigate)
             .then(response => {
                 if (response.ok) {
+					localStorage.setItem('user_name', userData.username)
                     navigate('/success');
                 } else {
                     throw new Error('Failed to update account');
