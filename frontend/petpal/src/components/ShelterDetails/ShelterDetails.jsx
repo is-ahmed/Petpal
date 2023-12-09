@@ -17,7 +17,7 @@ import {
     faPhone,
     faEnvelope, faStar, faStarHalf
 } from '@fortawesome/free-solid-svg-icons'
-import PetCard from "../PetCard";
+import PetCard from "../PetCard2";
 import Pet from "../../pages/Pet";
 import Footer from "../Footer";
 import Navigation from "../Navigation";
@@ -360,13 +360,6 @@ export function ShelterDetails(props) {
                 <Modal show={showWriteNotifications} onHide={closeWrite}>
                     <Modal.Header>
                         <Modal.Title>Write Review</Modal.Title>
-                        <div className="star-rating">
-                            <span className="fa fa-star bright"/>
-                            <span className="fa fa-star bright"/>
-                            <span className="fa fa-star bright"/>
-                            <span className="fa fa-star"/>
-                            <span className="fa fa-star"/>
-                        </div>
                         <CloseButton onClick={closeWrite}/>
                     </Modal.Header>
                     <Modal.Body>
