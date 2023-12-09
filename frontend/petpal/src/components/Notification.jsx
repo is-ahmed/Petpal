@@ -17,7 +17,7 @@ function getMessage(msg_type) {
 		msg = "New application!"
 	} else if (msg_type === 'COMMENT') {
 		msg = "New comments!"
-	} else if (msg_type === 'REVIEW') {
+	} else if (msg_type === 'REVIEWS') {
 		msg = "New reviews!"
 	} else {
 		msg = "New pet!"
