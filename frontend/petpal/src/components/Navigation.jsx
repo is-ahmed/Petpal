@@ -42,6 +42,21 @@ export default function Navigation({type, username}) {
         }
     }, [page, notifListOpen]);
 
+	const [shelterId, setShelterId] = useState(0)
+	useEffect(() => {
+		if (type === 'shelter') {
+			fetch('http://localhost:8000/shelter/', {
+				headers: {
+					Authorization: `Bearer ${localStorage.getItem('access_token')}`
+				}
+			})
+				.then(response => response.json())
+				.then(json => {
+					setShelterId(json.shelter_id)
+				})
+		}
+	})
+
 	const deleteNotif = (id) => {
 		fetch(`http://localhost:8000/notifications/notifs/${id}`, {
 			method: 'DELETE',
@@ -85,7 +100,7 @@ export default function Navigation({type, username}) {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href={type === 'shelter' ? '/shelters/manage' : '/pets'}>Home</Nav.Link>
+                    <Nav.Link href={type === 'shelter' ? `/shelters/${shelterId}` : '/pets'}>Home</Nav.Link>
                     {type === 'shelter' &&
                     <Nav.Link href="http://localhost:3000/shelters/manage">My Pets</Nav.Link>}
                     <Nav.Link href="/applications">My Applications</Nav.Link>
