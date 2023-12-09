@@ -161,9 +161,9 @@ export function Reports() {
                     <Modal.Body>
                         <h6>Report description</h6>
                         <p>{description}</p>
-                        {console.log(accountType)}
+                        {accountType === 'shelters' &
                         <Button style={{width: '100%'}}variant={'link'}
-                        href={`/${accountType ? 'shelters' : 'temp'}/${subjectID}`}>View Account</Button>
+                        href={`/shelters/${subjectID}`}>View Account</Button>}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant={'secondary'} onClick={hide}>Cancel</Button>
