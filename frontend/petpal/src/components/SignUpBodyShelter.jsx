@@ -142,6 +142,7 @@ const SignUpBodyShelter = (props) => {
               placeholder="1234 Main St"
 			  onChange={e=>setAddress(e.target.value)}
             />
+			{ errors['address'] ? <p style={{color: 'red'}}>{errors['address']}</p> : <p></p>}
             <label htmlFor="inputPhoneNumber" className="form-label">
 			  Phone number 
             </label>
@@ -152,6 +153,7 @@ const SignUpBodyShelter = (props) => {
               placeholder="123-456-7890"
 			  onChange={e=>setPhoneNumber(e.target.value)}
             />
+			{ errors['phone_number'] ? <p style={{color: 'red'}}>{errors['phone_number']}</p> : <p></p>}
             <label htmlFor="inputMission" className="form-label">
 			  Mission Statement 
             </label>
@@ -162,6 +164,7 @@ const SignUpBodyShelter = (props) => {
               placeholder=""
 			  onChange={e=>setMissionStatement(e.target.value)}
             />
+			{ errors['mission'] ? <p style={{color: 'red'}}>{errors['mission']}</p> : <p></p>}
           </div> 
           <div className="col-12">
             <button type="submit" className="btn btn-primary">

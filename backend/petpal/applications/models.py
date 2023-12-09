@@ -27,7 +27,7 @@ class Application(models.Model):
     last_update_time = models.DateTimeField(auto_now=True)
 
     pet_name = models.CharField(max_length = 200);
-    image = models.ImageField()
+    pet_image = models.ImageField()
 
     # def __str__(self):
     #     return f'Application for {self.pet_listing}'
