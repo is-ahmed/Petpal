@@ -33,7 +33,7 @@ class UserCommentCreate(CreateAPIView):
             shelter = get_object_or_404(Shelter, pk=object_id)
             content_type_instance = ContentType.objects.get(model=content_type.lower())
             serializer.save(author=user, content_type=content_type_instance, object_id=object_id)
-            notification = Notification.objects.create(type="COMMENT", read=False, creation_time=timezone.now(), for_user=shelter, link=f"http://localhost:3000/shelters/{shelter}")
+            notification = Notification.objects.create(type="COMMENT", read=False, creation_time=timezone.now(), for_user=shelter.user, link=f"http://localhost:3000/shelters/{shelter}")
             notification.save()
 
         elif content_type == 'application':
@@ -45,7 +45,7 @@ class UserCommentCreate(CreateAPIView):
                 application.last_update_time = timezone.now()
                 application.save()
                 notiUser = application.shelter
-                notification = Notification.objects.create(type="COMMENT", read=False, creation_time=timezone.now(), for_user=notiUser, link=f"http://localhost:3000/application/{serializer.instance.id}")
+                notification = Notification.objects.create(type="COMMENT", read=False, creation_time=timezone.now(), for_user=notiUser.user, link=f"http://localhost:3000/application/{serializer.instance.id}")
                 notification.save()
               
             elif user.account_type == "shelter":
