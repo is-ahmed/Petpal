@@ -129,7 +129,7 @@ function PetApplicationForm () {
             .then(response => {
                 if (!response.ok) {
                     //setErrorMessage("You have already have an application with this pet!");
-                    setErrorMessages(prevErrors => ({ ...prevErrors, alreadySubmitted: 'You have already have an application with this pet!' }));
+                    setErrorMessages(prevErrors => ({ ...prevErrors, alreadySubmitted: 'You already have an application with this pet!' }));
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
@@ -205,7 +205,7 @@ function PetApplicationForm () {
                     placeholder="name"
                     onChange={handleChange}
                     value={formData.adopterName}
-                    required
+                    //required
                   />
                   <label htmlFor="name">Name</label>
                 </div>
