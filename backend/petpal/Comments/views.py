@@ -10,6 +10,8 @@ from auth_api.models import Shelter, AbstractUser
 from applications.models import Application
 from django.utils import timezone
 from notifications.models import Notification
+from django.db.models import Avg
+from rest_framework.response import Response
 
 # Create your views here.
 class CommentPagination(PageNumberPagination):
@@ -75,6 +77,14 @@ class ShelterCommentsListView(ListCreateAPIView):
 
         shelter_content_type = ContentType.objects.get(model='shelter')
         return Comment.objects.filter(content_type=shelter_content_type, object_id=shelter_id)
+
+    def list(self, request, *args, **kwargs):
+        response = super().list(request, args, kwargs)
+        comments = self.get_queryset()
+        rating = comments.aggregate(Avg('rating', default=0))
+
+        response.data['rating'] = rating['rating__avg']
+        return response
 
 class ShelterCommentsSortedListView(ShelterCommentsListView):
  
