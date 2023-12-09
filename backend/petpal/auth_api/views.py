@@ -262,15 +262,6 @@ class SheltersList(ListAPIView):
 
     def get_queryset(self):
         return Shelter.objects.all()
-    def list(self, request, *args, **kwargs):
-        shelters = self.get_queryset()
-        serialized_data = {'count': 0, 'next': None, 'prev': None, 'results': []}
-        for shelter in shelters:
-            serializer = self.get_serializer(shelter)
-            serialized_shelter = serializer.data
-            serialized_shelter['id'] = shelter.user.id 
-            serialized_data['results'].append(serialized_shelter)
-        return Response(serialized_data)
 
 class SheltersRetrieve(RetrieveAPIView):
     serializer_class = ShelterSerializer
