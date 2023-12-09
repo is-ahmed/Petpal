@@ -87,7 +87,7 @@ function Pet(){
     }
   }
     return <>
-    <Navigation type={AccountType.toLowerCase()}/>
+    <Navigation type={AccountType.toLowerCase()} username={localStorage.getItem('user_name')}/>
     <main style={{marginTop: '100px'}}>
   <div className="container">
     <div

@@ -9,7 +9,7 @@ import Navigation from "../../components/Navigation";
 const Shelters = () => {
 	return (
 		<>
-		<Navigation type='seeker' username='username'/>
+		<Navigation type='seeker' username={localStorage.getItem('user_name')}/>
 		<div className="d-flex">
 		</div>	
 		<Footer/>

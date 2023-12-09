@@ -64,7 +64,7 @@ function PetRegistrationForm () {
         if(!formData.age){
             errors.age = 'Pet age is required';
         }else{
-            if (!Number.isInteger(formData.age)){
+            if (!Number.isInteger(parseFloat(formData.age))){
                 errors.age = 'Age must be integer';
             } else if(parseFloat(formData.age) <= 0){
                 errors.age = 'Age must be positive';
@@ -200,7 +200,7 @@ function PetRegistrationForm () {
     }
 
     return (
-        <div className={styles.pageColour}>
+        <div className={`${styles.pageColour} mt-5`}>
         <div className={`container justify-content-center ${styles.container} mt-5 mb-5`}>
             <h2 className="text-center"><FontAwesomeIcon icon={faPaw} /> Register a New Pet <FontAwesomeIcon icon={faPaw} /></h2>
             <form onSubmit={handleSubmit}>

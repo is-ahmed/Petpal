@@ -88,8 +88,7 @@ export default function Navigation({type, username}) {
                     <Nav.Link href={type === 'shelter' ? '/shelters/manage' : '/pets'}>Home</Nav.Link>
                     {type === 'shelter' &&
                     <Nav.Link href="http://localhost:3000/shelters/manage">My Pets</Nav.Link>}
-                    {type === 'seeker' &&
-                        <Nav.Link href="/applications">My Applications</Nav.Link>}
+                    <Nav.Link href="/applications">My Applications</Nav.Link>
                     <Nav.Link href="http://localhost:3000/shelters/list">Shelters</Nav.Link>
 
                 </Nav>
@@ -150,7 +149,7 @@ export default function Navigation({type, username}) {
                         {type === 'seeker' &&
                         <NavDropdown.Item href="/seeker/update">Account Info</NavDropdown.Item>}
                         {type === 'shelter' &&
-                        <NavDropdown.Item href="">Account Info</NavDropdown.Item>}
+                        <NavDropdown.Item href="/shelter/update">Account Info</NavDropdown.Item>}
                         <NavDropdown.Item href="/">
                             Sign Out
                         </NavDropdown.Item>

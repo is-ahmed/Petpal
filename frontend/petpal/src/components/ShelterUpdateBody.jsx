@@ -121,7 +121,7 @@ function UpdateShelter(){
        
     return <>
 
-<main>
+<main style={{marginTop: "100px"}}>
   <div className="container mt-5">
     <div className="row justify-content-center">
       <div className="col-lg-6">

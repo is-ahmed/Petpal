@@ -49,7 +49,7 @@ const Pets = () => {
 	return (
 		<>
 		<header>
-			<Navigation type='seeker' username='username'/>
+			<Navigation type='seeker' username={localStorage.getItem('user_name')}/>
 		</header>
 		<main className="d-flex" style={{paddingTop: '65px'}}>
 		<SearchContext.Provider value={{query, searchParams, setSearchParams}}>	

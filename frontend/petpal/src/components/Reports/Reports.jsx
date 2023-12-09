@@ -99,7 +99,7 @@ export function Reports() {
     }
     return <>
 		<header>
-			<Navigation type={'admin'}/>
+			<Navigation type={'admin'} username={localStorage.getItem('user_name')}/>
 		</header>
         {(error) ? <p>{error}</p>:
             <main className="page-container">

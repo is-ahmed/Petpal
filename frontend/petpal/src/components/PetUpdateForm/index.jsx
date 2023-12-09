@@ -193,7 +193,7 @@ function PetStatusUpdateForm() {
         if(!formData.age){
             errors.age = 'Pet age is required';
         }else{
-            if (!Number.isInteger(formData.age)){
+            if (!Number.isInteger(parseFloat(formData.age))){
                 errors.age = 'Age must be integer';
             } else if(parseFloat(formData.age) <= 0){
                 errors.age = 'Age must be positive';

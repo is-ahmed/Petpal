@@ -233,7 +233,7 @@ export function ShelterDetails(props) {
     }, [petsPage]);
 
     return <>
-        <Navigation type={type}/>
+        <Navigation type={type} username={localStorage.getItem('user_name')}/>
         {!error &&
             <main className="page-container">
                 <div className="shelter-title">

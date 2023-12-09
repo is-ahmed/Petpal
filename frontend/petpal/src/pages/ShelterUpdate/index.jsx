@@ -7,7 +7,7 @@ function ShelterUpdatePage() {
 	return (
     // footer and header will be added 
 		<>		
-		<Navigation type={"shelter"}/>
+		<Navigation type={"shelter"} username={localStorage.getItem('user_name')}/>
 		<UpdateShelter/>
 		<Footer/>
 		</>

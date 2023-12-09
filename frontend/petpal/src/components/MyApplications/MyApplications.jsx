@@ -67,7 +67,7 @@ export function MyApplications() {
     }
     return <>
         <header>
-            <Navigation type={localStorage.getItem('user_type')}/>
+            <Navigation type={localStorage.getItem('user_type')} username={localStorage.getItem('user_name')}/>
         </header>
         {(error) ? <p>{error}</p> :
             <main className="page-container">

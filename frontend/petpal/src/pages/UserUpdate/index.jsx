@@ -7,7 +7,7 @@ function UserUpdatePage() {
 	return (
     // navbar, header not complete
 		<>		
-    <Navigation type={"seeker"}/>
+    <Navigation type={"seeker"} username={localStorage.getItem('user_name')}/>
 		<UpdateUser/>
     <Footer/>
 		</>

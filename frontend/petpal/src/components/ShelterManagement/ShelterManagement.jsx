@@ -107,7 +107,7 @@ export function ShelterManagement() {
     }
     return <>
 		<header>
-			<Navigation type={'shelter'}/>
+			<Navigation type={'shelter'} username={localStorage.getItem('user_name')}/>
 		</header>
         {(error) ? <p>{error}</p>:
             <main className="page-container">
