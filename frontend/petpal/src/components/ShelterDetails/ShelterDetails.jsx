@@ -378,6 +378,9 @@ export function ShelterDetails(props) {
                                 <Form.Control onChange={(e) => setReviewText(e.target.value)} as={'textarea'} style={{height: '10rem'}}
                                 required minLength={20}
                                 name={'text'}></Form.Control>
+                                <Form.Control.Feedback type="invalid">
+                                    Must write at least 10 characters.
+                                </Form.Control.Feedback>
                             </Form.Group>
                         </Form>
                     </Modal.Body>
